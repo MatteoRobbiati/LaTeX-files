@@ -1,0 +1,67 @@
+\documentclass[border=10pt]{standalone}
+\usepackage{tikz}
+\usepackage{fontawesome}
+\usetikzlibrary{mindmap,backgrounds}
+
+\usepackage{xcolor}
+\definecolor{gio}{rgb}{0.20, 0.0, 0.51}
+\definecolor{def}{rgb}{1, 0.08, 0.58}
+\usepackage[citecolor = green, linkcolor = gio, bookmarks=true, urlcolor=gio,
+colorlinks=true, pagebackref=true]{hyperref}
+\begin{document}
+
+\begin{tikzpicture}[mindmap, grow cyclic, every node/.style=concept, concept color=black!20,
+  level 1/.append style={level distance=5cm,sibling angle=120, text width=2cm},
+  level 2/.append style={level distance=4cm,sibling angle=65, text width=2cm},
+  level 3/.append style={level distance=4cm,sibling angle=45}],
+
+  \node{Matteo Robbiati \\ PhD}
+  child [concept color=red!40, minimum size=3cm, grow=340] { node (b) {\Large TH\\ dept.}
+    child [minimum size=3cm, concept color=red!60, text width=2.5cm] { node (bc) {\normalsize \textbf{PDF \\ estimations}}}
+    child [concept color=blue!40, minimum size=2cm, grow=40, level distance=220] { node (bd) {\Large Past \\ works}}
+  }
+  child [concept color=teal!40, grow=60, minimum size=3.5cm, text width=3cm] { node (c) {\large Computational physics}
+    child[concept, level distance=120] { node (qiboteam) {\normalsize Quantum computing \\ \href{https://github.com/qiboteam}{\texttt{qiboteam}} \\ \faGroup } 
+        child [minimum size=2.5cm, level distance=120, grow=20, concept color=teal!60, text width=2.5cm] {node (ca1) {\normalsize \textbf{HEP \\ models}}}
+        child [minimum size=2cm, level distance=90, grow=60, concept color=teal!60] {node (ca2) {\normalsize \textbf{QML}}}
+    }
+  };
+  \node [annotation, right=30, text width=8.5cm, concept color=blue!10] at (bd) {\normalsize 
+  \textbf{8 publications involving TH since 2020}\\ 
+  \vspace{0.2cm}
+  \faPuzzlePiece\,\, generative models and QML; \\
+  \faPuzzlePiece\,\, quantum simulation algorithms; \\
+  \faPuzzlePiece\,\, hardware-compatible optimization techniques; \\
+  \faPuzzlePiece\,\, instrument control and calibration; \\
+  \faPuzzlePiece\,\, QT4HEP Models (qGAN, PDF estimation, etc.). \\
+
+  \vspace{0.2cm}
+  \textbf{\faPencil\,\, My recent contribution} \\
+  \textit{A quantum analytical Adam descent through parameter shift rule using \texttt{qibo}}(\href{https://arxiv.org/abs/2210.10787}{	arXiv:2210.10787})};
+  
+    \node [annotation, above left=30, text width=4.5cm, concept color=teal!10] at (c) {\normalsize 
+    \textbf{In particular} \\
+    \vspace{0.2cm}
+    \faTerminal\,\, Numerical simulations;
+    \faTerminal\,\, Monte Carlo techniques;
+    \faTerminal\,\, Deep Learning Methods;
+    };
+
+    \node [annotation, right=50, text width=8.5cm, concept color=red!10] at (bc) {\normalsize 
+    \faDatabase\,\, Quantum generative models to sample; \\
+    \faBarChart\,\, QML models for fitting PDFs; \\
+    \faAreaChart\,\, samples + PDF = MC integration!
+    };
+    
+  \begin{scope}[on background layer]
+    \path (bc) to[circle connection bar switch color=from (red!70) to (teal!70)] (ca1);
+
+    \path (bc) to[circle connection bar switch color=from (red!70) to (teal!70)] (ca2);
+    
+    \path (b) to[circle connection bar switch color=from (red!40) to (teal!40)] (c);
+
+    \path (bd) to[circle connection bar switch color=from (blue!40) to (teal!40)] (qiboteam);
+  \end{scope}
+\end{tikzpicture}
+
+\end{document}
