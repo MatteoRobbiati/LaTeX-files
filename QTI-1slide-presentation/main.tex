@@ -1,0 +1,83 @@
+% Inbuilt themes in beamer
+
+\documentclass[9pt, xcolor={svgnames}, hyperref={colorlinks,linkcolor=black, citecolor=teal, urlcolor=teal}]{beamer}
+\setbeamersize{text margin left=5mm,text margin right=5mm} 
+\setbeamertemplate{navigation symbols}{}
+
+\newcommand*{\xdash}[1][3em]{\rule[0.5ex]{#1}{0.55pt}}
+
+% Theme choice:
+
+
+% Title page details: 
+\date{\today}
+\usepackage{multicol}
+\usepackage{fontawesome}
+
+
+\usepackage{tcolorbox}
+\setlength{\columnsep}{0.2cm}
+
+
+
+\begin{document}
+
+\begin{frame}{\normalsize Research topics - M. Robbiati, S. Carrazza, J. M. Cruz-Martinez}
+
+\vspace{0.1cm}
+
+\faGroup\,\, My group  works on some fronts involving QTI and TH department since 2020:
+
+    \begin{multicols}{2}
+    
+    \begin{tcolorbox}[colback=blue!20,boxrule=1pt,arc=.8em,boxsep=-1mm]
+    \faCode\,\, \textbf{Middleware software}
+    \vspace{0.15cm}
+
+    \small
+    \textit{Development of a full-stack software for self-hosted quantum chips with simulation, control and calibration.}
+
+    \xdash[17em]
+
+    \begin{itemize}
+        \item[\faEdit] \textit{``Qibo: a framework for quantum simulation with hardware acceleration"} \href{https://arxiv.org/abs/2009.01845}{arXiv:2009.01845};
+        
+        \item[\faEdit] \textit{``Quantum simulation with just-in-time compilation"} \href{https://arxiv.org/abs/2203.08826}{	arXiv:2203.08826};
+        
+        \item[\faEdit] \textit{``An open-source modular framework for quantum computing"} \href{https://arxiv.org/abs/2202.07017}{	arXiv:2202.07017}.
+    \end{itemize}
+    \end{tcolorbox}
+
+    \begin{tcolorbox}[colback=teal!20,boxrule=1pt,arc=.8em,boxsep=-0.5mm]
+    \faBarChart\,\, \textbf{Quantum models for HEP}
+    \vspace{0.15cm}
+    
+    \small
+    
+    An example: Quantum Machine Learning (QML):
+
+    \vspace{0.25cm}
+
+    
+    \xdash[17em]
+    
+    \begin{itemize}
+        \item[\faEdit] \textit{``Style-based quantum generative adversarial networks for Monte Carlo events"} \href{https://arxiv.org/abs/2110.06933}{arXiv:2110.06933};
+        \item[\faEdit] \textit{``Determining the proton content with a quantum computer"} \href{https://arxiv.org/abs/2011.13934}{arXiv:2011.13934}.
+    \end{itemize}
+    \end{tcolorbox}
+    \end{multicols}
+
+    \begin{tcolorbox}[colback=purple!20,boxrule=1pt,arc=.8em,boxsep=-1mm]
+    \faUser\,\, \textbf{About me}
+    \begin{itemize}
+        \item[\faCrosshairs] focus on hardware-compatible optimization techniques for QML in HEP:
+        \begin{itemize}
+            \item[\faEdit]:\textit{``A quantum analytical Adam descent through parameter shift rule using \texttt{qibo}" }\href{https://arxiv.org/abs/2210.10787}{arXiv:2210.10787};
+            \item[\faCogs]: quantum models for Monte Carlo integration (data generation, probability density estimation, etc.).
+        \end{itemize}
+    \end{itemize}
+    \end{tcolorbox}
+\end{frame} 
+
+\end{document}
