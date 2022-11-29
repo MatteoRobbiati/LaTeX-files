@@ -1,0 +1,178 @@
+\documentclass[11pt]{article}
+\usepackage{blindtext}
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=15mm,
+ top=20mm,
+ }
+\usepackage{cmbright}
+\usepackage{bm}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{fontawesome}
+
+\usepackage[dvipsnames]{xcolor}
+\definecolor{light-gray}{gray}{0.95}
+\definecolor{elle}{rgb}{0.3, 0.5, 0.9}
+\definecolor{gio}{rgb}{0.0, 0.4, 0.65}
+\definecolor{def}{rgb}{1, 0.08, 0.58}
+\definecolor{purpleheart}{rgb}{0.41, 0.21, 0.61}
+\usepackage[citecolor = green, linkcolor = gio, bookmarks=true, urlcolor=gio,
+colorlinks=true, pagebackref=true]{hyperref}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+
+
+\newcommand{\cmd}[1]{\colorbox{light-gray}{\textcolor{gio}{\texttt{#1}}}}
+
+\title{Comandi utili e commenti}
+\author{Matteo Robbiati}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{multicols}{2}
+
+\tableofcontents
+
+\section{Useful definitions}
+
+Here we collect some useful definitions. \\
+
+\cmd{> the XY problem}: \href{https://xyproblem.info/}{https://xyproblem.info/}
+
+\cmd{> metadata}: data which bring information about other data.
+
+\cmd{> slug}: a slug is the unique identifying part of a web address, typically at the end of the URL.
+
+\cmd{> web server}: a web server is software and hardware that uses HTTP (Hypertext Transfer Protocol) and other protocols to respond to client requests made over the World Wide Web. The main job of a web server is to display website content through storing, processing and delivering webpages to users. Besides HTTP, web servers also support SMTP (Simple Mail Transfer Protocol) and FTP (File Transfer Protocol), used for email, file transfer and storage.
+
+\cmd{> HTTP}: the Hypertext Transfer Protocol (HTTP) is an application layer protocol in the Internet protocol suite model for distributed, collaborative, hypermedia information systems. HTTP is the foundation of data communication for the World Wide Web, where hypertext documents include hyperlinks to other resources that the user can easily access, for example by a mouse click or by tapping the screen in a web browser.
+
+\section{File extensions}
+
+Here we collect some descriptions of useful file's extensions: \\
+
+\cmd{> *.toml}: TOML aims to be a minimal configuration file format that's easy to read due to obvious semantics. TOML is designed to map unambiguously to a hash table. TOML should be easy to parse into data structures in a wide variety of languages (\href{https://toml.io/en/}{https://toml.io/en/}).
+
+\cmd{> *.yaml}: is a human-readable data-serialization language. It is commonly used for configuration files and in applications where data is being stored or transmitted.
+
+\cmd{> *json}: aka Javascript Object Notation, is an open standard file format and data interchange format that uses human-readable text to store and transmit data objects consisting of attribute–value pairs and arrays (or other serializable values). 
+
+\section{Terminal}
+
+\cmd{> ln} create a symbolic link to an object (folder, file, as you want).
+
+\section{\texttt{javascript}}
+
+\cmd{> .babelrc} is the file in which you can customize che babel action. \texttt{babel} is a \texttt{javascript} compiler.
+
+\subsection{\texttt{Nextjs}}
+
+\cmd{> getStaticPaths} When you export a function called \texttt{getStaticPaths} (Static Site Generation) from a page that uses dynamic routes, Next.js will statically pre-render all the paths specified by \texttt{getStaticPaths}.
+\subsubsection{\texttt{npm}}
+Stand for Node Package Manager, it's the official package manager which is installed together with \texttt{node.js}. Help us with installation, managing of versions and of dependencies.
+
+\cmd{> npm audit}: search for vulnerabilities in the project you are checking for.
+
+\section{\texttt{mdx}}
+
+Here we introduce some concept related to \texttt{mdx}, a markdown language which is compiled to JavaScript. \\
+
+\cmd{@mdx-js/loader} is needed to compile \texttt{mdx}.
+
+\section{Jupyter notebooks}
+
+\cmd{> datas in jupyter notebooks} For every figure, such as a plot, Jupyter includes not only the image itself in the notebook, but also a plain text description that includes the id (like a memory address) of the object, such as \texttt{<matplotlib.axes.\_subplots.AxesSubplot at 0x7fbc113dbe90>}. This changes every time you execute a notebook, and therefore will create a conflict every time two people execute this cell
+
+\cmd{> \%\% capture <name\_of\_the\_container>} is a magic command which literally captures the output provided 
+by the cell execution. All datas are collected into an \texttt{Ipython} object 
+called \texttt{<name\_of\_the\_container>} and they can be accessed by typing the container,
+or by calling the specific items like elements of the container: \texttt{<name\_of\_the\_container>.item}. 
+
+
+\section{\texttt{git}}
+
+Some useful commands using \texttt{git}. \\
+
+\cmd{> git fetch} downloads objects and refs from another repository
+
+\cmd{> git pull <branch1> <branch2>} fetches from and integrate with another repository or a local branch. It incorporates changes from a remote \texttt{<branch1>} status repository into the current \texttt{<branch2>} branch.
+
+\cmd{> git push <remote> <local>} update remote refs along with associated objects. Typically you use it for updating a remote branch with modifications you have done in \texttt{<local>}.
+
+\cmd{> git add -u} add to the `git` folder all the file you modified.
+
+\cmd{> git reset <commit>} restoring the git files bringing them to the \texttt{<commit>} status;
+
+\cmd{> git push $--$force-with-lease} with this command we can push also if we want to modify files in the past. The \texttt{git push} command is only \texttt{feed-forward}.
+
+\cmd{> git branch} shows the list of the local branches. Adding \texttt{-r} you can display the list of all remote branches. Adding \texttt{-a} you will display all branches both remote and local. Adding \cmd{-vva} you will show the verbose (detailed) version of all branches description.  
+
+\cmd{> git reset HEAD $\sim$1 <filename>} undos the last commit you have done. The default mode is the \texttt{mixed} one, in which the commit is undone but it is still saved into the working tree and you must command \texttt{git add <changes>} in order to recover the commit. Other options are \texttt{git reset $--$soft HEAD~1}, which undoes the commit but saves the "addition" of the files. So you will need only to commit again if you want it. Again, you can use \texttt{git reset $--$hard HEAD~1}, through which you will lose all uncommited changes and all untracked files (with a \texttt{git status} you will not see the modifications in green or in red).
+
+\cmd{> git clean} cleans the working tree by recursively removing files that are not under version control, starting from the current directory.
+
+\cmd{> git revert} given one or more existing commits, revert the changes that the related patches introduce, and record some new commits that record them. This requires your working tree to be clean (no modifications from the HEAD commit).
+
+\subsection{\texttt{git} options}
+
+It can be useful to customize a \texttt{git} command and this can be done by adding to the string you write the following options: \\
+
+\cmd{-d} act also on the directories
+
+\cmd{-f} force the action
+
+\subsection{GitHub}
+
+\subsubsection{GitHub actions}
+
+An event is a specific activity in a repository that triggers a workflow run. For example, activity can originate from GitHub when someone creates a pull request, opens an issue, or pushes a commit to a repository.
+
+\subsubsection{Workflows}
+
+A workflow is a configurable automated process that will run one or more jobs. Workflows are defined by a YAML file checked in to your repository and will run when triggered by an event in your repository, or they can be triggered manually, or at a defined schedule. \\
+
+\cmd{> .github/workflows} is the right place in which the YAML file, which describes the workflow, must be placed.
+
+\cmd{> reusable workflow} is a workflow which can be called and used inside another workflow.
+
+\section{\texttt{python}}
+
+Here we collect some utils for \texttt{python} programming. \\
+
+\cmd{> python -m http.server} opens a python hosted server in which you can visualize the output of, e.g., \texttt{*.html} files.
+
+\cmd{> help(function)} can be used for printing information about a specific function.
+Try for example with \texttt{help(numpy.asarray)}.
+
+\section{\texttt{pip}}
+
+Here we collect some useful info about the official  package installer for Python. \\
+
+\cmd{pip install} is the official command;
+
+\cmd{pip install -e <package>} installs \texttt{<package>} in editable mode. For example, installing \texttt{qibo} using this flag, the usable version of the package will be the currently modified one.
+
+\section{\texttt{poetry}}
+
+Here we collect some utils while using \texttt{poetry}. \\
+
+\cmd{poetry update -vvv} must be used when you have changed some deps into e.g. \texttt{pyptoject.toml} file. This enables the desired deps updating the \texttt{poetry.lock} file.
+
+\section{\LaTeX}
+
+Here we collect some useful comments in the context of the \LaTeX$\,$ use. \\
+
+\cmd{> [fragile]} in the \texttt{beamer} class is used when we treat a text which cannot be "interpreted the way text is usually interpreted by \LaTeX".
+
+
+\newpage
+\end{multicols}
+
+\end{document}
+
+
