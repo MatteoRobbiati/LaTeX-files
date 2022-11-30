@@ -5,3 +5,6 @@
 *.toc
 *.snm
 *.nav
+*.fls
+*.fdb_latexmk  
+
