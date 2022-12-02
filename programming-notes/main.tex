@@ -86,8 +86,19 @@ and data interchange format that uses human-readable text to store and transmit
 
 \section{\texttt{javascript}}
 
+Here some useful comments about the usage of this language. \\
+
 \cmd{> .babelrc} is the file in which you can customize che babel action. 
 \texttt{babel} is a \texttt{javascript} compiler.
+
+\cmd{> <path>} is a package useful for treating strings which corresponds to 
+file paths; e.g. \texttt{pat.extname(filename)} extracts the file extension.
+
+\cmd{> for cycle} are really similar to the \texttt{C++}. What changes is the 
+definition of the iterator: \texttt{for(let i=0; i<arr.length; i++){...}}.
+
+\cmd{> array.map()} is a function that can be used for iterating over an array 
+avoiding the usage of a loop.
 
 \subsection{\texttt{Nextjs}}
 
@@ -152,6 +163,9 @@ can be accessed by typing the container, or by calling the specific items like
 
 Some useful commands using \texttt{git}. \\
 
+\cmd{> git log} can be used for read a log report of the last actions performed
+in your git repository.
+
 \cmd{> git fetch} downloads objects and refs from another repository
 
 \cmd{> git pull <branch1> <branch2>} fetches from and integrate with another 
@@ -190,6 +204,27 @@ not under version control, starting from the current directory.
 \cmd{> git revert} given one or more existing commits, revert the changes that 
 the related patches introduce, and record some new commits that record them. 
 This requires your working tree to be clean (no modifications from the HEAD commit).
+
+\cmd{> git switch} Switch to a specified branch. The working tree and the index 
+are updated to match the branch. All new commits will be added to the tip of this branch.
+By adding \texttt{-c} option you create a new branch.
+
+\cmd{> git checkout} can be used for checkout from the current used branch. Typically
+I use it for changing the branch in which I'm working (but it is not the proper
+way, it is better to use \texttt{git switch}). For example, if I want to
+go from the branch \texttt{pippo} (in which I am) to the branch \texttt{pluto} 
+I type: \texttt{git checkout pluto}. Before doing this you need to commit or stash 
+all the changes. Another important utility of this command is explained in the
+following command.
+
+\cmd{> git checkout <commit>} can be used for doing the checkout from a branch 
+``bringing" a specific commit with you. It can be useful if you are working on a
+PR and at some point you want to split the work into two PRs. So you can bring a 
+part of the job done with you in another branch. In that case the first thing to 
+be done is to run this command. Then you can switch to a new branch using the 
+\texttt{switch} command with \texttt{-c} option. 
+
+
 
 \subsection{\texttt{git} options}
 
