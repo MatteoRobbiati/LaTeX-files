@@ -1,0 +1,57 @@
+\frametitle{Bloch sphere visualization - RZ}
+\large
+\faArrowCircleRight\,\, A quantum state can be nicely represented using the Bloch sphere's notation:
+\begin{equation*}
+    \alpha = \cos{\frac{\theta}{2}}, \qquad \beta = e^{i\phi}\sin{\frac{\theta}{2}}.
+\end{equation*}
+\vspace{0.3cm}
+\begin{multicols}{2}
+\def\rotationSphere{-110}
+\def\radiusSphere{2cm}
+\def\psiLat{45}
+\def\psiLon{45}
+\begin{blochsphere}[radius=\radiusSphere,opacity=0,rotation=\rotationSphere]
+  % \drawBallGrid[style={opacity=.3}]{30}{45}
+  % Draw the sphere...
+  \drawLongitudeCircle[]{\rotationSphere}
+  \drawRotationRight[scale=1.3,style={amethyst}]{0}{0}{0}{5}
+
+  \drawLatitudeCircle[style={dashed}]{0}
+  % Define the different points on the bloch sphere
+  \labelLatLon{ket0}{90}{0};
+  \labelLatLon{ket1}{-90}{0};
+  \labelLatLon{ketminus}{0}{180};
+  \labelLatLon{ketplus}{00}{0};
+  \labelLatLon{ketpluspi2}{0}{-90};  % Longitude seems to be defined in the "wrong" direction, hence the minus
+  \labelLatLon{ketplus3pi2}{0}{-270};
+  \labelLatLon{psi}{\psiLat}{-\psiLon};
+  % Draw and label the axis
+  \draw[-latex] (0,0) -- (ket0) node[above,inner sep=.5mm] at (ket0) {\footnotesize $z$};
+  \draw[-latex] (0,0) -- (ketplus) node[below,inner sep=.5mm] at (ketplus) {\footnotesize$x$};
+  \draw[-latex] (0,0) -- (ketpluspi2) node[below,inner sep=.5mm] at (ketpluspi2) {\footnotesize $y$};
+  % Draw |psi>
+  \draw[-latex] (0,0) -- (psi) node[above]{\footnotesize $\ket{\psi}$};
+
+  % Draw the angles
+  \coordinate (origin) at (0,0);
+  {
+    % Will draw the angle/projection one the equatorial plane
+    \setDrawingPlane{0}{0}
+    % Draw the projection: cos is used to compute the length of the projection
+    \draw[current plane,dashed] (0,0) -- (-90+\psiLon:{cos(\psiLat)*\radiusSphere}) coordinate (psiProjectedEquat) -- (psi);
+    % Draw the angle
+    \pic[current plane, draw,fill=purple!50,fill opacity=.5, text opacity=1,"\footnotesize $\phi$", angle eccentricity=2.2]{angle=ketplus--origin--psiProjectedEquat};
+  }
+  { \setLongitudinalDrawingPlane{\psiLon}
+    % Draw the angle
+    \pic[current plane, draw,fill=purple!50,fill opacity=.5, text opacity=1,"\footnotesize $\theta$", angle eccentricity=1.5]{angle=psi--origin--ket0};
+  }
+\end{blochsphere}
+
+\begin{itemize}
+
+    \item[\faTerminal] Rotation around the $x$ axis;
+    \item[\faTerminal] Rotation around the $y$ axis;
+    \item[\faTerminal] \textcolor{amethyst}{Rotation around the $z$ axis.}
+\end{itemize}
+\end{multicols}

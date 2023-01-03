@@ -1,0 +1,573 @@
+\documentclass[8pt, xcolor={svgnames}, hyperref={colorlinks,linkcolor=black, citecolor=amethyst, urlcolor=amethyst}]{beamer}
+
+
+\usepackage[labelfont={color=amethyst,bf}]{caption}
+\usetheme[progressbar=frametitle]{metropolis}
+\usepackage{appendixnumberbeamer}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage{braket}
+\usepackage[scale=2]{ccicons}
+\usepackage{amsfonts} 
+\usepackage{amssymb}
+\usepackage[english]{babel}
+\colorlet{col1}{teal}
+\colorlet{col2}{yellow}
+\colorlet{col3}{green}
+\usepackage{fontawesome}
+\usepackage{multicol}
+\usepackage{bm}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{enumitem}
+
+\usepackage[]{pseudo}
+
+
+\usepackage{tikz}
+\usetikzlibrary{positioning,arrows,calc,math,angles,quotes}
+\usepackage{blochsphere}
+
+\usetikzlibrary{arrows,automata}
+\usetikzlibrary{positioning}
+\usetikzlibrary{arrows.meta,
+                bending,
+                intersections,
+                quotes,
+                shapes.geometric}
+
+\tikzset{
+    state/.style={
+           rectangle,
+           rounded corners,
+           draw=black, very thick,
+           minimum height=1em,
+           inner sep=2pt,
+           text centered,
+           },
+}
+
+
+\definecolor{myv}{rgb}{0.36, 0.22, 0.33}
+\definecolor{gio}{rgb}{0.45, 0.31, 0.59}
+\definecolor{light}{rgb}{0.8, 0.8, 1}
+\definecolor{warmblack}{rgb}{0.0, 0.26, 0.26}
+\definecolor{brown(web)}{rgb}{0.65, 0.16, 0.16}
+\definecolor{cadmiumgreen}{rgb}{0.0, 0.42, 0.24}
+\definecolor{darkmidnightblue}{rgb}{0.0, 0.2, 0.4}
+\definecolor{brightube}{rgb}{0.82, 0.62, 0.91}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\definecolor{amethyst}{rgb}{0.6, 0.4, 0.8}
+
+\definecolor{light-gray}{gray}{0.95}
+\newcommand{\code}[1]{\colorbox{light-gray}{\texttt{#1}}}
+
+\usepackage{listings}
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{codepurple},
+    numberstyle=\tiny\color{codepurple},
+    stringstyle=\color{magenta},
+    basicstyle=\scriptsize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+
+%\usepackage[citecolor = green, linkcolor = blue, bookmarks=true, urlcolor=blue,
+%colorlinks=true, pagebackref=true]{hyperref}
+
+
+
+%\usepackage{xspace}
+
+\title{QTI meeting - Hands on Qibo}
+% \date{\today}
+\date{Jen. 11, 2023}
+\author[Matteo Robbiati]{Matteo Robbiati}
+
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}{How was qibo born?}
+    \begin{figure}
+    
+    \includegraphics[width=1\textwidth]{figures/Quantum_Computing.png}
+    \end{figure}
+    \vspace{-0.5cm}
+\end{frame}
+
+\section{A snapshot of quantum computing}
+
+\begin{frame}{What is a qubit?}
+\large
+\faArrowCircleRight\,\, In a quantum computer,  \textit{bits} are replaced by \textit{qubits}.
+
+%\pause
+\faArrowCircleRight\,\, Let us consider a two-dimensional \textbf{Hilbert space}, we define the \textbf{computational basis} 
+\begin{equation*}
+    \ket{0}:
+    \begin{pmatrix} 
+    1 \\ 
+    0  
+    \end{pmatrix}, \qquad \ket{1}:
+    \begin{pmatrix} 
+    0 \\ 
+    1 
+    \end{pmatrix}.
+\end{equation*}
+
+%\pause
+
+\faArrowCircleRight\,\, In general, a \textbf{qubit} lives in a superposition of the two fundamental states:
+\begin{equation*}
+    \ket{\psi} = \alpha \ket{0} + \beta \ket{1}: \,\,
+    \begin{pmatrix} 
+    \alpha \\ 
+    \beta 
+    \end{pmatrix}, 
+\end{equation*}
+
+where $\alpha$, $\beta$ $\in \mathbb{C}$, and \textbf{the state is normalized}, i.e. $
+    \vert \alpha \vert^2 + \vert \beta \vert^2 = 1.
+$   
+\end{frame}
+
+
+\begin{frame}{Gates}
+\large
+    \faArrowCircleRight\,\, In quantum computers, the qubits are manipulated by \textbf{unitary operators} called \textbf{gates}.
+    The most important ones are
+    \begin{itemize}
+        \item[\faCaretRight] the \textbf{Pauli matrices} \color{Black}
+    \begin{equation*}
+        \sigma_X = \begin{pmatrix} 
+        0 & 1 \\ 
+        1 & 0
+        \end{pmatrix}, \quad
+        \sigma_Y = \begin{pmatrix} 
+        0 & -i \\ 
+        i & 0
+        \end{pmatrix}, \quad
+        \sigma_Z = \begin{pmatrix} 
+        1 & 0 \\ 
+        0 & -1
+        \end{pmatrix},
+    \end{equation*}
+    
+    \item[\faCaretRight] the \textbf{rotational gates} \color{black}
+    \begin{equation*}
+        R_i(\theta) = e^{-i \frac{\theta}{2} \sigma_i},
+    \end{equation*}
+    
+    \item[\faCaretRight] the \textbf{controlled gates} (e.g. c-NOT\footnote{It acts with a not gate on the target qubit only if the control qubit is in the state $\ket{1}$.}), which are used to build entanglement;
+
+    \item[\faCaretRight] the \textbf{measurement gate}, which is the only non-reversible operation we can perform on a quantum system.
+
+ \end{itemize}
+    
+    
+\end{frame}
+
+\subsection{Bloch sphere representation}
+
+\begin{frame}[fragile]{Bloch sphere visualization}
+\large
+\faArrowCircleRight\,\, A quantum state can be nicely represented using the Bloch sphere's notation:
+\begin{equation*}
+    \alpha = \cos{\frac{\theta}{2}}, \qquad \beta = e^{i\phi}\sin{\frac{\theta}{2}}.
+\end{equation*}
+\vspace{0.3cm}
+\begin{multicols}{2}
+\def\rotationSphere{-110}
+\def\radiusSphere{2cm}
+\def\psiLat{45}
+\def\psiLon{45}
+\begin{blochsphere}[radius=\radiusSphere,opacity=0,rotation=\rotationSphere]
+  % \drawBallGrid[style={opacity=.3}]{30}{45}
+  % Draw the sphere...
+  \drawLongitudeCircle[]{\rotationSphere}
+
+  \drawLatitudeCircle[style={dashed}]{0}
+  % Define the different points on the bloch sphere
+  \labelLatLon{ket0}{90}{0};
+  \labelLatLon{ket1}{-90}{0};
+  \labelLatLon{ketminus}{0}{180};
+  \labelLatLon{ketplus}{00}{0};
+  \labelLatLon{ketpluspi2}{0}{-90};  % Longitude seems to be defined in the "wrong" direction, hence the minus
+  \labelLatLon{ketplus3pi2}{0}{-270};
+  \labelLatLon{psi}{\psiLat}{-\psiLon};
+  % Draw and label the axis
+  \draw[-latex] (0,0) -- (ket0) node[above,inner sep=.5mm] at (ket0) {\footnotesize $z$};
+  \draw[-latex] (0,0) -- (ketplus) node[below,inner sep=.5mm] at (ketplus) {\footnotesize$x$};
+  \draw[-latex] (0,0) -- (ketpluspi2) node[below,inner sep=.5mm] at (ketpluspi2) {\footnotesize $y$};
+  % Draw |psi>
+  \draw[-latex] (0,0) -- (psi) node[above]{\footnotesize $\ket{\psi}$};
+
+  % Draw the angles
+  \coordinate (origin) at (0,0);
+  {
+    % Will draw the angle/projection one the equatorial plane
+    \setDrawingPlane{0}{0}
+    % Draw the projection: cos is used to compute the length of the projection
+    \draw[current plane,dashed] (0,0) -- (-90+\psiLon:{cos(\psiLat)*\radiusSphere}) coordinate (psiProjectedEquat) -- (psi);
+    % Draw the angle
+    \pic[current plane, draw,fill=purple!50,fill opacity=.5, text opacity=1,"\footnotesize $\phi$", angle eccentricity=2.2]{angle=ketplus--origin--psiProjectedEquat};
+  }
+  { \setLongitudinalDrawingPlane{\psiLon}
+    % Draw the angle
+    \pic[current plane, draw,fill=purple!50,fill opacity=.5, text opacity=1,"\footnotesize $\theta$", angle eccentricity=1.5]{angle=psi--origin--ket0};
+  }
+\end{blochsphere}
+\end{multicols}
+\end{frame}
+
+
+\begin{frame}[fragile]{Bloch sphere visualization - RX}
+\large
+\faArrowCircleRight\,\, A quantum state can be nicely represented using the Bloch sphere's notation:
+\begin{equation*}
+    \alpha = \cos{\frac{\theta}{2}}, \qquad \beta = e^{i\phi}\sin{\frac{\theta}{2}}.
+\end{equation*}
+\vspace{0.3cm}
+\begin{multicols}{2}
+\def\rotationSphere{-110}
+\def\radiusSphere{2cm}
+\def\psiLat{45}
+\def\psiLon{45}
+\begin{blochsphere}[radius=\radiusSphere,opacity=0,rotation=\rotationSphere]
+  % \drawBallGrid[style={opacity=.3}]{30}{45}
+  % Draw the sphere...
+  \drawLongitudeCircle[]{\rotationSphere}
+  \drawRotationRight[scale=1.3,style={amethyst}]{90}{0}{0}{5}
+
+  \drawLatitudeCircle[style={dashed}]{0}
+  % Define the different points on the bloch sphere
+  \labelLatLon{ket0}{90}{0};
+  \labelLatLon{ket1}{-90}{0};
+  \labelLatLon{ketminus}{0}{180};
+  \labelLatLon{ketplus}{00}{0};
+  \labelLatLon{ketpluspi2}{0}{-90};  % Longitude seems to be defined in the "wrong" direction, hence the minus
+  \labelLatLon{ketplus3pi2}{0}{-270};
+  \labelLatLon{psi}{\psiLat}{-\psiLon};
+  % Draw and label the axis
+  \draw[-latex] (0,0) -- (ket0) node[above,inner sep=.5mm] at (ket0) {\footnotesize $z$};
+  \draw[-latex] (0,0) -- (ketplus) node[below,inner sep=.5mm] at (ketplus) {\footnotesize$x$};
+  \draw[-latex] (0,0) -- (ketpluspi2) node[below,inner sep=.5mm] at (ketpluspi2) {\footnotesize $y$};
+  % Draw |psi>
+  \draw[-latex] (0,0) -- (psi) node[above]{\footnotesize $\ket{\psi}$};
+
+  % Draw the angles
+  \coordinate (origin) at (0,0);
+  {
+    % Will draw the angle/projection one the equatorial plane
+    \setDrawingPlane{0}{0}
+    % Draw the projection: cos is used to compute the length of the projection
+    \draw[current plane,dashed] (0,0) -- (-90+\psiLon:{cos(\psiLat)*\radiusSphere}) coordinate (psiProjectedEquat) -- (psi);
+    % Draw the angle
+    \pic[current plane, draw,fill=purple!50,fill opacity=.5, text opacity=1,"\footnotesize $\phi$", angle eccentricity=2.2]{angle=ketplus--origin--psiProjectedEquat};
+  }
+  { \setLongitudinalDrawingPlane{\psiLon}
+    % Draw the angle
+    \pic[current plane, draw,fill=purple!50,fill opacity=.5, text opacity=1,"\footnotesize $\theta$", angle eccentricity=1.5]{angle=psi--origin--ket0};
+  }
+\end{blochsphere}
+
+\begin{itemize}
+    \item[\faTerminal] \textcolor{amethyst}{Rotation around the $x$ axis;} 
+\end{itemize}
+\end{multicols}
+\end{frame}
+
+\begin{frame}[fragile]{Bloch sphere visualization - RY}
+\large
+\faArrowCircleRight\,\, A quantum state can be nicely represented using the Bloch sphere's notation:
+\begin{equation*}
+    \alpha = \cos{\frac{\theta}{2}}, \qquad \beta = e^{i\phi}\sin{\frac{\theta}{2}}.
+\end{equation*}
+\vspace{0.3cm}
+\begin{multicols}{2}
+\def\rotationSphere{-110}
+\def\radiusSphere{2cm}
+\def\psiLat{45}
+\def\psiLon{45}
+\begin{blochsphere}[radius=\radiusSphere,opacity=0,rotation=\rotationSphere]
+  % \drawBallGrid[style={opacity=.3}]{30}{45}
+  % Draw the sphere...
+  \drawLongitudeCircle[]{\rotationSphere}
+  \drawRotationRight[scale=1.3,style={amethyst}]{90}{90}{0}{5}
+
+  \drawLatitudeCircle[style={dashed}]{0}
+  % Define the different points on the bloch sphere
+  \labelLatLon{ket0}{90}{0};
+  \labelLatLon{ket1}{-90}{0};
+  \labelLatLon{ketminus}{0}{180};
+  \labelLatLon{ketplus}{00}{0};
+  \labelLatLon{ketpluspi2}{0}{-90};  % Longitude seems to be defined in the "wrong" direction, hence the minus
+  \labelLatLon{ketplus3pi2}{0}{-270};
+  \labelLatLon{psi}{\psiLat}{-\psiLon};
+  % Draw and label the axis
+  \draw[-latex] (0,0) -- (ket0) node[above,inner sep=.5mm] at (ket0) {\footnotesize $z$};
+  \draw[-latex] (0,0) -- (ketplus) node[below,inner sep=.5mm] at (ketplus) {\footnotesize$x$};
+  \draw[-latex] (0,0) -- (ketpluspi2) node[below,inner sep=.5mm] at (ketpluspi2) {\footnotesize $y$};
+  % Draw |psi>
+  \draw[-latex] (0,0) -- (psi) node[above]{\footnotesize $\ket{\psi}$};
+
+  % Draw the angles
+  \coordinate (origin) at (0,0);
+  {
+    % Will draw the angle/projection one the equatorial plane
+    \setDrawingPlane{0}{0}
+    % Draw the projection: cos is used to compute the length of the projection
+    \draw[current plane,dashed] (0,0) -- (-90+\psiLon:{cos(\psiLat)*\radiusSphere}) coordinate (psiProjectedEquat) -- (psi);
+    % Draw the angle
+    \pic[current plane, draw,fill=purple!50,fill opacity=.5, text opacity=1,"\footnotesize $\phi$", angle eccentricity=2.2]{angle=ketplus--origin--psiProjectedEquat};
+  }
+  { \setLongitudinalDrawingPlane{\psiLon}
+    % Draw the angle
+    \pic[current plane, draw,fill=purple!50,fill opacity=.5, text opacity=1,"\footnotesize $\theta$", angle eccentricity=1.5]{angle=psi--origin--ket0};
+  }
+\end{blochsphere}
+
+\begin{itemize}
+
+    \item[\faTerminal] Rotation around the $x$ axis;
+    \item[\faTerminal] \textcolor{amethyst}{Rotation around the $y$ axis;} 
+\end{itemize}
+\end{multicols}
+\end{frame}
+
+\begin{frame}[fragile]{Bloch sphere visualization - RZ}
+\large
+\faArrowCircleRight\,\, A quantum state can be nicely represented using the Bloch sphere's notation:
+\begin{equation*}
+    \alpha = \cos{\frac{\theta}{2}}, \qquad \beta = e^{i\phi}\sin{\frac{\theta}{2}}.
+\end{equation*}
+\vspace{0.3cm}
+\begin{multicols}{2}
+\def\rotationSphere{-110}
+\def\radiusSphere{2cm}
+\def\psiLat{45}
+\def\psiLon{45}
+\begin{blochsphere}[radius=\radiusSphere,opacity=0,rotation=\rotationSphere]
+  % \drawBallGrid[style={opacity=.3}]{30}{45}
+  % Draw the sphere...
+  \drawLongitudeCircle[]{\rotationSphere}
+  \drawRotationRight[scale=1.3,style={amethyst}]{0}{0}{0}{5}
+
+  \drawLatitudeCircle[style={dashed}]{0}
+  % Define the different points on the bloch sphere
+  \labelLatLon{ket0}{90}{0};
+  \labelLatLon{ket1}{-90}{0};
+  \labelLatLon{ketminus}{0}{180};
+  \labelLatLon{ketplus}{00}{0};
+  \labelLatLon{ketpluspi2}{0}{-90};  % Longitude seems to be defined in the "wrong" direction, hence the minus
+  \labelLatLon{ketplus3pi2}{0}{-270};
+  \labelLatLon{psi}{\psiLat}{-\psiLon};
+  % Draw and label the axis
+  \draw[-latex] (0,0) -- (ket0) node[above,inner sep=.5mm] at (ket0) {\footnotesize $z$};
+  \draw[-latex] (0,0) -- (ketplus) node[below,inner sep=.5mm] at (ketplus) {\footnotesize$x$};
+  \draw[-latex] (0,0) -- (ketpluspi2) node[below,inner sep=.5mm] at (ketpluspi2) {\footnotesize $y$};
+  % Draw |psi>
+  \draw[-latex] (0,0) -- (psi) node[above]{\footnotesize $\ket{\psi}$};
+
+  % Draw the angles
+  \coordinate (origin) at (0,0);
+  {
+    % Will draw the angle/projection one the equatorial plane
+    \setDrawingPlane{0}{0}
+    % Draw the projection: cos is used to compute the length of the projection
+    \draw[current plane,dashed] (0,0) -- (-90+\psiLon:{cos(\psiLat)*\radiusSphere}) coordinate (psiProjectedEquat) -- (psi);
+    % Draw the angle
+    \pic[current plane, draw,fill=purple!50,fill opacity=.5, text opacity=1,"\footnotesize $\phi$", angle eccentricity=2.2]{angle=ketplus--origin--psiProjectedEquat};
+  }
+  { \setLongitudinalDrawingPlane{\psiLon}
+    % Draw the angle
+    \pic[current plane, draw,fill=purple!50,fill opacity=.5, text opacity=1,"\footnotesize $\theta$", angle eccentricity=1.5]{angle=psi--origin--ket0};
+  }
+\end{blochsphere}
+
+\begin{itemize}
+
+    \item[\faTerminal] Rotation around the $x$ axis;
+    \item[\faTerminal] Rotation around the $y$ axis; 
+    \item[\faTerminal] \textcolor{amethyst}{Rotation around the $z$ axis.} 
+\end{itemize}
+\end{multicols}
+\end{frame}
+
+\subsection{Why we mention rotations?}
+
+\begin{frame}{Why we mention rotations?}
+\large 
+    \faArrowCircleRight\,\, Many variational models in quantum computations involve rotations.
+    
+    \faArrowCircleRight\,\, it is easy to embed an input variable into a model if passed as rotation angle.
+
+    \begin{figure}
+    \centering 
+    \includegraphics[width=0.9\textwidth]{figures/variational_model.png}
+  \caption{Example of how can we use a circuit as variational model.}
+  \end{figure}
+\end{frame}
+
+\section{From theory to deployment}
+
+\begin{frame}{What can be a qubit for real?}
+    \begin{figure}
+    \centering 
+    \includegraphics[width=\textwidth]{figures/Quantum_tech.png}
+  \caption{Common Qbit's technologies. Graphic by C. Bickle/Science data by Gabriel Popkin.}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{From theory to deployment - the simple NOT gate example}
+
+\large
+
+Let's suppose we use a \textbf{superconducting} circuit as qubit. \\ How can we implement a specific quantum operation on it?
+\pause
+\vspace{0.3cm}
+
+\begin{itemize}
+    \item[\faPencilSquareO] we \textbf{decide to apply} an $X$ gate to a quantum state prepared as $\ket{0}$. We know that a right $X$ must act like $X\ket{0}=\ket{1}$ and vice-versa;
+    \pause
+    \item[\faTerminal] we would like to have a simple \textbf{API language} to codify this $X$ and  to build a circuit. We also might want to do:
+    \begin{itemize}
+        \item[\faCode]: simulation;
+        \item[\faCog]: real quantum computation; 
+    \end{itemize}
+    \pause
+    \item[\faCogs] if \faCog\,\, is chosen, our $X$ must be \textbf{concretely implemented} to be performed on the superconducting circuit: we need the right sequence of pulses $P$ which, applied to $\ket{0}$, return $\ket{1}$;
+    \pause
+    \item[\faSliders] each qubit produced in quantum foundry is different: we need to \textbf{fine-tune} $P$ to optimize the interpretation of $X$.
+\end{itemize}
+    
+\end{frame}
+
+\section{Presenting \texttt{qibo}}
+
+\begin{frame}{From theory to deployment - \texttt{qibo}}
+    \begin{figure}
+    \centering 
+    \includegraphics[width=\textwidth]{figures/Qibo.png}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{\texttt{qibojit} for simulating a larger number of qubits}
+\large 
+
+\faArrowCircleRight\,\, Since we do \textbf{state vector simulation} via linear algebra, the goal is to limit the calculation time.
+
+\faArrowCircleRight\,\, \texttt{qibojit} is an efficient simulation backend for CPU, GPU and multi-GPU based on just-in-time (JIT) compiled custom operators. 
+
+    \begin{figure}
+    \centering 
+    \includegraphics[width=0.9\textwidth]{figures/qibojit-qft.png}
+  \end{figure}
+    
+\end{frame}
+
+\begin{frame}{\texttt{qibojit} vs other libraries}
+\large 
+
+\begin{figure}
+    \centering 
+    \includegraphics[width=1\textwidth]{figures/libraries.png}
+\end{figure}
+
+\begin{figure}
+    \centering 
+    \includegraphics[width=1\textwidth]{figures/lib-2.png}
+  \end{figure}
+    
+\end{frame}
+
+\section{How this tool can be used in my lab?}
+
+
+\begin{frame}{A full-stack framework for self-hosted quantum devices}
+\large 
+\faArrowCircleRight\,\, Is it possible to use all this framework on a \textbf{self-hosted} quantum lab?
+
+\pause
+
+\faArrowCircleRight\,\, Yes! The project is \textbf{angostic} until the moment when the sequence of pulses $P$ is to be implemented.
+
+\pause
+
+\faArrowCircleRight\,\, At this point, it is possible to define a \textbf{custom} \texttt{AbstractPlatform} object, which deploy the theoretical law into a $P$ which fits our hosted device.
+
+\pause
+
+\faArrowCircleRight\,\, Some \textbf{labs} which are using \texttt{qibo}:
+
+\begin{multicols}{4}
+\begin{figure}
+    \centering 
+    \includegraphics[width=0.2\textwidth]{figures/infn.png}
+\end{figure}
+\begin{figure}
+    \centering 
+    \includegraphics[width=0.2\textwidth]{figures/tii.png}
+\end{figure}
+\begin{figure}
+    \centering 
+    \includegraphics[width=0.2\textwidth]{figures/cqt.png}
+\end{figure}
+\begin{figure}
+    \centering 
+    \includegraphics[width=0.18\textwidth]{figures/bsc.jpg}
+\end{figure}
+\end{multicols}
+    
+\end{frame}
+
+\begin{frame}{Let's jump to the console}
+\large
+\faArrowCircleRight\,\, We leave some references and links thanks to which you can use our codes and read more about the project:
+
+\begin{multicols}{2}
+    
+\begin{itemize}
+\item[\faCode] open-access codes for personal coding or contributing:
+    \begin{itemize}[noitemsep]
+        \item[\faGithub]  \href{https://github.com/qiboteam/qibo}{the \texttt{qibo} package};
+        \item[\faGithub]  \href{https://github.com/qiboteam/qibolab}{the \texttt{qibolab} package};
+        \item[\faGithub]  \href{https://github.com/qiboteam/qibocal}{the \texttt{qibocal} package};
+    \end{itemize}
+ \vspace{1cm}
+
+\item[\faBook] our official \href{https://qibo.science/}{webpage}, with the following documentations:
+    \begin{itemize}[noitemsep]
+        \item[\faLeanpub]  \href{https://qibo.science/docs/qibo/stable}{the \texttt{qibo} docs};
+        \item[\faLeanpub]  \href{https://qibo.science/docs/qibolab/stable}{the \texttt{qibolab} docs};
+        \item[\faLeanpub]  \href{https://qibo.science/docs/qibocal/stable}{the \texttt{qibocal} docs};
+    \end{itemize}
+\end{itemize}
+\end{multicols}
+
+\faCloudDownload\,\, the \href{https://colab.research.google.com/drive/1DoLOS3hsOM3cbzquAI73bmp_fTY3car8\#scrollTo=MmNVieFoGbQU}{Colab notebook} we are going to run together.
+
+\end{frame}
+
+
+\end{document}
