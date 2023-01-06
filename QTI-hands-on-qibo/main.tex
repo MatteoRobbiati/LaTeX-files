@@ -155,28 +155,20 @@ $
 \begin{frame}{Gates}
 \large
     \faArrowCircleRight\,\, In quantum computers, the qubits are manipulated by \textbf{unitary operators} called \textbf{gates}.
-    The most important ones are
+    Some of the most important gates are:
     \begin{itemize}
-        \item[\faCaretRight] the \textbf{Pauli matrices} \color{Black}
+        \item[\faCaretRight] the \textbf{Hadamard} gate
     \begin{equation*}
-        \sigma_X = \begin{pmatrix} 
-        0 & 1 \\ 
-        1 & 0
-        \end{pmatrix}, \quad
-        \sigma_Y = \begin{pmatrix} 
-        0 & -i \\ 
-        i & 0
-        \end{pmatrix}, \quad
-        \sigma_Z = \begin{pmatrix} 
-        1 & 0 \\ 
-        0 & -1
+        H = \frac{1}{\sqrt{2}} \begin{pmatrix} 
+        1 & 1 \\ 
+        1 & -1
         \end{pmatrix},
     \end{equation*}
     
     \item[\faCaretRight] the \textbf{rotational gates} \color{black}
     \begin{equation*}
         R_i(\theta) = e^{-i \frac{\theta}{2} \sigma_i},
-    \end{equation*}
+    \end{equation*} in which the Pauli operators appear.
     
     \item[\faCaretRight] the \textbf{controlled gates} (e.g. c-NOT\footnote{It acts with a not gate on the target qubit only if the control qubit is in the state $\ket{1}$.}), which are used to build entanglement;
 
@@ -539,6 +531,13 @@ Let's suppose we use a \textbf{superconducting} circuit as qubit. \\ How can we 
 \end{figure}
 \end{multicols}
     
+\end{frame}
+
+\begin{frame}{How to exploit \texttt{qibo} modularity}
+  \begin{figure}
+    \centering 
+    \includegraphics[width=\textwidth]{figures/qibolab_use.png}
+  \end{figure}
 \end{frame}
 
 \begin{frame}{Let's jump to the console}
