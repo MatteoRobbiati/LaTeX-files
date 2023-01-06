@@ -154,7 +154,7 @@ $
 
 \begin{frame}{Gates}
 \large
-    \faArrowCircleRight\,\, In quantum computers, the qubits are manipulated by \textbf{unitary operators} called \textbf{gates}.
+    \faArrowCircleRight\,\, We can act on qubits with \textbf{unitary operators} represented as \textbf{gates}.
     Some of the most important gates are:
     \begin{itemize}
         \item[\faCaretRight] the \textbf{Hadamard} gate
@@ -164,18 +164,21 @@ $
         1 & -1
         \end{pmatrix},
     \end{equation*}
-    
+    that can be used for building superposition: $H \ket{0} = \frac{1}{\sqrt{2}} (\ket{0} + \ket{1})$.
+    \pause
+
     \item[\faCaretRight] the \textbf{rotational gates} \color{black}
     \begin{equation*}
         R_i(\theta) = e^{-i \frac{\theta}{2} \sigma_i},
     \end{equation*} in which the Pauli operators appear.
-    
+    \pause 
+
     \item[\faCaretRight] the \textbf{controlled gates} (e.g. c-NOT\footnote{It acts with a not gate on the target qubit only if the control qubit is in the state $\ket{1}$.}), which are used to build entanglement;
+    \pause
 
     \item[\faCaretRight] the \textbf{measurement gate}, which is the only non-reversible operation we can perform on a quantum system.
 
  \end{itemize}
-    
     
 \end{frame}
 
@@ -502,11 +505,11 @@ Let's suppose we use a \textbf{superconducting} circuit as qubit. \\ How can we 
 
 \pause
 
-\faArrowCircleRight\,\, Yes! The project is \textbf{angostic} until the moment when the sequence of pulses $P$ is to be implemented.
+\faArrowCircleRight\,\, Yes! The project is \textbf{agnostic} until the moment when the sequence of pulses $P$ is to be implemented.
 
 \pause
 
-\faArrowCircleRight\,\, At this point, it is possible to define a \textbf{custom} \texttt{AbstractPlatform} object, which deploy the theoretical law into a $P$ which fits our hosted device.
+\faArrowCircleRight\,\, At this point, it is possible to define a \textbf{custom} \texttt{Platform} object, which deploy the theoretical law into a $P$ which fits our hosted device.
 
 \pause
 
