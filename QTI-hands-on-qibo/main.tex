@@ -99,7 +99,7 @@
 
 \title{QTI meeting - Hands on Qibo}
 % \date{\today}
-\date{Jen. 11, 2023}
+\date{Jen. 12, 2023}
 \author[Matteo Robbiati]{Matteo Robbiati}
 
 
@@ -108,8 +108,7 @@
 \maketitle
 
 \begin{frame}{How was qibo born?}
-    \begin{figure}
-    
+    \begin{figure}  
     \includegraphics[width=1\textwidth]{figures/Quantum_Computing.png}
     \end{figure}
     \vspace{-0.5cm}
@@ -119,11 +118,17 @@
 
 \begin{frame}{What is a qubit?}
 \large
-\faArrowCircleRight\,\, In a quantum computer,  \textit{bits} are replaced by \textit{qubits}.
+\faArrowCircleRight\,\, In a quantum computer, bits are replaced by \textbf{qubits}.
+\pause
 
-%\pause
-\faArrowCircleRight\,\, Let us consider a two-dimensional \textbf{Hilbert space}, we define the \textbf{computational basis} 
+\faArrowCircleRight\,\, which, in general, live in a superposition of 
+the two \textbf{fundamental states} $\ket{0}$ and $\ket{1}$:
 \begin{equation*}
+    \ket{\psi} = \alpha \ket{0} + \beta \ket{1}: \,\,
+    \begin{pmatrix} 
+    \alpha \\ 
+    \beta 
+    \end{pmatrix}, \qquad \text{with} \qquad     
     \ket{0}:
     \begin{pmatrix} 
     1 \\ 
@@ -132,32 +137,28 @@
     \begin{pmatrix} 
     0 \\ 
     1 
-    \end{pmatrix}.
-\end{equation*}
-
-%\pause
-
-\faArrowCircleRight\,\, In general, a \textbf{qubit} lives in a superposition of the two fundamental states:
-\begin{equation*}
-    \ket{\psi} = \alpha \ket{0} + \beta \ket{1}: \,\,
-    \begin{pmatrix} 
-    \alpha \\ 
-    \beta 
     \end{pmatrix}, 
 \end{equation*}
 
-where $\alpha$, $\beta$ $\in \mathbb{C}$, and \textbf{the state is normalized}, i.e. $
+and where $\alpha$, $\beta$ $\in \mathbb{C}$, and \textbf{the state is normalized}, i.e. $
     \vert \alpha \vert^2 + \vert \beta \vert^2 = 1.
 $   
+\pause
+\vspace{0.8cm}
+\begin{tcolorbox}[colback=amethyst!30, title=Storage advantage]
+  The amount of information stored in a quantum device increase \textbf{exponentially}
+  with the number of qubits.
+\end{tcolorbox}
 \end{frame}
 
 
 \begin{frame}{Gates}
 \large
-    \faArrowCircleRight\,\, We can act on qubits with \textbf{unitary operators} represented as \textbf{gates}.
+    \faArrowCircleRight\,\, We can act on qubits with \textbf{unitary operators} 
+    represented as \textbf{gates}.
     Some of the most important gates are:
     \begin{itemize}
-        \item[\faCaretRight] the \textbf{Hadamard} gate
+        \item<1->[\faCaretRight] the \textbf{Hadamard} gate
     \begin{equation*}
         H = \frac{1}{\sqrt{2}} \begin{pmatrix} 
         1 & 1 \\ 
@@ -165,18 +166,20 @@ $
         \end{pmatrix},
     \end{equation*}
     that can be used for building superposition: $H \ket{0} = \frac{1}{\sqrt{2}} (\ket{0} + \ket{1})$.
-    \pause
 
-    \item[\faCaretRight] the \textbf{rotational gates} \color{black}
+    \item<2->[\faCaretRight] the \textbf{rotational} gates \color{black}
     \begin{equation*}
         R_i(\theta) = e^{-i \frac{\theta}{2} \sigma_i},
     \end{equation*} in which the Pauli operators appear.
-    \pause 
 
-    \item[\faCaretRight] the \textbf{controlled gates} (e.g. c-NOT\footnote{It acts with a not gate on the target qubit only if the control qubit is in the state $\ket{1}$.}), which are used to build entanglement;
-    \pause
+    \item<3->[\faCaretRight] the \textbf{controlled} gates (e.g. c-NOT\only<1,2>{\footnote{\phantom{It 
+    acts with a NOT gate on the target qubit only if the control qubit is in the 
+    state $\ket{1}$.}}}\only<3->{\footnote{It 
+    acts with a NOT gate on the target qubit only if the control qubit is in the 
+    state $\ket{1}$.}}), which are used to build entanglement;
 
-    \item[\faCaretRight] the \textbf{measurement gate}, which is the only non-reversible operation we can perform on a quantum system.
+    \item<4->[\faCaretRight] the \textbf{measurement gate}, which is the only 
+    non-reversible operation we can perform on a quantum system.
 
  \end{itemize}
     
@@ -186,7 +189,8 @@ $
 
 \begin{frame}[fragile]{Bloch sphere visualization}
 \large
-\faArrowCircleRight\,\, A quantum state can be nicely represented using the Bloch sphere's notation:
+\faArrowCircleRight\,\, A quantum state can be nicely represented using the Bloch 
+sphere's notation:
 \begin{equation*}
     \alpha = \cos{\frac{\theta}{2}}, \qquad \beta = e^{i\phi}\sin{\frac{\theta}{2}}.
 \end{equation*}
@@ -453,7 +457,7 @@ Let's suppose we use a \textbf{superconducting} circuit as qubit. \\ How can we 
     \pause
     \item[\faCogs] if \faCog\,\, is chosen, our $X$ must be \textbf{concretely implemented} to be performed on the superconducting circuit: we need the right sequence of pulses $P$ which, applied to $\ket{0}$, return $\ket{1}$;
     \pause
-    \item[\faSliders] each qubit produced in quantum foundry is different: we need to \textbf{fine-tune} $P$ to optimize the interpretation of $X$.
+    \item[\faSliders] each qubit produced in the ``quantum foundry" is different: we need to \textbf{fine-tune} $P$ to optimize the interpretation of $X$.
 \end{itemize}
     
 \end{frame}
@@ -461,10 +465,12 @@ Let's suppose we use a \textbf{superconducting} circuit as qubit. \\ How can we 
 \section{Presenting \texttt{qibo}}
 
 \begin{frame}{From theory to deployment - \texttt{qibo}}
+\large
     \begin{figure}
     \centering 
     \includegraphics[width=\textwidth]{figures/Qibo.png}
   \end{figure}
+  \faBook\,\, \href{https://arxiv.org/abs/2009.01845}{arXiv:2009.01845}
 \end{frame}
 
 \begin{frame}{\texttt{qibojit} for simulating a larger number of qubits}
@@ -476,9 +482,10 @@ Let's suppose we use a \textbf{superconducting} circuit as qubit. \\ How can we 
 
     \begin{figure}
     \centering 
-    \includegraphics[width=0.9\textwidth]{figures/qibojit-qft.png}
+    \includegraphics[width=0.8\textwidth]{figures/qibojit-qft.png}
   \end{figure}
-    
+  
+  \faBook\,\, \href{https://arxiv.org/abs/2203.08826}{arXiv:2203.08826}
 \end{frame}
 
 \begin{frame}{\texttt{qibojit} vs other libraries}
@@ -505,15 +512,17 @@ Let's suppose we use a \textbf{superconducting} circuit as qubit. \\ How can we 
 
 \pause
 
-\faArrowCircleRight\,\, Yes! The project is \textbf{agnostic} until the moment when the sequence of pulses $P$ is to be implemented.
+\faArrowCircleRight\,\, Yes! The project is \textbf{hardware-agnostic} and open source and available to be used. 
 
 \pause
 
-\faArrowCircleRight\,\, At this point, it is possible to define a \textbf{custom} \texttt{Platform} object, which deploy the theoretical law into a $P$ which fits our hosted device.
+\faArrowCircleRight\,\, We only need to describe the hardware specifities into a 
+\textbf{custom} \texttt{Platform} object.  It will deploy the theoretical laws 
+(gates, i.e., unitary operations) into the pulses of our hosted device.
 
 \pause
 
-\faArrowCircleRight\,\, Some \textbf{labs} which are using \texttt{qibo}:
+\faArrowCircleRight\,\, Some \textbf{labs} which are already using \texttt{qibo}:
 
 \begin{multicols}{4}
 \begin{figure}
@@ -533,7 +542,8 @@ Let's suppose we use a \textbf{superconducting} circuit as qubit. \\ How can we 
     \includegraphics[width=0.18\textwidth]{figures/bsc.jpg}
 \end{figure}
 \end{multicols}
-    
+
+\faBook\,\, \href{https://arxiv.org/abs/2202.07017}{arXiv:2202.07017}
 \end{frame}
 
 \begin{frame}{How to exploit \texttt{qibo} modularity}
