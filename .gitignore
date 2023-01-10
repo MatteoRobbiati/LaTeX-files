@@ -8,4 +8,5 @@
 *.fls
 *.vrb
 *.fdb_latexmk  
+*.gz
 

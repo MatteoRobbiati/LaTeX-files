@@ -147,7 +147,10 @@ $
 \vspace{0.8cm}
 \begin{tcolorbox}[colback=amethyst!30, title=Storage advantage]
   The amount of information stored in a quantum device increase \textbf{exponentially}
-  with the number of qubits.
+  with the number of qubits. \\
+  
+  Example: \textit{a $1024$ pixels img ($32 \times 32$) can be completely represented 
+  by a 10-qubits system, whose state vector is $2^{10}=1024$ long!}
 \end{tcolorbox}
 \end{frame}
 
@@ -417,9 +420,11 @@ sphere's notation:
 
 \begin{frame}{Why we mention rotations?}
 \large 
-    \faArrowCircleRight\,\, Many variational models in quantum computations involve rotations.
+    \faArrowCircleRight\,\, Many variational models in quantum computations involve 
+    rotations.
     
-    \faArrowCircleRight\,\, it is easy to embed an input variable into a model if passed as rotation angle.
+    \faArrowCircleRight\,\, it is easy to embed an input variable into a model if 
+    passed as rotation angle.
 
     \begin{figure}
     \centering 
@@ -438,28 +443,67 @@ sphere's notation:
   \end{figure}
 \end{frame}
 
+\begin{frame}{Superconducting qubit}
+\begin{multicols}{2}
+\begin{figure}
+    \centering 
+    \includegraphics[width=0.4\textwidth]{figures/photon_absorb.png}
+\end{figure}
+\pause
+\begin{figure}
+    \centering 
+    \includegraphics[width=0.4\textwidth]{figures/LC_circuit.png}
+\end{figure}
+\end{multicols}  
+\begin{multicols}{2}
+\pause
+\begin{figure}
+    \centering 
+    \includegraphics[width=0.4\textwidth]{figures/JC_circuit.png}
+\end{figure}
+\pause
+\begin{figure}
+    \centering 
+    \includegraphics[width=0.4\textwidth]{figures/energy_levels.png}
+\end{figure}
+\end{multicols}
+Images reference: \href{https://pennylane.ai/qml/demos/tutorial_sc_qubits.html}{here}.  
+\end{frame}
+
 \begin{frame}{From theory to deployment - the simple NOT gate example}
 
 \large
 
-Let's suppose we use a \textbf{superconducting} circuit as qubit. \\ How can we implement a specific quantum operation on it?
-\pause
+Let's suppose we want to build a NOT ($X$) gate using a \textbf{superconducting}
+qubit. 
 \vspace{0.3cm}
-
+\pause 
 \begin{itemize}
-    \item[\faPencilSquareO] we \textbf{decide to apply} an $X$ gate to a quantum state prepared as $\ket{0}$. We know that a right $X$ must act like $X\ket{0}=\ket{1}$ and vice-versa;
+    \item[\faPencilSquareO] Theoretically, we know that $X$ must \textbf{swap} 
+    the two fundamental states when acting on them;
     \pause
-    \item[\faTerminal] we would like to have a simple \textbf{API language} to codify this $X$ and  to build a circuit. We also might want to do:
+    \item[\faTerminal] we want to \textbf{easily code} this on our console for doing:
     \begin{itemize}
-        \item[\faCode]: simulation;
-        \item[\faCog]: real quantum computation; 
+        \item[\faCode]: \textbf{simulation} on our classical computer;
+        \item[\faCog]: \textbf{real quantum computation} if we have access to a lab; 
     \end{itemize}
     \pause
-    \item[\faCogs] if \faCog\,\, is chosen, our $X$ must be \textbf{concretely implemented} to be performed on the superconducting circuit: we need the right sequence of pulses $P$ which, applied to $\ket{0}$, return $\ket{1}$;
+    \item[\faWrench] in case of \faCog, $X$ must be \textbf{implemented} 
+    as a sequence of pulses $P$ which can swap the two fundamental states 
+    (\textbf{quantum control});
     \pause
-    \item[\faSliders] each qubit produced in the ``quantum foundry" is different: we need to \textbf{fine-tune} $P$ to optimize the interpretation of $X$.
+    \item[\faSliders] each qubit built in the "foundry" is different: 
+    we need to \textbf{fine-tune} $P$ to optimize the interpretation of $X$ 
+    (\textbf{quantum calibration}).
 \end{itemize}
-    
+
+\pause
+\vspace{0.2cm}
+\begin{tcolorbox}[colback=amethyst!30, title=Some more info]
+  The ground state can be easily obtained by bringing the circuit
+  temperature next to $T=0$K\footnote{In the TII lab the cryostats keep quantum chips act
+  $T\sim$mK}.
+\end{tcolorbox}
 \end{frame}
 
 \section{Presenting \texttt{qibo}}
@@ -476,9 +520,11 @@ Let's suppose we use a \textbf{superconducting} circuit as qubit. \\ How can we 
 \begin{frame}{\texttt{qibojit} for simulating a larger number of qubits}
 \large 
 
-\faArrowCircleRight\,\, Since we do \textbf{state vector simulation} via linear algebra, the goal is to limit the calculation time.
+\faArrowCircleRight\,\, Since we do \textbf{state vector simulation} via linear 
+algebra, the goal is to limit the calculation time.
 
-\faArrowCircleRight\,\, \texttt{qibojit} is an efficient simulation backend for CPU, GPU and multi-GPU based on just-in-time (JIT) compiled custom operators. 
+\faArrowCircleRight\,\, \texttt{qibojit} is an efficient simulation backend for 
+CPU, GPU and multi-GPU based on just-in-time (JIT) compiled custom operators. 
 
     \begin{figure}
     \centering 
@@ -503,26 +549,29 @@ Let's suppose we use a \textbf{superconducting} circuit as qubit. \\ How can we 
     
 \end{frame}
 
-\section{How this tool can be used in my lab?}
+\section{Why use \texttt{qibo} in my lab?}
 
 
 \begin{frame}{A full-stack framework for self-hosted quantum devices}
 \large 
-\faArrowCircleRight\,\, Is it possible to use all this framework on a \textbf{self-hosted} quantum lab?
+\faArrowCircleRight\,\, Can \texttt{qibo} be used to simulate, control and calibrate
+a \textbf{self-hosted} quantum device?
 
 \pause
 
-\faArrowCircleRight\,\, Yes! The project is \textbf{hardware-agnostic} and open source and available to be used. 
+\faArrowCircleRight\,\, Yes! It is \textbf{hardware-agnostic}, open source and 
+available to be used. 
 
 \pause
 
 \faArrowCircleRight\,\, We only need to describe the hardware specifities into a 
-\textbf{custom} \texttt{Platform} object.  It will deploy the theoretical laws 
-(gates, i.e., unitary operations) into the pulses of our hosted device.
+\textbf{custom} \texttt{Platform} object in \texttt{qibolab}.  
+It will deploy the theoretical laws (gates, i.e., unitary operations) into the 
+proper pulses sequence.
 
 \pause
 
-\faArrowCircleRight\,\, Some \textbf{labs} which are already using \texttt{qibo}:
+\faArrowCircleRight\,\, Some \textbf{labs} are already using \texttt{qibo}!
 
 \begin{multicols}{4}
 \begin{figure}
