@@ -98,12 +98,20 @@
 %\usepackage{xspace}
 
 \title{QTI meeting - Hands on Qibo}
-% \date{\today}
 \date{Jen. 12, 2023}
 \author[Matteo Robbiati]{Matteo Robbiati}
+\titlegraphic{
+\begin{tikzpicture}[overlay, remember picture]
+\node[at=(current page.south east), anchor=south east] {%
+\includegraphics[width=.15\textwidth]{figures/unimi.png} \includegraphics[width=.2\textwidth]{figures/infn_logo.png} \includegraphics[width=.25\textwidth]{figures/CERN-Logo.png}  
+};
+\end{tikzpicture}
+}
+
 
 
 \begin{document}
+
 
 \maketitle
 
@@ -510,6 +518,8 @@ qubit.
 
 \begin{frame}{From theory to deployment - \texttt{qibo}}
 \large
+\faArrowCircleRight\,\, \texttt{qibo} is a \textbf{totally open-source} and \textbf{full-stack} 
+framework which well-fits with the scientific research context.
     \begin{figure}
     \centering 
     \includegraphics[width=\textwidth]{figures/Qibo.png}
