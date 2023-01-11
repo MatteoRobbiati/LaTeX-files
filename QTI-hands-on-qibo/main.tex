@@ -126,7 +126,7 @@
 
 \begin{frame}{What is a qubit?}
 \large
-\faArrowCircleRight\,\, In a quantum computer, bits are replaced by \textbf{qubits}.
+\faArrowCircleRight\,\, In a quantum computer, bits are replaced by \textbf{qubits},
 \pause
 
 \faArrowCircleRight\,\, which, in general, live in a superposition of 
@@ -200,7 +200,7 @@ $
 
 \begin{frame}[fragile]{Bloch sphere visualization}
 \large
-\faArrowCircleRight\,\, A quantum state can be nicely represented using the Bloch 
+\faArrowCircleRight\,\, A quantum pure state can be nicely represented using the Bloch 
 sphere's notation:
 \begin{equation*}
     \alpha = \cos{\frac{\theta}{2}}, \qquad \beta = e^{i\phi}\sin{\frac{\theta}{2}}.
@@ -431,7 +431,7 @@ sphere's notation:
     \faArrowCircleRight\,\, Many variational models in quantum computations involve 
     rotations.
     
-    \faArrowCircleRight\,\, it is easy to embed an input variable into a model if 
+    \faArrowCircleRight\,\, It is easy to embed an input variable into a model if 
     passed as rotation angle.
 
     \begin{figure}
@@ -447,7 +447,7 @@ sphere's notation:
     \begin{figure}
     \centering 
     \includegraphics[width=\textwidth]{figures/Quantum_tech.png}
-  \caption{Common Qbit's technologies. Graphic by C. Bickle/Science data by Gabriel Popkin.}
+  \caption{Common qubit's technologies. Graphic by C. Bickle/Science data by Gabriel Popkin.}
   \end{figure}
 \end{frame}
 
@@ -492,11 +492,11 @@ qubit.
     \pause
     \item[\faTerminal] we want to \textbf{easily code} this on our console for doing:
     \begin{itemize}
-        \item[\faCode]: \textbf{simulation} on our classical computer;
-        \item[\faCog]: \textbf{real quantum computation} if we have access to a lab; 
+        \item[\tiny\faCircle] \textbf{simulation} on our classical computer;
+        \item[\tiny\faCircle] \textbf{real quantum computation} if we have access to a lab; 
     \end{itemize}
     \pause
-    \item[\faWrench] in case of \faCog, $X$ must be \textbf{implemented} 
+    \item[\faWrench] in the second case, $X$ must be \textbf{implemented} 
     as a sequence of pulses $P$ which can swap the two fundamental states 
     (\textbf{quantum control});
     \pause
