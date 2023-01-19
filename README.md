@@ -8,4 +8,6 @@ about the projects in their proper `README.md` files.
 ### How to compile these files
 
 You can clone the repo, then enter the desired folder and run `pdflatex main.txt`. 
-Let's check if you have installed the latest `pdflatex` package.
+Let's check if you have installed the latest `latex` package.
+
+If you need to do that, I suggest to use `texlive-full`.
