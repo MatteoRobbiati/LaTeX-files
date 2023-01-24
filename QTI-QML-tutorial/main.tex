@@ -128,15 +128,19 @@
     
     \begin{tcolorbox}[colback=amethyst!20, title=Machine Learning]
     
-    ML is an important sub-discipline of both \textbf{artificial intelligence} and \textbf{statistics}, which provides us with a set of tools (algorithms, models) through which \textbf{we can teach a computer} to perform certain tasks, such as pattern recognition, classification, regression, clustering, etc.
+    Sub-discipline of both \textbf{artificial intelligence} 
+    and \textbf{statistics}, which provides us with a set of tools (algorithms, models) 
+    through which \textbf{we can teach a computer} to perform certain tasks, such 
+    as pattern recognition, classification, regression, clustering, etc.
     \end{tcolorbox}
 
 \pause
 
     \vspace{0.5cm}
 
-    \faArrowCircleRight\,\, If we want to implement a machine learning strategy, we need some basic elements:
-    \begin{itemize}
+    \faArrowCircleRight\,\, If we want to implement a machine learning strategy, 
+    we need some basic elements:
+    \begin{itemize}[noitemsep]
         \item[\faEdit] a model $\mathcal{M}$;
         \item[\faWrench] an optimizer $\mathcal{O}$;
         \item[\faPaypal] a \textbf{loss} (or \textbf{cost}) function $\mathcal{J}$.
@@ -150,7 +154,9 @@
 \begin{frame}{ML - Model $\mathcal{M}$}
 \large
 
-\faArrowCircleRight\,\, Let's consider two variables $x$ and $y$ (respectively \textbf{input} and \textbf{output} variables), for which we know some theoretical relationship $f$ exists.
+\faArrowCircleRight\,\, Let's consider two variables $x$ and $y$ (respectively 
+\textbf{input} and \textbf{output} variables), for which we know some theoretical 
+relationship $f$ exists.
 
 \pause
 
@@ -158,11 +164,12 @@
 
 \pause
 
-\begin{itemize}
+\begin{itemize}[noitemsep]
     \item[\tiny\faCircle] the true law: $y_{true}=f(x)$;
 
     \pause
-    \item[\tiny\faCircle] our theoretical estimation using a parametric model: $ y_{est} = \mathcal{M}(x | \bm{\theta})$;
+    \item[\tiny\faCircle] our theoretical estimation using a parametric model: 
+    $ y_{est} = \mathcal{M}(x | \bm{\theta})$;
 
     \pause
     \item[\tiny\faCircle] the measured value from a data sample: $y_{meas} = f(x) + \varepsilon$.
@@ -171,23 +178,27 @@
 
 \vspace{0.5cm}
 \begin{tcolorbox}[colback=amethyst!20, title=Supervised ML goal]
-To optimize the parameters of $\mathcal{M}$\footnote{We can choose the model we prefer.} so that $y_{est}$ and $y_{meas}$ are as close as possible\footnote{But without falling into over-learning!}.
+To optimize the parameters of a model\footnote{We can choose the model we prefer.}  
+$\mathcal{M}$ so that $y_{est}$ and $y_{meas}$ are as close as possible
+\footnote{But without falling into over-learning!}.
 \end{tcolorbox}
 
 \end{frame}
 
 \begin{frame}{ML - Loss function $\mathcal{J}$}
 \large
-    \faArrowCircleRight\,\, $\mathcal{J}$ is a function which quantifies the distance between $y_{meas}$ and $y_{est}$:
-    $$\mathcal{J} \equiv \mathcal{J}\bigl[y_{meas}, y_{est}\bigr] = \mathcal{J}\bigl[y_{meas}, \mathcal{M}(x| \bm{\theta})\bigr].$$
+    \faArrowCircleRight\,\, $\mathcal{J}$ is a function which quantifies the 
+    distance between $y_{meas}$ and $y_{est}$:
+    $$\mathcal{J} \equiv \mathcal{J}\bigl[y_{meas}, y_{est}\bigr] = \mathcal{J}\bigl[y_{meas}(x), \mathcal{M}(x| \bm{\theta})\bigr].$$
 
 \pause
 \faArrowCircleRight\,\, Several $\mathcal{J}$ exist:
 \begin{itemize}
-    \item[\tiny\faCircle] \textbf{Mean Squared Error}: $ \mathcal{J}_{mse} \equiv N_{sample}^{-1}\sum_{i=1}^{N_{sample}} \bigl[y_{meas, i} - \mathcal{M}(x_i| \bm{\theta})\bigr]^2$;
+    \item[\tiny\faCircle] \textbf{Mean Squared Error}: 
+    $$ \mathcal{J}_{mse} \equiv N_{sample}^{-1}\sum_{i=1}^{N_{sample}} \bigl[y_{meas}(x_i) - \mathcal{M}(x_i| \bm{\theta})\bigr]^2;$$
     \item[\tiny\faCircle] \textbf{Accuracy} in a classification problem;
     \item[\tiny\faCircle] \textbf{Categorical cross-Entropy} in multi-class classifications;
-    \item[\tiny\faCircle] ...
+    \item[\tiny\faCircle] etc.
 \end{itemize}
 
 \pause
@@ -524,8 +535,8 @@ every edge quotes/.style = {font=\scriptsize, inner sep=1pt, auto, sloped}
   node distance = 1.5cm,
   yshift=0cm, fill=green!20] (J) 
  {\begin{tabular}{l}
- \textbf{loss function }\\ 
- $\mathcal{J}(y, \hat{y})$
+ \textbf{loss function $\mathcal{J}$}\\ 
+ $\mathcal{J}(y_{meas}, y_{est})$
   \end{tabular}
   };
   
