@@ -98,7 +98,7 @@
 %\usepackage{xspace}
 
 \title{QTI-TH Forum: introduction to Quantum Machine Learning}
-\date{Jen. 19, 2023}
+\date{Jen. 26, 2023}
 \author[Matteo Robbiati]{Matteo Robbiati}
 \titlegraphic{
 \begin{tikzpicture}[overlay, remember picture]
@@ -179,8 +179,7 @@ relationship $f$ exists.
 \vspace{0.5cm}
 \begin{tcolorbox}[colback=amethyst!20, title=Supervised ML goal]
 To optimize the parameters of a model\footnote{We can choose the model we prefer.}  
-$\mathcal{M}$ so that $y_{est}$ and $y_{meas}$ are as close as possible
-\footnote{But without falling into over-learning!}.
+$\mathcal{M}$ so that $y_{est}$ and $y_{meas}$ are as close as possible\footnote{But without falling into over-learning!}.
 \end{tcolorbox}
 
 \end{frame}
@@ -212,7 +211,7 @@ We search for $\bm{\theta}_{best}$ which minimize $\mathcal{J}$.
 
 \begin{frame}{ML - Optimizer $\mathcal{O}$}
 \large
-\faArrowCircleRight\,\, $\mathcal{O}$ is the object which perform the optimization strategy. Also here different options exist:
+\faArrowCircleRight\,\, $\mathcal{O}$ is the object which performs the optimization strategy. Also here different options exist:
 
 \pause
 \begin{itemize}
@@ -336,7 +335,7 @@ every edge quotes/.style = {font=\scriptsize, inner sep=1pt, auto, sloped}
 
 \end{frame}
 
-% SLIDE 2 QML
+% SLIDE 3 QML
 \begin{frame}{Quantum Machine Learning - natural randomness}
 
 \vspace{1.77cm}
@@ -384,7 +383,7 @@ every edge quotes/.style = {font=\scriptsize, inner sep=1pt, auto, sloped}
   yshift=1.5cm, fill=blue!20] (NSHOT) 
  {\begin{tabular}{l}
  \textbf{Expected values}\\ 
- $\hat{y} \equiv \braket{q_f|B|q_f}$
+ $y_{est} \equiv \braket{q_f|B|q_f}$
   \end{tabular}
   };
  
@@ -395,7 +394,7 @@ every edge quotes/.style = {font=\scriptsize, inner sep=1pt, auto, sloped}
 \end{frame}
 
 
-% SLIDE 3 QML
+% SLIDE 4 QML
 
 \begin{frame}{Quantum Machine Learning - encoding the problem}
 
@@ -444,7 +443,7 @@ every edge quotes/.style = {font=\scriptsize, inner sep=1pt, auto, sloped}
   yshift=1.5cm, fill=blue!20] (NSHOT) 
  {\begin{tabular}{l}
  \textbf{Expected values}\\ 
- $\hat{y} \equiv \braket{q_f|B|q_f}$
+ $y_{est} \equiv \braket{q_f|B|q_f}$
   \end{tabular}
   };
 
@@ -464,6 +463,8 @@ every edge quotes/.style = {font=\scriptsize, inner sep=1pt, auto, sloped}
 
 \end{tikzpicture}
 \end{frame}
+
+% SLIDE 5 QML
 
 \begin{frame}{Quantum Machine Learning!}
 
@@ -526,7 +527,7 @@ every edge quotes/.style = {font=\scriptsize, inner sep=1pt, auto, sloped}
   yshift=1.5cm, fill=blue!20] (NSHOT) 
  {\begin{tabular}{l}
  \textbf{Expected values}\\ 
- $\hat{y} \equiv \braket{q_f|B|q_f}$
+ $y_{est} \equiv \braket{q_f|B|q_f}$
   \end{tabular}
   };
   
