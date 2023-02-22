@@ -7,7 +7,26 @@ about the projects in their proper `README.md` files.
 
 ### How to compile these files
 
-You can clone the repo, then enter the desired folder and run `pdflatex main.txt`. 
-Let's check if you have installed the latest `latex` package.
 
-If you need to do that, I suggest to use `texlive-full`.
+At first, let's check if you have installed a TeX typesetting system.
+
+I will refer to TeX-Live, because it is one of the most used. 
+
+If you need to install it, I suggest to download all the extension by installing
+`texlive-full`. You can find the installation instruction in the [official webpage](https://www.tug.org/texlive/).
+
+
+Then you can clone the repo, enter the desired folder and run:
+
+```bash
+pdflatex main.txt
+```
+
+#### Sometimes other compilers are needed
+
+In order to compile the `cv.tex` file, you need to use `lualatex` compiler. It is included
+into the `texlive-full` package and can be used on a `file.tex` file by running:
+
+```bash
+lualatex file.tex
+```
