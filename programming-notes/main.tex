@@ -78,7 +78,15 @@ transmitted.
 
 \cmd{> *json}: aka Javascript Object Notation, is an open standard file format 
 and data interchange format that uses human-readable text to store and transmit
- data objects consisting of attribute–value pairs and arrays (or other serializable values). 
+ data objects consisting of attribute–value pairs and arrays (or other serializable values).
+
+\cmd{> pickle}: The pickle module implements binary protocols for serializing 
+and de-serializing a Python object structure. “Pickling” is the process whereby 
+a Python object hierarchy is converted into a byte stream, and “unpickling” is 
+the inverse operation, whereby a byte stream (from a binary file or bytes-like object) 
+is converted back into an object hierarchy. Pickling (and unpickling) is 
+alternatively known as “serialization”, “marshalling,” or “flattening”; however, 
+to avoid confusion, the terms used here are “pickling” and “unpickling”.
 
 \section{Terminal}
 
@@ -270,6 +278,22 @@ visualize the output of, e.g., \texttt{*.html} files.
 \cmd{> help(function)} can be used for printing information about a specific 
 function.
 Try for example with \texttt{help(numpy.asarray)}.
+
+
+\cmd{> copy operations} can be different in python. The simplest one is the 
+\texttt{a = b}. This create a new object \texttt{b} which contains the references
+to the elements contained in \texttt{a}. It means that if you modify an element in
+\texttt{a} or \texttt{b}, this modification is propagated to the other one. 
+The second approach is to use a shallow copy. You can do this by importin the 
+\texttt{copy} package and by running \texttt{b = copy.copy(a)}. This create a
+new object in which we now have real copies of \texttt{a}, but only of the nested
+elements! It means that using such a list \texttt{a = [[a1, a2], [a3, a4]]} you will 
+modify the elements of both the lists only by accessing to the nested items, for 
+example by running \texttt{a[0][0] = `Pippo'}. If you try to modify the whole 
+\texttt{a[0]}, this modification will not be propagated to \texttt{b}. The last 
+option is the deep copy, that can be done by calling \texttt{b = copy.deepcopy(a)}.
+This creates a real copy of all the levels of \texttt{a}. Any modification of \texttt{a}
+doesn't affect \texttt{b} and vice versa. 
 
 \section{\texttt{pip}}
 
