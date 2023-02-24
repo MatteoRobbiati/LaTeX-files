@@ -295,6 +295,14 @@ option is the deep copy, that can be done by calling \texttt{b = copy.deepcopy(a
 This creates a real copy of all the levels of \texttt{a}. Any modification of \texttt{a}
 doesn't affect \texttt{b} and vice versa. 
 
+\cmd{> lru\_cache} is a method of the \texttt{functools} library. Thanks to this
+if you call a function with a certain argument, such as \texttt{f(x)}, the output
+associated to \texttt{x} is cached, and it won't be calculated again. In order
+to use it you must decorate your function with \texttt{@lru\_cache}. \textbf{Pay
+attention}: do not use it for decorating functions which contains some routine
+which needs random number generation! You will loose the randomness of the process
+because you are going to read the same cached value every time.
+
 \section{\texttt{pip}}
 
 Here we collect some useful info about the official  package installer for Python. \\
