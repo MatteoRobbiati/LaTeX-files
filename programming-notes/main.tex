@@ -27,7 +27,7 @@ colorlinks=true, pagebackref=true]{hyperref}
 
 \newcommand{\cmd}[1]{\colorbox{light-gray}{\textcolor{gio}{\texttt{#1}}}}
 
-\title{Comandi utili e commenti}
+\title{Some notes about my coding experience}
 \author{Matteo Robbiati}
 \date{}
 
@@ -235,6 +235,10 @@ PR and at some point you want to split the work into two PRs. So you can bring a
 part of the job done with you in another branch. In that case the first thing to 
 be done is to run this command. Then you can switch to a new branch using the 
 \texttt{switch} command with \texttt{-c} option. 
+
+\cmd{> git branch --delete <branch\_name>} is used for deleting a branch. I 
+suggest to use it on a local branch. If the branch is not completely merged, 
+you should use \texttt{git branch -D <branch\_name>}.
 
 
 
