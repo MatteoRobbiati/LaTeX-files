@@ -1,0 +1,92 @@
+\documentclass[11pt]{article}
+\usepackage{blindtext}
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=15mm,
+ top=20mm,
+ }
+\usepackage{cmbright}
+\usepackage{bm}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{fontawesome}
+
+\usepackage[dvipsnames]{xcolor}
+\definecolor{light-gray}{gray}{0.95}
+\definecolor{elle}{rgb}{0.3, 0.5, 0.9}
+\definecolor{gio}{rgb}{0.0, 0.4, 0.65}
+\definecolor{def}{rgb}{1, 0.08, 0.58}
+\definecolor{purpleheart}{rgb}{0.41, 0.21, 0.61}
+\usepackage[citecolor = green, linkcolor = gio, bookmarks=true, urlcolor=gio,
+colorlinks=true, pagebackref=true]{hyperref}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+
+
+\newcommand{\cmd}[1]{\colorbox{light-gray}{\textcolor{gio}{\texttt{#1}}}}
+
+\title{PhD notes}
+\author{Matteo Robbiati}
+\date{}
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+
+
+\section{Computational Complexity Theory}
+
+\subsection{Turing Machine}
+
+A Turing machine is a mathematical model of computation describing an abstract 
+machine that manipulates symbols on a strip of tape according to a table of rules. 
+Despite the model's simplicity, it is capable of implementing any computer 
+algorithm. A Turing machine is a general example of a central processing unit 
+(CPU) that controls all data manipulation done by a computer, with the canonical 
+machine using sequential memory to store data. More specifically, it is a machine 
+(automaton) capable of enumerating some arbitrary subset of valid strings of an 
+alphabet; these strings are part of a recursively enumerable set. A Turing 
+machine has a tape of infinite length on which it can perform read and write 
+operations.
+
+\subsection{Nondeterministic Turing Machine}
+
+In theoretical computer science, a nondeterministic Turing machine (NTM) is a 
+theoretical model of computation whose governing rules specify more than one 
+possible action when in some given situations. That is, an NTM's next state is 
+not completely determined by its action and the current symbol it sees, unlike 
+a deterministic Turing machine.
+
+\subsection{NP problems}
+
+In computational complexity theory, NP (nondeterministic polynomial time) is a 
+complexity class used to classify decision problems. NP is the set of decision 
+problems for which the problem instances, where the answer is "yes", have proofs 
+verifiable in polynomial time by a deterministic Turing machine, or alternatively 
+the set of problems that can be solved in polynomial time by a nondeterministic 
+Turing machine.
+
+\subsection{NP-hard problems}
+
+In computational complexity theory, NP-hardness (non-deterministic 
+polynomial-time hardness) is the defining property of a class of problems that 
+are informally "at least as hard as the hardest problems in NP". A simple 
+example of an NP-hard problem is the subset sum problem.
+
+\section{Quantum computation theory}
+
+We can call quantum channel each transformation which maps a density matrix into
+another.
+
+\subsection{Adiabatic Computing}
+
+We encode a problem into an adiabatic evolution context. We start from an initial
+hamiltonian $H_0$ and we want to slowly evolve to a final hamiltonian $H_1$. 
+If the evolution is slow enough, it is prooved that we continue to stay in the 
+ground state of the evolving hamiltonian, falling in the ground state of $H_1$ in 
+the end.
+
+\end{document}
