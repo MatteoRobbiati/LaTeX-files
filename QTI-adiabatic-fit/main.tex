@@ -98,7 +98,7 @@
 
 \title{Density estimation via quantum adiabatic computing}
 \subtitle{Based on \faBook\,\, \href{https://arxiv.org/abs/2303.11346}{arXiv:2303.11346}}
-\date{23 March 2023}
+\date{20 April 2023}
 \author[Matteo Robbiati, Juan Manuel Cruz-Martinez, Stefano Carrazza]{Matteo Robbiati, Juan Manuel Cruz-Martinez, Stefano Carrazza}
 \titlegraphic{
 \begin{tikzpicture}[overlay, remember picture]
@@ -117,6 +117,7 @@
 
 \maketitle
 
+\iffalse
 \section{Highlights of the previous talks}
 
 \begin{frame}{Step back 1: Variational Quantum Circuit (VQC)}
@@ -139,8 +140,9 @@
 \end{itemize}
 \end{frame}
 
+\fi
 
-\begin{frame}{Step back 2: Quantum Machine Learning}
+\begin{frame}{A screenshot of Quantum Machine Learning (QML)}
 
 \vspace{0.25cm}
 \begin{tikzpicture}[->,>=stealth']
@@ -226,12 +228,17 @@
 \end{tikzpicture}
 \end{frame}
 
+
+
 \section{Introduction}
 
 \begin{frame}{Our goal}
 \large
-\faArrowCircleRight\,\, We want to use QML architectures
-for tackling \textbf{Monte Carlo} Integration (MCI) problems. For integrating $g(x)$ \textit{e.g.}:
+\faArrowCircleRight\,\, QML to tackle \textbf{Monte Carlo} Integration (MCI).
+\pause
+
+\faArrowCircleRight\,\, Let's consider the integrand $g(x)$  and a dataset $\Omega$
+sampled from a distribution $\rho(x)$. We are interested in calculating:
 \begin{equation}
     E\bigl[g(x)\bigr] = \int_{\Omega} g(x) \rho(x) \text{d}x.
     \label{eq:MCI}
@@ -284,18 +291,18 @@ for tackling \textbf{Monte Carlo} Integration (MCI) problems. For integrating $g
 \faArrowCircleRight\,\, We are going to follow these steps:
 \pause
 \begin{itemize}[noitemsep]
-    \item[\faBatteryEmpty] Introduction to the problem: fitting the \textbf{Cumulative 
+    \item[\small\faBatteryEmpty] we target the \textbf{Cumulative 
     Density Function} (CDF) of a sampled $\Omega$;
     \pause 
-    \item[\faBatteryQuarter] Definition of a new \textbf{Quantum Adiabatic Machine Learning} 
+    \item[\small\faBatteryQuarter] we define a new \textbf{Quantum Adiabatic Machine Learning} 
     (QAML) strategy for tackling 1d fitting problems;
     \pause
-    \item[\faBatteryHalf] Fit of the CDF via QAML;
+    \item[\small\faBatteryHalf] we fit the CDF via QAML;
     \pause
-    \item[\faBatteryThreeQuarters] Use some quantum-friendly numerical techniques for calculating 
-    the PDF as derivative of the CDF. 
+    \item[\small\faBatteryThreeQuarters] we use parameter-shift rules for calculating 
+    the PDF as derivative of the CDF; 
     \pause
-    \item[\faBatteryFull] Validation of the procedure on some test cases. 
+    \item[\small\faBatteryFull] we validate the procedure on some test cases. 
     \pause
 \end{itemize}
 \vspace{0.3cm}
@@ -324,7 +331,7 @@ which is related to the PDF value via $\rho(x) = \frac{\text{d}F(x)}{\text{d} x}
 \end{frame}
 
 
-\begin{frame}[fragile]{VQC as regression model}
+\begin{frame}[fragile]{Variational Quantum Circuits (VQC) as regression model}
 \large
 \faArrowCircleRight\,\, It is great to use a VQC as model for estimating $F$:
 \pause
@@ -450,7 +457,7 @@ $(x, F)$ into $(\tau, E)$: evolution time $\tau$ and target observable's energy 
     \item[\faLineChart] the evolution is naturally monotonic.
     \pause
     \item[\faChain] we can fix $\hat{F}(0)=0$ and $\hat{F}(1)=1$ by chosing $H_0$ and $H_1$
-    such that their ground-state energy are zero and one.
+    such that their ground-state energies are zero and one.
 \end{itemize}
 
 \pause
@@ -469,7 +476,7 @@ AE pass through the training points.
 
 \begin{frame}[fragile]{Optimizing the AE - ansatz and optimizer}
 \large
-\faArrowCircleRight\,\, We use a \textbf{CMA-ES}\footnote{\href{https://arxiv.org/abs/1604.00772}{arXiv:1604.00772}} 
+\faArrowCircleRight\,\, We use a \textbf{CMA-ES}\footnote<1->{\href{https://arxiv.org/abs/1604.00772}{arXiv:1604.00772}} 
 genetic algorithm and the following loss function:
 \begin{equation}
     J_{\rm MSE} = \frac{1}{N_{\rm train}} \sum_{k = 1}^{N_{\rm train}} 
@@ -477,9 +484,9 @@ genetic algorithm and the following loss function:
     \label{eq:loss_function}
 \end{equation}
 \pause
-\faArrowCircleRight\,\, Thus we evolve the system using a \textbf{polynomial scheduling} function\footnote{One is free to set
-a custom anstatz, \textit{e.g.} a neural network. With \texttt{qibo} an $s$ function 
-is required such as $s(0)=0$ and $s(1)=1$.}:
+\faArrowCircleRight\,\, Thus we evolve the system using a \textbf{polynomial scheduling} 
+function\footnote<2->{One is free to set a custom anstatz, \textit{e.g.} a neural 
+network. With \texttt{qibo} an $s$ function is required such as $s(0)=0$ and $s(1)=1$.}:
 \begin{equation}
 s(t;\theta) = \frac{1}{\eta} \sum_{i=1}^{p} \theta_i x^{i}, \qquad
 \text{with} \qquad \eta = \sum_{i=1}^{p} \theta_i,
@@ -683,7 +690,7 @@ twos can be obtained \textbf{analytically} if we use an analytical ansatz for $s
 \pause 
 
 \faArrowCircleRight\,\, We did it by simulating circuits both in ideal\footnote<2->{Exact
-state vector simulation} and realistic\footnote<2->{Sampling the frequencies from the
+state vector simulation} and shot-noisy\footnote<2->{Sampling the frequencies from the
 simulated state} way. 
 \pause 
 
