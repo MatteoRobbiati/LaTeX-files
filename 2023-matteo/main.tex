@@ -1,4 +1,4 @@
-\documentclass[10pt, xcolor={svgnames}, hyperref={colorlinks,linkcolor=black, citecolor=amethyst, urlcolor=amethyst}]{beamer}
+\documentclass[8pt, xcolor={svgnames}, hyperref={colorlinks,linkcolor=black, citecolor=black, urlcolor=black}]{beamer}
 
 
 \usepackage[labelfont={color=amethyst,bf}]{caption}
@@ -60,8 +60,12 @@
 \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
 \definecolor{amethyst}{rgb}{0.6, 0.4, 0.8}
 
+
 \definecolor{light-gray}{gray}{0.95}
+
 \newcommand{\code}[1]{\colorbox{light-gray}{\texttt{#1}}}
+\newcommand*{\xdash}[1][3em]{\rule[0.5ex]{#1}{0.55pt}}
+
 
 \usepackage{listings}
 \lstdefinestyle{mystyle}{
@@ -99,53 +103,121 @@
 
 \begin{document}
 
-\begin{frame}{Development and maintenance of \texttt{qibo}}
-\faArrowCircleRight\,\, \texttt{qibo} covers all quantum computation areas, thus 
-we can implement and test \textbf{full-stack} quantum algorithms:
+\begin{frame}{full-stack algorithms with \texttt{qibo}}
+\faTerminal\,\, \texttt{qibo} covers all quantum computation areas, thus 
+we can implement and test \textbf{full-stack} quantum algorithms.
 
-\begin{itemize}[noitemsep]
-    \item[\faCode]  hardware-compatible derivation techniques 
-    for \textbf{quantum gradient descents} (QGD)\footnote{\faBook\,\, 
-    \href{https://arxiv.org/abs/2210.10787}{arXiv:2210.10787}};
-    \item[\faCode] \textbf{error mitigation} impact on QGD optimization techinques;
-    \item[\faCode] test and maintenance of \textbf{adiabatic evolution} techinques and hamiltonians
-    translation into quantum circuits.
-
-\end{itemize}
-
-\faArrowCircleRight\,\, Development and maintenance of \texttt{qibo}'s \textbf{documentation}.
-
+\begin{figure}
+    \includegraphics[width=0.8\textwidth]{figures/full_stack.png}%
+    \label{fig:full_stack}
+\end{figure}
 \end{frame}
 
 
+\begin{frame}{Full-stack gradient descent}
+
+\faTerminal\,\, \texttt{WORK 1:} hardware-compatible 
+    \textbf{quantum gradient descent} (QGD)\footnote{\faBook\,\, 
+    \href{https://arxiv.org/abs/2210.10787}{arXiv:2210.10787}}:
+\begin{itemize}[noitemsep]
+    \item[\tiny\faSquare] implementing parameter-shift rules to evaluate gradients
+    on hardware;
+    \item[\tiny\faSquare] successfully fitting $y=\sin{2x}$ on TII QPUs.
+    \item[\tiny\faSquare] results comparable to a genetic optimization.
+\end{itemize}
+\begin{figure}
+    \includegraphics[width=0.8\textwidth]{figures/adam.pdf}%
+    \caption{Normalised fit of $y=\sin{2x}$ through a full-stack Adam descent 
+    performed using \texttt{qibo}.}
+    \label{fig:adam}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}{Error mitigation impact on QGD algorithms}
+
+
+\faTerminal\,\, \texttt{WORK 2:} error mitigation impact during QGD steps:
+\begin{itemize}[noitemsep]
+    \item[\tiny\faSquare] combine error mitigation with derivation methods we 
+    have in \texttt{qibo};
+    \item[\tiny\faSquare] successfully fitting High Energy Physics (HEP) quarks parton
+    density functions in simulation
+    using mitigated-noisy circuits;
+    \item[\tiny\faSquare] we are going to run the algorithm on the hardware.
+\end{itemize}
+
+\begin{figure}
+    \includegraphics[height=3.5cm, width=0.33\textwidth]{figures/exact.pdf}%
+    \includegraphics[height=3.5cm, width=0.33\textwidth]{figures/noisy.pdf}%
+    \includegraphics[height=3.5 cm, width=0.33\textwidth]{figures/mitigated.pdf}%
+    \caption{PDF fit performed with different levels of noisy simulation. 
+    From left to right, exact simulation, noisy simulation, noisy simulation 
+    applying error mitigation to the predictions.}
+    \label{fig:mitigated_fit}
+\end{figure}
+
+
+\end{frame}
+
 \begin{frame}{Quantum technologies for High Energy Physics (HEP)}
+\faTerminal\,\, We cooperate with the 
+\href{https://quantum.cern/}{Quantum Techonolgy Initiative} (QTI) at CERN, where 
+Matteo is spending the Doctoral program.
+\begin{figure}
+    \includegraphics[width=1\textwidth]{figures/qti.png}%
+    \label{fig:full_stack}
+\end{figure}
+\faTerminal\,\, The \texttt{qibo} ecosystem has been presented\footnote{\href{https://indico.cern.ch/event/1235582/}{QTI-TH Forum 2023-01-12}}
+and used\footnote{\href{https://indico.cern.ch/event/1235584/}{QTI-TH Forum 2023-01-26}}
+during the QTI-TH forum.
+\end{frame}
 
-\faArrowCircleRight\,\, Cooperation with the 
-\href{https://quantum.cern/}{Quantum Techonolgy Initiative} (QTI) at CERN
 
+\begin{frame}{Determining PDFs via adiabatic quantum computing}
 
-\begin{tcolorbox}[colback=red!15, boxrule=1pt, arc=.8em, boxsep=0mm]
-Matteo is involved in the CERN \textbf{theoretical department} QTI Forum:
+\faTerminal\,\, \texttt{WORK 3:} we used \texttt{qibo} for testing a new Quantum
+Adiabatic Machine Learning (QAML) strategy\footnote{\faBook\,\, \href{https://arxiv.org/abs/2303.11346}{arXiv:2303.11346}}:
 \begin{itemize}[noitemsep]
-    \item[\faCode] presenting
-    and using\footnote{\href{https://indico.cern.ch/event/1235582/}{QTI-TH Forum 2023-01-12},
-    \href{https://indico.cern.ch/event/1235584/}{QTI-TH Forum 2023-01-26}}
-    \texttt{qibo} during the weekly meetings;
-    \item[\faCode] discussing about advantages of quantum techonolgies in 
-    HEP\footnote{\href{https://indico.cern.ch/event/1267029/}{QTI-TH Forum 2023-03-30}}.
+    \item[\tiny\faSquare] we embed a Cumulative Density Function (CDF) into ad adiabatic
+    evolution;
+    \item[\tiny\faSquare] we translate the adiabatic hamiltonians into circuits;
+    \item[\tiny\faSquare] we derivate this circuits with hardware-compatible techniques
+    for estimating the Probability Density Function (PDF).
 \end{itemize}
+
+\begin{figure}
+    \includegraphics[width=0.5\textwidth]{figures/rapidity.pdf}%
+    \includegraphics[width=0.5\textwidth]{figures/gauss.pdf}
+    \caption{QAML results. On the right PDF fit of rapidity in a $pp\to t\bar{t}$ HEP decay,
+    on the left we fit a gaussian mixture.}
+    \label{fig:adiabatic_fit}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Upcoming}
+
+\begin{tcolorbox}[colback=blue!15, title=   \faTerminal\,\, \texttt{WORK 4:} Quantum Analytical integration using the parameter shift rule.]
+Given the integral:
+\begin{equation}
+I = \int_a^b g(x)\, \text{d}x,
+\end{equation}
+we can use the expectation value of an observable $\hat{B}$ 
+to fit $g(x)$;
+\begin{equation}
+    \hat{g}(x) \equiv \braket{\mathcal{C}(x)} \equiv \braket{\psi_i|\mathcal{C}^{\dagger}(x) |
+    \hat{B}\, \mathcal{C}(x)| \psi_i},
+\end{equation}
+this makes the original circuit $\mathcal{C}$ a good 
+estimator of the integral function as $I = \braket{\mathcal{C}(b)}- \braket{\mathcal{C}(a)}$ 
+due to the fundamental theorem of integral calculus.
 \end{tcolorbox}
 
-\begin{tcolorbox}[colback=blue!15, boxrule=1pt, arc=.8em, boxsep=0mm]
-Focus on quantum algorithms for \textbf{Monte Carlo Integration} in HEP: 
-\begin{itemize}[noitemsep]
-    \item[\faCode] fit \textbf{probability density functions} with adiabatic
-    computing\footnote{\faBook\,\, \href{https://arxiv.org/abs/2303.11346}{arXiv:2303.11346}};
-    \item[\faCode] use of quantum derivation techniques for \textbf{integrals evaluation};
-    \item[\faCode] error mitigation techniques for fitting parton density functions.
-\end{itemize}
+\begin{tcolorbox}[colback=red!15, title=\faTerminal\,\, \texttt{WORK 5:} How to classify HEP event topology
+using a quantum annealer?]
+We had an interesting discussion during the QTI-TH Forum\footnote{\href{https://indico.cern.ch/event/1267029/}{QTI-TH Forum 2023-03-30}}
+about the topic and we are thinking to use \texttt{qibo} for approaching this task. 
 \end{tcolorbox}
-
 \end{frame}
 
 \end{document}
