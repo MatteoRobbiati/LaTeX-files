@@ -138,6 +138,8 @@
     \faBook\,\,\href{https://arxiv.org/abs/2009.01845}{arXiv:2009.01845}: \textit{``Qibo: a framework for quantum simulation with hardware acceleration."}\\
 \end{frame}
 
+\section{Some features}
+
 \begin{frame}{More about \texttt{qibojit}}
 \small
 \faArrowCircleRight\,\, We do state vector simulation, which solves:
@@ -247,7 +249,7 @@ has energy $E=0$ and $E=1$ respectively on $H_0$ and $H_1$ ground states;
 \item[3.] we calculate a loss function $J_{\rm mse}$:
          $$ J_{\rm mse} = \sum_{k=1}^{N_{\rm sample}} \bigl[ E(\tau_k) - F(x_k) \bigr]^2; $$
 \pause
-\item[4.] we use a Genetic Algorithm to find $\bm{\theta}_{\rm best}$ which minimizes $J_{\rm mse}$.
+\item[4.] we choose an optimizer to find $\bm{\theta}_{\rm best}$ which minimizes $J_{\rm mse}$.
 \end{itemize} 
 \pause
 \vfill
@@ -293,15 +295,20 @@ has energy $E=0$ and $E=1$ respectively on $H_0$ and $H_1$ ground states;
 
 \begin{frame}{\texttt{SIMULATION:} from $\{H_{\rm ad}\}$ to a circuit and derivate!}
 \small
+\pause
 \faArrowCircleRight\,\, Firstly, we did some calculations and approximations in order to:
+\pause
 \begin{itemize}[noitemsep]
 \item[1.] translate the Hamiltonians' sequence into a single unitary:
 $$\prod_{j=1}^{n} e^{-i H_{j}\text{d}t} \to \mathcal{U}(t);$$
+\pause 
 \item[2.] translate this unitary in a sequence of rotational gates:
 $$ \mathcal{U}(t) = R_z(\theta_1)R_x(\theta_2)R_z(\theta_3) \qquad \text{with}\,\, \theta_i \equiv \theta_i(t).$$
 \end{itemize}
+\pause 
 \faArrowCircleRight\,\, Then, we derivate the expected values using parameter shift rule
 and chain rule.
+\pause 
 \begin{multicols}{2}
 \begin{figure}
     \includegraphics[width=0.5\textwidth]{figures/PDF_gamma_25_20_200000.pdf}
@@ -311,6 +318,8 @@ and chain rule.
 \end{figure}
 \end{multicols}
 \end{frame}
+
+\section{Hardware deployment}
 
 \begin{frame}{\texttt{EXECUTION:} running on the hardware}
 \small
@@ -450,8 +459,10 @@ Gradient Descent (SGD) on the hardware.
 
     \begin{figure}  
     \includegraphics[width=1\textwidth]{figures/qpu1.pdf}
-    \caption{Batch Gradient Descent on the hardware. Gradients are evaluated 
-    via Parameter-Shift Rule.}
+    \caption{Batch Gradient Descent on the hardware, with gradients evaluated 
+    via Parameter-Shift Rule. We take $100$ points $\{x_j\}$ in the range $[-1,1]$ and we make 
+    $100$ predictions for each $x_j$. Mean and standard deviation are used for 
+    determining the estimations and the confidend belt.}
     \end{figure}
 
 \end{frame}
