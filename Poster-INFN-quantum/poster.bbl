@@ -1,0 +1,23 @@
+\begin{thebibliography}{1}
+
+\bibitem{Efthymiou_2021}
+S.~Efthymiou, S.~Ramos-Calderer, C.~Bravo-Prieto, A.~P{\'{e}}rez-Salinas,
+  D.~Garc{\'{\i}}a-Mart{\'{\i}}n, A.~Garcia-Saez, J.~I. Latorre, and
+  S.~Carrazza, ``Qibo: a framework for quantum simulation with hardware
+  acceleration,'' {\em Quantum Science and Technology}, vol.~7, p.~015018, dec
+  2021.
+
+\bibitem{Efthymiou_2022}
+S.~Efthymiou, M.~Lazzarin, A.~Pasquale, and S.~Carrazza, ``Quantum simulation
+  with just-in-time compilation,'' {\em Quantum}, vol.~6, p.~814, sep 2022.
+
+\bibitem{pasquale2023opensource}
+A.~Pasquale, S.~Efthymiou, S.~Ramos-Calderer, J.~Wilkens, I.~Roth, and
+  S.~Carrazza, ``Towards an open-source framework to perform quantum
+  calibration and characterization,'' 2023.
+
+\bibitem{robbiati2022quantum}
+M.~Robbiati, S.~Efthymiou, A.~Pasquale, and S.~Carrazza, ``A quantum analytical
+  adam descent through parameter shift rule using qibo,'' 2022.
+
+\end{thebibliography}
