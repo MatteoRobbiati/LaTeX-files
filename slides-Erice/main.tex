@@ -54,7 +54,7 @@
 % SLIDE 1 QML
 \begin{frame}{Quantum Machine Learning - doing ML using QC}
 
-\vspace{1.5cm}
+\vspace{1.05cm}
 
 \begin{tikzpicture}[->,>=stealth']
 
@@ -111,21 +111,22 @@
   \end{tabular}
   };
   
-   \node[state,
+ \node[state,
     right of=QC,
-    yshift=0cm,
+    yshift=-0.5cm,
     anchor=center,
     node distance=4.5cm, 	
-    text width=2.5cm, fill=blue!20] (VQC) 
+    text width=3.5cm, fill=blue!20] (VQC) 
  {%
  \begin{tabular}{l}
-  \textbf{VQC execution}\\
-  $\mathcal{M}$, $\mathcal{S}$, $\mathcal{E}$ \\
-  \parbox{2.8cm}{$\mathcal{U}(\bm{\theta})\ket{q_i} \to \ket{q_f}$}
+  \textbf{VQC execution} \\
+  \parbox{4.5cm}{
+  \includegraphics[width=0.9\textwidth]{figures/vqc.png}
+  }
  \end{tabular}
  };
  
-  \draw[line width=0.3mm] (1, -2.5)  to[out=0, in=230] (3, -3);
+  \draw[line width=0.3mm] (1, -2.5)  to[out=0, in=200] (3, -3.2);
 \end{tikzpicture}
 
 \end{frame}
@@ -158,31 +159,33 @@
   \end{tabular}
   };
   
-   \node[state,
+ \node[state,
     right of=QC,
-    yshift=0cm,
+    yshift=-0.5cm,
     anchor=center,
     node distance=4.5cm, 	
-    text width=2.5cm, fill=blue!20] (VQC) 
+    text width=3.5cm, fill=blue!20] (VQC) 
  {%
  \begin{tabular}{l}
-  \textbf{VQC execution}\\
-  $\mathcal{M}$, $\mathcal{S}$, $\mathcal{E}$ \\
-  \parbox{2.8cm}{$\mathcal{U}(\bm{\theta})\ket{q_i} \to \ket{q_f}$}
+  \textbf{VQC execution} \\
+  \parbox{4.5cm}{
+  \includegraphics[width=0.9\textwidth]{figures/vqc.png}
+  }
  \end{tabular}
  };
  
 \node[state,
   right of = VQC,
   node distance = 3cm,
-  yshift=1.5cm, fill=blue!20] (NSHOT) 
+  yshift=2cm, 
+  fill=blue!20] (NSHOT) 
  {\begin{tabular}{l}
  \textbf{Expected values}\\ 
  $y_{est} \equiv \braket{q_f|B|q_f}$
   \end{tabular}
   };
  
-\draw[line width=0.3mm] (1, -2.5)  to[out=0, in=230] (3, -3);
+\draw[line width=0.3mm] (1, -2.5)  to[out=0, in=200] (3, -3.2);
 \draw[line width=0.3mm] (6, -2.8)  to[out=0, in=250] (7, -1.6);
 \end{tikzpicture}
 
@@ -192,7 +195,7 @@
 % SLIDE 4 QML
 \begin{frame}{Quantum Machine Learning - encoding the problem}
 
-\vspace{1.01cm}
+\vspace{0.56cm}
 \begin{tikzpicture}[->,>=stealth']
 
  \node[state, fill=orange!20] (ML) 
@@ -219,22 +222,24 @@
  
  \node[state,
     right of=QC,
-    yshift=0cm,
+    yshift=-0.5cm,
     anchor=center,
     node distance=4.5cm, 	
-    text width=2.5cm, fill=blue!20] (VQC) 
+    text width=3.5cm, fill=blue!20] (VQC) 
  {%
  \begin{tabular}{l}
-  \textbf{VQC execution}\\
-  $\mathcal{M}$, $\mathcal{S}$, $\mathcal{E}$ \\
-  \parbox{2.8cm}{$\mathcal{U}(\bm{\theta})\ket{q_i} \to \ket{q_f}$}
+  \textbf{VQC execution} \\
+  \parbox{4.5cm}{
+  \includegraphics[width=0.9\textwidth]{figures/vqc.png}
+  }
  \end{tabular}
  };
  
 \node[state,
   right of = VQC,
   node distance = 3cm,
-  yshift=1.5cm, fill=blue!20] (NSHOT) 
+  yshift=2cm, 
+  fill=blue!20] (NSHOT) 
  {\begin{tabular}{l}
  \textbf{Expected values}\\ 
  $y_{est} \equiv \braket{q_f|B|q_f}$
@@ -242,17 +247,17 @@
   };
 
   
- \draw[line width=0.3mm, red, opacity = 0.7] (0.5, 0.4)  to[out=0, in=230] (3.2, -3.3);
- \draw[line width=0.3mm, orange, opacity = 0.7] (-1.2, -1.25)  to[out=260, in=300] (4.4, -3.5);
- \draw[line width=0.3mm, cadmiumgreen, opacity = 0.7] (-0.4, -1.2)  to[out=330, in=60] (7.5, -0.15);
+ \draw[line width=0.3mm, red, opacity = 0.7] (0.5, 0.4)  to[out=0, in=230] (3, -3.3);
+ \draw[line width=0.3mm, orange, opacity = 0.7] (-1.2, -1.25)  to[out=260, in=300] (4.4, -4.1);
+ \draw[line width=0.3mm, cadmiumgreen, opacity = 0.7] (-0.4, -1.2)  to[out=330, in=80] (7.8, -0.4);
   
  
- \draw[red, line width=0.4mm, opacity = 0.6] (3.7,-2.95) circle (0.4 cm);
- \draw[red, line width=0.4mm, opacity = 0.6] (-1.1, 0.4) circle (0.4 cm);
- \draw[cadmiumgreen, line width=0.4mm, opacity = 0.6] (-0.65,-0.8) circle (0.3 cm);
- \draw[cadmiumgreen, line width=0.4mm, opacity = 0.6] (7.25,-1.15) circle (0.95 cm);
- \draw[orange, line width=0.4mm, opacity = 0.6] (4.3,-2.95) circle (0.4 cm);
+ \draw[red, line width=0.4mm, opacity = 0.9] (-1.1, 0.4) circle (0.4 cm);
+ \draw[cadmiumgreen, line width=0.4mm, opacity = 0.9] (-0.65,-0.8) circle (0.3 cm);
+ \draw[cadmiumgreen, line width=0.4mm, opacity = 0.9] (7.2,-1.4) rectangle (8.6, -0.95);
  \draw[orange, line width=0.4mm, opacity = 0.6] (-1.15,-0.8) circle (0.3 cm);
+ \draw[red, line width=0.4mm, opacity = 0.6] (3.1,-4) rectangle (6,-2.4);
+ \draw[orange, line width=0.4mm, opacity = 0.9] (3.5,-3.9) rectangle (5.2,-2.5);
 
 
 \end{tikzpicture}
@@ -262,7 +267,7 @@
 % SLIDE 5 QML
 \begin{frame}{Quantum Machine Learning!}
 
-\vspace{0.25cm}
+\vspace{0.42cm}
 \begin{tikzpicture}[->,>=stealth']
 
 
@@ -303,22 +308,24 @@
  
  \node[state,
     right of=QC,
-    yshift=0cm,
+    yshift=-0.5cm,
     anchor=center,
     node distance=4.5cm, 	
-    text width=2.5cm, fill=blue!20] (VQC) 
+    text width=3.5cm, fill=blue!20] (VQC) 
  {%
  \begin{tabular}{l}
-  \textbf{VQC execution}\\
-  $\mathcal{M}$, $\mathcal{S}$, $\mathcal{E}$ \\
-  \parbox{2.8cm}{$\mathcal{U}(\bm{\theta})\ket{q_i} \to \ket{q_f}$}
+  \textbf{VQC execution} \\
+  \parbox{4.5cm}{
+  \includegraphics[width=0.9\textwidth]{figures/vqc.png}
+  }
  \end{tabular}
  };
  
 \node[state,
   right of = VQC,
   node distance = 3cm,
-  yshift=1.5cm, fill=blue!20] (NSHOT) 
+  yshift=2cm, 
+  fill=blue!20] (NSHOT) 
  {\begin{tabular}{l}
  \textbf{Expected values}\\ 
  $y_{est} \equiv \braket{q_f|B|q_f}$
@@ -336,10 +343,10 @@
   };
   
 
- \draw[line width=0.3mm] (6, -2.8)  to[out=0, in=250] (7, -1.6);
- \draw[line width=0.3mm] (5.7, -1.1)  to[out=180, in=200] (6.1, 0.2);
+ \draw[line width=0.3mm] (6.5, -3)  to[out=0, in=270] (7.5, -1.6);
+ \draw[line width=0.3mm] (6, -1.1)  to[out=180, in=200] (6.1, 0.2);
  \draw[line width=0.3mm] (7.5, 1.1)  to[out=90, in=0] (5.7, 1.5);
- \draw[line width=0.6mm, opacity=0.8] (2, 1.6)  to[out=180, in=270] (-0.2, 3.3);
+ \draw[line width=0.6mm, opacity=0.8] (2, 1.6)  to[out=180, in=270] (-0.2, 2.9);
  
  \draw[line width=0.3mm, orange, opacity = 0.0] (-1.2, -1.25)  to[out=260, in=300] (4.4, -3.5);
 
