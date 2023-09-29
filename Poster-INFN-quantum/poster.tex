@@ -84,7 +84,7 @@
 \title{\texttt{qibo}: a full-stack framework for simulation, control
 and calibration of self-hosted qubit devices}
 
-\author{Robbiati M. \inst{1  }\inst{2  } \and Carrazza S. \inst{1  }\inst{2  }\inst{3    }}
+\author{Stefano Carrazza\inst{1  }\inst{2  }\inst{3  }}
 
 \institute[shortinst]{
   \inst{1  } TIF Lab, Dipartimento di Fisica, Universit\`a degli Studi
@@ -173,7 +173,6 @@ and calibration of self-hosted qubit devices}
   \begin{block}{\texttt{SIMULATION:} adiabatic computation}
   In \texttt{qibo} symbolic hamiltonians can be defined and used to perform 
   adiabatic computation:
-  
   \begin{equation}
   H_{\rm ad}(\tau; \bm{\theta}) = \bigl[ 1 - s(\tau; \bm{\theta}) \bigr] H_0 +  
   s(\tau; \bm{\theta}) H_1,
@@ -249,13 +248,13 @@ and calibration of self-hosted qubit devices}
   \begin{block}{\texttt{CONTROL: qibolab}}
   The full-stack framework is hardware agnostic!
   \begin{figure}
-    \includegraphics[width=1  \textwidth]{figures/qibolab_instruments.pdf}
+    \includegraphics[width=0.7  \textwidth]{figures/qibolab_instruments.pdf}
   \end{figure}
 
-  The \texttt{qibo}'s high level language can be deploied on any quantum hardware
+  The \texttt{qibo}'s high level language can be deployed on any quantum hardware
   technology by defining a \texttt{platform} object:
   \begin{enumerate}
-  \item a quantum computation routine can be written with \texttt{qibo};
+  \item a quantum computation algorithm can be written with \texttt{qibo};
   \item define \texttt{custom\_platform} object for a self-hosted device;
   \item the hardware backend can be set via \texttt{qibo.set\_backend('qibolab', 'custom\_platform')}.
   \end{enumerate}
@@ -275,16 +274,17 @@ and calibration of self-hosted qubit devices}
   \end{block}
 
   \begin{block}{Full-stack gradient descent using \texttt{qibo}}
-  We train a quantum circuit to fit $y=\sin (2x)$. The full gradient descent
-  is performed on the device controlled via FPGA~\cite{robbiati2022quantum}.
+  We train a quantum circuit to fit the $u$-quark Parton Distribution Function. 
+  The full gradient descent
+  is performed on the device controlled via RFSoC~\cite{efthymiou2023qibolab}.
   \begin{figure}
-    \includegraphics[width=1  \textwidth]{figures/sgd.pdf}
+    \includegraphics[width=0.8  \textwidth]{figures/qpdf.pdf}
   \end{figure}
   \end{block}
 
   \begin{block}{References}
   \nocite{*}
-    \small  {\bibliographystyle{ieeetr}\bibliography{poster.bib}}
+    \small {\bibliographystyle{ieeetr}\bibliography{poster.bib}}
   \end{block}
 
 \end{column}
