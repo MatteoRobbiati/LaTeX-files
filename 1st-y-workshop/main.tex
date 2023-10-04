@@ -1,5 +1,6 @@
-\documentclass[8pt, xcolor={svgnames}]{beamer}
+\documentclass[8pt, xcolor={svgnames}, hyperref={linkcolor=black}]{beamer}
 \usetheme[progressbar=frametitle]{metropolis}
+\setbeamerfont{footnote}{size=\tiny}
 \usepackage{appendixnumberbeamer}
 \usepackage{url}
 \usepackage{amsfonts} 
@@ -44,7 +45,7 @@
 \usepackage{xcolor}
 
 
-\title{Full-stack Quantum Machine Learnig}
+\title{Full-Stack Quantum Machine Learning}
 \date{28 September 2023}
 \author{Matteo Robbiati}
 \titlegraphic{
@@ -64,23 +65,43 @@
 \maketitle
 \end{frame}
 
-\section{A snapshot of Quantum Computing}
+\section{Introduction to concepts}
 
-\begin{frame}{Quantum Computing and circuits notation}
+\begin{frame}{Machine Learning}
+
+Machine Learning helps in solving statistical problems, such as data generation, 
+classification, regression, forecasting, etc.
 \pause
-  \begin{itemize}[noitemsep]
+
+\begin{itemize}
+\item[\faCrosshairs] we aim to know some hidden law between two variables: $\bm{y}=f(\bm{x})$;
+\pause
+\item[\faBarChart] we define a parameteric model with returns $\bm{y}_{\rm est}=f_{\rm est}(\bm{x}; \bm{\theta})$;
+\pause
+\item[\faBinoculars] we define an optimizer, which task is to compute 
+   $\text{argmin}_{\bm{\theta}}\bigl[J(\bm{y}_{\rm meas}, \bm{y}_{\rm est})\bigr]$.
+\end{itemize}
+\pause
+\begin{figure}  
+    \includegraphics[width=1\textwidth]{figures/ml_scheme.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Parametric Quantum Circuits}
+\pause
+  \begin{itemize}
   \item<2,3,4>[\faMagic] Classical bits are replaced by \textbf{qubits}: 
   $\ket{q}=\alpha_0 \ket{0} + \alpha_1 \ket{1}$;  
-  \item<3,4>[\faCog] we modify the qubits state by applying unitaries, which we call \textbf{gates};
-  \item<4>[\faEye] we extract information by calculating expected values: 
-  $$ \braket{q_i|\mathcal{C}^{\dag}(\bm{\theta})\hat{O}\,\mathcal{C}(\bm{\theta})|q_i}, $$
-  with $\mathcal{C}(\bm{\theta})$ parametric circuit, $\ket{q_i}$ initial qubit's 
-  state and $\hat{O}$ arbitrary observable.
+  \item<3,4>[\faCog] we modify the qubits state by applying unitaries, which we call \textbf{gates}.\\
+  Rotational gates $R_j(\theta)=e^{-i\theta\hat{\sigma}_j}$ are used to build
+  parametric circuits $\mathcal{C}(\bm{\theta})$;
+  \item<4>[\faEye] information is accessed calculating expected values $\text{E}[\hat{O}\,]$
+  of target observables $\hat{O}$ on the state obtained executing $\mathcal{C}$.
   \end{itemize}
     \begin{figure}
        \includegraphics<2>[width=0.8\textwidth]{figures/vqc_1.png}
        \includegraphics<3>[width=0.8\textwidth]{figures/vqc_2.png}
-       \includegraphics<4>[width=0.8\textwidth]{figures/vqc.png}
+       \includegraphics<4>[width=0.8\textwidth]{figures/vqc.png}   
     \end{figure}
 \end{frame}
 
@@ -388,11 +409,40 @@
 \end{tikzpicture}
 \end{frame}
 
+\begin{frame}{From ML to QML}
+\begin{figure}  
+   \includegraphics[width=1\textwidth]{figures/qml_scheme.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Why QML?}
+\begin{multicols}{2}
+\begin{itemize}
+\item<2,3,4,5,6,7>[\faCartPlus] we collect \textbf{high-dimensional} data, which challenge classical models;
+\item<3,4,5,6,7>[\faCodepen] an $N$-long input variable can be stored in a $\log{N}$ qubits system; 
+\item<4,5,6,7>[\faLeaf ] low power consuption\only<4->{\footnote{\faBook\,\,
+\href{https://doi.org/10.1038/s43588-023-00459-6}{\textit{Are quantum computers really energy efficient?}, Sophia Chen, Jun 2023}}};
+\item<5,6,7>[\faCut] can \textbf{superposition} and \textbf{entanglement} be exploited to use less 
+\textbf{parameters}?
+\item<6,7>[\faUserSecret ] can superposition and entanglement better deal with quantum data?\only<6->{\footnote{\faBook\,\,
+\href{https://arxiv.org/abs/2307.03236}{\textit{Quantum Computing for High-Energy 
+Physics: State of the Art and Challenges}, A. Di Meglio et al., Jul 2023}}}\only<6->{\footnote{\faBook\,\,
+\href{https://arxiv.org/abs/2307.03236}{\textit{Quantum anomaly detection in the 
+latent space of proton collision events at the LHC}, K. A. Woźniak et al., Jan 2023}}}
+\end{itemize}
+\begin{figure}  
+   \uncover<7->{\includegraphics[width=0.5\textwidth]{figures/HEP_utils.png}}
+\end{figure}
+\end{multicols}
+\only<2-3>{\vspace{0.8cm}}
+\only<4-5>{\vspace{0.57cm}}
+\end{frame}
+
 \begin{frame}{Full-stack QML}
 \begin{figure}  
     \includegraphics[width=1\textwidth]{figures/qml_onchip.png}
 \end{figure}
-\end{frame}
+\end{frame} 
 
 \section{Some results}
 
@@ -405,26 +455,25 @@
 \begin{tcolorbox}[title=High level API: Qibo, colback=blue!20]
 \begin{itemize}[noitemsep]
 \small
-   \item[\faCode] define prototypes;
-   \item[\faCode] implement training loop;
-   \item[\faCode] simulate training.
+   \item[\faCode] define \textbf{prototypes} and models;
+   \item[\faCode] \textbf{simulate} training and noise.
 \end{itemize}
 \end{tcolorbox}
 \pause
 \begin{tcolorbox}[title=Calibration: Qibocal, colback=yellow!20]
 \begin{itemize}[noitemsep]
 \small
-   \item[\faCrosshairs] calibrate qubits;
-   \item[\faCrosshairs] generate platform configuration;
+   \item[\faCrosshairs] \textbf{calibrate} qubits;
+   \item[\faCrosshairs] generate \textbf{platform configuration};
 \end{itemize}
 \end{tcolorbox}
 \pause
 \begin{tcolorbox}[title=Execution: Qibolab, colback=red!20]
 \begin{itemize}[noitemsep]
 \small
-   \item[\faCog] allocate calibrated platform;
-   \item[\faCog] compile and transpile circuits;
-   \item[\faCog] execute the model and return results.
+   \item[\faCog] allocate \textbf{calibrated} platform;
+   \item[\faCog] \textbf{compile} and \textbf{transpile} circuits;
+   \item[\faCog] execute and return \textbf{results}.
 \end{itemize}
 \end{tcolorbox}
 \pause
@@ -436,15 +485,16 @@
 % parameters
 \begin{table}
 \flushright
+\vspace{-0.5cm}
 \begin{tabular}{cc}
 \hline \hline 
 \textbf{Parameter} & \textbf{Value} \\
 \hline 
 $N_{\rm data}$ & 50 \\
 $N_{\rm shots}$ & 500 \\
-MSE & 50 \\
+MSE & $\sim 10^{-3}$ \\
 Electronics & Xilinx ZCU216 \\
-Training time & $~2$h \\
+Training time & $\sim 2$h \\
 \hline \hline
 \end{tabular}
 \end{table}
@@ -452,19 +502,55 @@ Training time & $~2$h \\
 \end{multicols}
 \end{frame}
 
-\begin{frame}{Simulation as first approach}
-\begin{figure}  
-    \includegraphics[width=1\textwidth]{figures/qml_sim.png}
-\end{figure}
+\begin{frame}{Some applications}
+  \small
+  %\only<2-3>{\vspace{0.1cm}}
+  \begin{multicols}{2}
+  \begin{itemize}
+  \item<2,3,4>[-] Density estimation via Adiabatic Quantum Machine Learning,\\
+  \href{https://arxiv.org/abs/2303.11346}{\faBook\,\,arXiv:2303.11346};
+  \item<3,4>[-] Multi-dimensional integration using Variational Quantum Circuits,
+  \href{https://arxiv.org/abs/2303.11346}{\faBook\,\,arXiv:2303.11346};
+  \item<4>[-] Real-Time Quantum Error Mitigation to improve QML trainings,\\
+  \href{https://arxiv.org/abs/2303.11346}{\faBook\,\,Coming soon!}
+  \end{itemize}
+    \begin{figure}
+       \uncover<2,3,4>{\includegraphics[width=0.45\textwidth]{figures/PDF.pdf}}%
+    \end{figure}
+    \begin{figure}
+       \uncover<3,4>{\includegraphics[width=0.45\textwidth]{figures/uquark2d.pdf}}
+       \uncover<4>{\includegraphics[width=0.45\textwidth]{figures/hardware.pdf}}%
+    \end{figure}
+    \end{multicols}
 \end{frame}
 
-\begin{frame}{We work on the algorithmic part  \hfill \faBook\,\, \href{https://arxiv.org/abs/2303.11346}{arXiv:2303.11346}}
+\begin{frame}{Perspective}
+\centering
+\textit{``One big challenge in the next three to five years is to figure out how to 
+   use the quantum hardware to improve a task in practice".} 
+
+   Iordanis Kerenidis.
+\end{frame}
+
+\begin{frame}{}
+\centering
+\Large
+Questions?
+\end{frame}
+
+
+
+% \begin{frame}{Simulation as first approach}
+% \begin{figure}  
+%     \includegraphics[width=1\textwidth]{figures/qml_sim.png}
+% \end{figure}
+% \end{frame}
+
+\begin{frame}{Determining PDFs with adiabatic quantum computing}
 \small
 \faCrosshairs\,\, Determining Probability Density Functions (PDF).
-\pause
 
 \faFlash\,\, Algorithm's summary:
-\pause
 \begin{itemize}[noitemsep]
 \item[1.] we optimize the parameters $\bm{\theta}$ of the following adiabatic evolution:
 \begin{equation} 
@@ -472,89 +558,95 @@ H_{\rm ad}(\tau; \bm{\theta}) = [1-s(\tau; \bm{\theta})] \hat{\sigma}_x + s(\tau
 \end{equation}
 we use the GS of the evolved $H_{\rm ad}$ to approximate the Cumulative
 Density Function (CDF);
-\pause
 \item[2.] we derivate from $H_{\rm ad}$ a circuit $\mathcal{C}(\tau; \bm{\theta})$ whose action 
 on the GS of $\hat{\sigma}_x$ returns $\ket{\psi(\tau)}$;
-\pause
 \item[3.] we compute the PDF by derivating $\mathcal{C}$ w.r.t. $\tau$ 
 using the Parameter Shift Rule (PSR).
 \vspace{0.05cm}
-\pause
 \end{itemize}
 \begin{figure}  
     \includegraphics[width=0.5\textwidth]{figures/evolution.pdf}%
-    \pause
     \includegraphics[width=0.5\textwidth]{figures/PDF.pdf}
 \end{figure}
 \end{frame}
 
-\begin{frame}{How does my algorithm perform on a real quantum computer?}
-\begin{figure}  
-    \includegraphics[width=1\textwidth]{figures/qml_hdw.png}
-\end{figure}
-\end{frame}
+% \begin{frame}{How does my algorithm perform on a real quantum computer?}
+% \begin{figure}  
+%     \includegraphics[width=1\textwidth]{figures/qml_hdw.png}
+% \end{figure}
+% \end{frame}
 
-\begin{frame}{Multi-dimensional integration on hardware \hfill \faBook\,\, \href{https://arxiv.org/abs/2308.05657}{arXiv:2308.05657}}
+\begin{frame}{Multi-dimensional integration on hardware}
 \small
-\pause
 \faCrosshairs\,\, Use Variational Quantum Circuits to calculate multi-dimensional 
 integrals of the form
 \begin{equation}
 I(\alpha) = \int_{\bm{x}_a}^{\bm{x}_b} g(\alpha; \bm{x}) \text{d}^n \bm{x}.
 \label{eq:integral}
 \end{equation}
-\pause
 
 \faFlash\,\, Algorithm's summary:
-\pause
 \begin{itemize}[noitemsep]
 \item[1.] we train the derivative of a VQC w.r.t. the integral variables $\bm{x}$ to approximate $g(\bm{x})$;
-\pause
 \item[2.] we compute the derivatives using the PSR, which allows the same circuit 
 $\mathcal{C}$ to be used for approximating any integrand 
 marginalisation and the primitive!
 when varying $\alpha$.
-\pause
 \end{itemize}
 \begin{figure}  
     \includegraphics[width=0.5\textwidth]{figures/uquark2d.pdf}%
-      \pause
     \includegraphics[width=0.5\textwidth]{figures/hardware_int.pdf}
 \end{figure}
 \end{frame}
 
-\begin{frame}{How to deal with noise?}
-\begin{figure}  
-    \includegraphics[width=1\textwidth]{figures/qml_qem.png}
-\end{figure}
-\end{frame}
+% \begin{frame}{How to deal with noise?}
+% \begin{figure}  
+%     \includegraphics[width=1\textwidth]{figures/qml_qem.png}
+% \end{figure}
+% \end{frame}
 
-\begin{frame}{Real time error mitigation in QML trainings \hfill \faBook\,\, Coming soon!}
+\begin{frame}{Real time error mitigation in QML trainings}
 \small
-\pause
 \faCrosshairs\,\,Use Error Mitigation techniques to clean up the parameters space 
 during the QML training.
-\pause
 
 \faFlash\,\, Algorithm's summary:
-\pause
 \begin{itemize}[noitemsep]
 \item[1.] we mitigate all the expected values $E$ through Clifford Data Regression (CDR):
 \begin{equation}
 E_{\rm mit} = \alpha_{\rm cdr} E_{\rm noisy} + \beta_{\rm cdr};
 \end{equation}
-\pause
 \item[2.] we update $(\alpha, \beta)_{\rm cdr}$
 periodically during the training in order to track the noise;
-\pause
 \item[3.] the mitigation removes the bounds and accelerates the training process.
 \end{itemize}
-\pause
 \vspace{0.15cm}
 \begin{figure}  
     \includegraphics[width=0.5\textwidth]{figures/2qfit.pdf}%
-    \pause
     \includegraphics[width=0.5\textwidth]{figures/hardware.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Parameter Shift Rule}
+\begin{multicols}{2}
+\begin{figure}
+    \includegraphics[width=0.45\textwidth]{figures/start.png}
+\end{figure}
+\begin{figure}  
+    \includegraphics[width=0.5\textwidth]{figures/backward.png}
+    \includegraphics[width=0.5\textwidth]{figures/forward.png}
+\end{figure}
+\end{multicols}
+
+The same circuit is executed twice with a shifted target parameter $\theta$, then an 
+exact evaluation of the derivative is given by:
+$$ \partial_\theta G = r \bigl[ G(\theta^+) - G(\theta^-) \bigr]. $$
+\end{frame}
+
+\begin{frame}{Clifford Data Regression}
+\begin{figure}
+    \includegraphics[width=1\textwidth]{figures/cdr.png}
+    \caption{Credits: Frank Zickert.}
 \end{figure}
 \end{frame}
 
