@@ -11,13 +11,19 @@ S.~Efthymiou, S.~Ramos-Calderer, C.~Bravo-Prieto, A.~P{\'{e}}rez-Salinas,
 S.~Efthymiou, M.~Lazzarin, A.~Pasquale, and S.~Carrazza, ``Quantum simulation
   with just-in-time compilation,'' {\em Quantum}, vol.~6, p.~814, sep 2022.
 
+\bibitem{robbiati2023determining}
+M.~Robbiati, J.~M. Cruz-Martinez, and S.~Carrazza, ``Determining probability
+  density functions with adiabatic quantum computing,'' 2023.
+
 \bibitem{pasquale2023opensource}
 A.~Pasquale, S.~Efthymiou, S.~Ramos-Calderer, J.~Wilkens, I.~Roth, and
   S.~Carrazza, ``Towards an open-source framework to perform quantum
   calibration and characterization,'' 2023.
 
-\bibitem{robbiati2022quantum}
-M.~Robbiati, S.~Efthymiou, A.~Pasquale, and S.~Carrazza, ``A quantum analytical
-  adam descent through parameter shift rule using qibo,'' 2022.
+\bibitem{efthymiou2023qibolab}
+S.~Efthymiou, A.~Orgaz-Fuertes, R.~Carobene, J.~Cereijo, A.~Pasquale,
+  S.~Ramos-Calderer, S.~Bordoni, D.~Fuentes-Ruiz, A.~Candido, E.~Pedicillo,
+  M.~Robbiati, Y.~P. Tan, J.~Wilkens, I.~Roth, J.~I. Latorre, and S.~Carrazza,
+  ``Qibolab: an open-source hybrid quantum operating system,'' 2023.
 
 \end{thebibliography}

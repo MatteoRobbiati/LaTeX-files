@@ -9,11 +9,11 @@
 
 %\usepackage[T1]{fontenc}
 \usepackage{lmodern}
-\usepackage[size=a1, scale=1.0]{beamerposter}
+\usepackage[size=a1, scale=1.0, orientation=portrait]{beamerposter}
 \usetheme{gemini}
 \usecolortheme{gemini}
-\setbeamerfont{block body}{family=\Lato,size={\fontsize{25}{27}}}
-\setbeamerfont{enumerate item}{size={\fontsize{25}{27}}}
+\setbeamerfont{block body}{family=\Lato,size={\fontsize{18}{20}}}
+\setbeamerfont{enumerate item}{size={\fontsize{18}{20}}}
 
 \usepackage{graphicx}
 \usepackage{booktabs}
@@ -66,7 +66,7 @@
 \newlength{\sepwidth}
 \newlength{\colwidth}
 \setlength{\sepwidth}{0.025\paperwidth}
-\setlength{\colwidth}{0.3\paperwidth}
+\setlength{\colwidth}{0.42\paperwidth}
 
 
 % useful for the logos
@@ -81,20 +81,24 @@
 % Title
 % ====================
 
-\title{\texttt{qibo}: a full-stack framework for simulation, control
-and calibration of self-hosted qubit devices}
+\title{\texttt{Qibo}: an open-source hybrid quantum operating system}
 
-\author{Stefano Carrazza\inst{1  }\inst{2  }\inst{3  }}
+\author{Stavros Efthymiou, Alvaro Orgaz-Fuertes, Rodolfo Carobene, Juan Cereijo, 
+Andrea Pasquale, Sergi Ramos-Calderer, Simone Bordoni, David Fuentes-Ruiz, 
+Alessandro Candido, Edoardo Pedicillo, Matteo Robbiati, Yuanzheng Paul Tan, 
+Jadwiga Wilkens, Ingo Roth, José Ignacio Latorre, Stefano Carrazza.}
 
-\institute[shortinst]{
-  \inst{1  } TIF Lab, Dipartimento di Fisica, Universit\`a degli Studi
-  di Milano, Milan, Italy. 
-  \samelineand 
-  \inst{2  } CERN, Theoretical Physics Department, CH-1211
-  Geneva 23, Switzerland.
-  \samelineand
-  \inst{3  } Quantum Research Center, Technology Innovation Institute, Abu Dhabi, UAE.
-  }
+%\author{Stefano Carrazza\inst{1  }\inst{2  }\inst{3  }}
+
+% \institute[shortinst]{
+%   \inst{1  } TIF Lab, Dipartimento di Fisica, Universit\`a degli Studi
+%   di Milano, Milan, Italy. 
+%   \samelineand 
+%   \inst{2  } CERN, Theoretical Physics Department, CH-1211
+%   Geneva 23, Switzerland.
+%   \samelineand
+%   \inst{3  } Quantum Research Center, Technology Innovation Institute, Abu Dhabi, UAE.
+%   }
 
 % ====================
 % Footer (optional)
@@ -127,15 +131,15 @@ and calibration of self-hosted qubit devices}
   % abstract
   \begin{block}{Abstract}
     We present \texttt{qibo}~\cite{Efthymiou_2021}, a full-stack and open source framework which can be 
-    used for:
+    used to:
     
     \begin{itemize}
-      \item[\faCode] efficiently simulate quantum computation routines, both in 
+      \item[\faCode] efficiently \textbf{simulate} quantum computation routines, both in 
       circuit notation and in the context of adiabatic computation;
-      \item[\faCogs] control self-hosted quantum devices with an hardware-agnostic
+      \item[\faCogs] \textbf{control self-hosted} quantum devices with an hardware-agnostic
       approach;
-      \item[\faPencil] performing quantum characterization, calibration and 
-      verification routines on the hosted qubits.
+      \item[\faPencil] performing quantum \textbf{characterization}, \textbf{calibration} and 
+      \textbf{verification} routines on the hosted qubits.
     \end{itemize}
   
   \end{block}
@@ -153,21 +157,18 @@ and calibration of self-hosted qubit devices}
   which solves:
   \begin{equation}
   \psi'(\sigma_1, ..., \sigma_n) = \sum_{\tau'}G(\tau, \tau') \psi(\sigma_1, ..., 
-  \tau', ..., \sigma_n),
+  \tau', ..., \sigma_n).
   \end{equation}
   The number of operations scales exponentially with $N_{\rm qubits}$, thus we 
   built the \texttt{qibojit} backend~\cite{Efthymiou_2022}.
 
+  \textbf{Custom operators} and \textbf{in-place updating} of matrices and vectors are exploited 
+  to improve state vector simulation of quantum systems.
   \begin{figure}
-    \includegraphics[width=1  \textwidth]{figures/qibojit.pdf}
+    \includegraphics[width=0.88  \textwidth]{figures/qibojit.pdf}
   \end{figure}
+
   \end{block}
-
-\end{column}
-
-  \separatorcolumn
-
-\begin{column}{\colwidth}
 
   % simulation - annealing
   \begin{block}{\texttt{SIMULATION:} adiabatic computation}
@@ -177,78 +178,97 @@ and calibration of self-hosted qubit devices}
   H_{\rm ad}(\tau; \bm{\theta}) = \bigl[ 1 - s(\tau; \bm{\theta}) \bigr] H_0 +  
   s(\tau; \bm{\theta}) H_1,
   \end{equation}
-  even following a parametric scheduling $s(\tau, \bm{\theta})$.
+  where the scheduling function $s(\tau, \bm{\theta})$ can be set to depend on 
+  variational parameters.
 
 
-  \begin{tikzpicture}[->,>=stealth']
+  % \begin{tikzpicture}[->,>=stealth']
 
   
  
-  % step j
-  \node[
-    state, 
-    xshift=1cm,
-    inner sep=0.75cm,
-    fill=amethyst!15,
-    label=Step $j$] (j) 
-    {
-      \begin{tabular}{l}
-      $\ket{\psi(\tau_j)}$
-      \end{tabular}
-    };
+  % % step j
+  % \node[
+  %   state, 
+  %   xshift=1cm,
+  %   inner sep=0.75cm,
+  %   fill=amethyst!15,
+  %   label=Step $j$] (j) 
+  %   {
+  %     \begin{tabular}{l}
+  %     $\ket{\psi(\tau_j)}$
+  %     \end{tabular}
+  %   };
   
-  % Uj
-  \node[
-  state, 
-  above of=j, 
-  xshift=1cm,
-  yshift=0.5cm, 
-  anchor=center,
-  node distance = 4cm,
-  inner sep=0.75cm,
-  fill=amethyst!15,
-  label=Trotter at $\tau_j$] (U)
-  {
-    \begin{tabular}{l}
-    $U_j = \exp \bigl[-iH_j \text{d}\tau\bigr]$ 
-    \end{tabular}
-  };
+  % % Uj
+  % \node[
+  % state, 
+  % above of=j, 
+  % xshift=1cm,
+  % yshift=0.5cm, 
+  % anchor=center,
+  % node distance = 4cm,
+  % inner sep=0.75cm,
+  % fill=amethyst!15,
+  % label=Trotter at $\tau_j$] (U)
+  % {
+  %   \begin{tabular}{l}
+  %   $U_j = \exp \bigl[-iH_j \text{d}\tau\bigr]$ 
+  %   \end{tabular}
+  % };
 
-    % Solve schrodinger locally
-  \node[
-  state, 
-  right of=j, 
-  xshift=1cm,
-  yshift=0cm, 
-  anchor=center,
-  node distance = 9cm,
-  inner sep=0.75cm,
-  fill=amethyst!15,
-  label=Execute circuit] (AE)
-  {
-    \begin{tabular}{l}
-    $\ket{\psi(\tau_{j+1})} = U_j \ket{\psi(\tau_j)}$ 
-    \end{tabular}
-  };
+  %   % Solve schrodinger locally
+  % \node[
+  % state, 
+  % right of=j, 
+  % xshift=1cm,
+  % yshift=0cm, 
+  % anchor=center,
+  % node distance = 9cm,
+  % inner sep=0.75cm,
+  % fill=amethyst!15,
+  % label=Execute circuit] (AE)
+  % {
+  %   \begin{tabular}{l}
+  %   $\ket{\psi(\tau_{j+1})} = U_j \ket{\psi(\tau_j)}$ 
+  %   \end{tabular}
+  % };
 
-  \draw[line width=0.8mm] (3.5, 0)  to[out=0, in=180] (5.8, 0);
-  \draw[line width=0.8mm] (7, 4.5)  to[out=0, in=90] (11, 2.5);
-  \draw[line width=0.8mm] (16.2, -1)  to[out=330, in=235] (-3, 1);
+  % \draw[line width=0.8mm] (3.5, 0)  to[out=0, in=180] (5.8, 0);
+  % \draw[line width=0.8mm] (7, 4.5)  to[out=0, in=90] (11, 2.5);
+  % \draw[line width=0.8mm] (16.2, -1)  to[out=330, in=215] (-2, 1);
   
-  \node[
-    draw,
-    fill=amethyst!15,
-    inner sep=0.5cm,
-  ] at (8,-5.5) {$j = j + 1$};
+  % \node[
+  %   draw,
+  %   fill=amethyst!15,
+  %   inner sep=0.5cm,
+  % ] at (8,-5.5) {$j = j + 1$};
 
-  \end{tikzpicture}
+  % \end{tikzpicture}
+
+  \begin{figure}
+    \includegraphics[width=0.78 \textwidth]{figures/trotter.pdf}
+  \end{figure}
+  
+  \begin{figure}
+    \includegraphics[width=0.5  \textwidth]{figures/evolution.pdf}%
+    \includegraphics[width=0.5  \textwidth]{figures/PDF.pdf}
+    \caption{Both the adiabatic evolution and the circuit computation approaches
+    are exploited within the same Quantum Adiabatic Machine Learning (QAML) 
+    algorithm to fit probability densities~\cite{robbiati2023determining}.}
+  \end{figure}
+  
   \end{block}
+  \end{column}
+
+
+
+  \begin{column}{\colwidth}
 
 
   \begin{block}{\texttt{CONTROL: qibolab}}
   The full-stack framework is hardware agnostic!
   \begin{figure}
-    \includegraphics[width=0.7  \textwidth]{figures/qibolab_instruments.pdf}
+    \includegraphics[width=0.662  \textwidth]{figures/qibolab_instruments.pdf}
   \end{figure}
 
   The \texttt{qibo}'s high level language can be deployed on any quantum hardware
@@ -259,15 +279,15 @@ and calibration of self-hosted qubit devices}
   \item the hardware backend can be set via \texttt{qibo.set\_backend('qibolab', 'custom\_platform')}.
   \end{enumerate}
   \end{block}
-  \end{column}
+
 
   \separatorcolumn
 
-\begin{column}{\colwidth}
+
 
 
   \begin{block}{\texttt{CALIBRATION: qibocal}}
-  Each qubit needs characterization, calibration, verification~\cite{pasquale2023opensource}.
+  Each qubit needs characterization, calibration and verification~\cite{pasquale2023opensource}.
   \begin{figure}
     \includegraphics[width=1  \textwidth]{figures/qibocal.pdf}
   \end{figure}
@@ -277,8 +297,13 @@ and calibration of self-hosted qubit devices}
   We train a quantum circuit to fit the $u$-quark Parton Distribution Function. 
   The full gradient descent
   is performed on the device controlled via RFSoC~\cite{efthymiou2023qibolab}.
+
   \begin{figure}
-    \includegraphics[width=0.8  \textwidth]{figures/qpdf.pdf}
+    \includegraphics[width=0.5  \textwidth]{figures/qpdf.pdf}%
+    \includegraphics[width=0.5  \textwidth]{figures/loss.pdf}
+    \caption{Fit of the $u$-quark Parton Distribution Function values performed 
+    using a parametric quantum circuit trained with gradient descent on a self-hosted 
+    single-qubit superconducting device.}
   \end{figure}
   \end{block}
 
