@@ -1,7 +1,6 @@
 \documentclass[8pt, xcolor={svgnames}, hyperref={linkcolor=black}]{beamer}
-
-
 \usepackage[labelfont={color=amethyst,bf}]{caption}
+\setbeamercolor{background canvas}{bg=white}
 \usetheme[progressbar=frametitle]{metropolis}
 \usepackage{appendixnumberbeamer}
 \usepackage{url}
@@ -472,18 +471,19 @@ In case of 1-dimensional target (used for a Parton Distribution Function fit):
 \section{Two inspirations}
 
 \begin{frame}{Classical inspiration - The INN algorithm \hfill \faBook\,\,\href{https://arxiv.org/abs/2211.02834}{arXiv:2211.02834}}
-In 2022, D. Maitre and R. Santos-Mateus presented a method to estimate multi-variable integrals with using 
+In 2022, D. Maitre and R. Santos-Mateus presented a method to estimate multi-variable integrals using 
 Neural Networks:
+\vspace{-0.28cm}
 \pause
 \begin{figure}
     \includegraphics[width=1\textwidth]{figures/INN.pdf}
 \end{figure}
 \pause
-This is interesting for at least two reasons:
+\begin{itemize}[noitemsep]
+\item[\tiny\faSquare] both NN and dNN are analytical models;
 \pause
-\begin{itemize}
-\item[\tiny\faSquare] having an \textbf{analytical} estimator of the integral prevents us 
-to re-compute the whole integral for every parameter combination;
+\item[\tiny\faSquare] once trained, the NN can be called with any
+combination of data and parameters (MCI, instead, has to be recomputed every time);
 \pause
 \item[\tiny\faSquare] in the INN is the integrand to be approximated, instead of 
 the integral (as in MCI), and this leads to a \textbf{smaller variance}.
@@ -502,10 +502,10 @@ the integral (as in MCI), and this leads to a \textbf{smaller variance}.
 \end{figure}
 \end{multicols}
 
-Considering the unitary $\mathcal{U}(\theta)=e^{-i\theta U}$ affected by one 
-parameter $\mu$, if the hermitian generator $U$ has at most two eigenvalues $\pm r$,
-an exact estimator of $\partial_{\theta}G$ is:
-$$ \partial_\theta G = r \bigl[ G(\theta^+) - G(\theta^-) \bigr]. $$
+Considering the unitary $\mathcal{U}(x)=e^{-ix U}$ affected by one 
+parameter $x$, if the hermitian generator $U$ has at most two eigenvalues $\pm r$,
+an exact estimator of $\partial_{x}G$ is:
+$$ \partial_x G = r \bigl[ G(x^+) - G(x^-) \bigr]. $$
 \end{frame}
 
 \section{Combining inspirations: \texttt{qinntegrate}}
