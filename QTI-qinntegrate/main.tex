@@ -457,16 +457,19 @@ classification, regression, forecasting, etc.
 \end{figure}
 \end{frame}
 
-\begin{frame}{Our QML reuploading model}
-In case of multi-dimensional target:
+\begin{frame}{Our QML reuploading model\hfill \faBook\,\,\href{https://arxiv.org/abs/1907.02085}{arXiv:1907.02085}}
+We define an uploading channel $U(x; \bm{\theta})$, and we repeat the uploading 
+$N$ times.
+\pause 
+
 \begin{figure}  
-    \includegraphics[width=0.7\textwidth]{figures/4dim.png}
+    \includegraphics[width=0.8\textwidth]{figures/4dim.png}
 \end{figure}
-In case of 1-dimensional target (used for a Parton Distribution Function fit):
-\begin{figure}
-    \includegraphics[width=0.7\textwidth]{figures/qpdf.png}
-\end{figure}
+\pause
+It has been proved this approach is equivalent to approximate a function with an 
+$N$-term Fourier Series.
 \end{frame}
+ 
 
 \section{Two inspirations}
 
@@ -480,13 +483,14 @@ Neural Networks:
 \end{figure}
 \pause
 \begin{itemize}[noitemsep]
-\item[\tiny\faSquare] both NN and dNN are analytical models;
+\item[\tiny\faSquare] both NN and dNN are models of the integral and integrand respectively;
 \pause
 \item[\tiny\faSquare] once trained, the NN can be called with any
-combination of data and parameters (MCI, instead, has to be recomputed every time);
+combination of data and parameters. Monte Carlo Integration (MCI), instead, 
+has to be recomputed every time;
 \pause
 \item[\tiny\faSquare] in the INN is the integrand to be approximated, instead of 
-the integral (as in MCI), and this leads to a \textbf{smaller variance}.
+the integral (as in MCI), swaps \textbf{variance} for approximation error.
 \end{itemize}
 \end{frame}
 
@@ -511,7 +515,7 @@ $$ \partial_x G = r \bigl[ G(x^+) - G(x^-) \bigr]. $$
 \section{Combining inspirations: \texttt{qinntegrate}}
 
 \begin{frame}{The \texttt{qinntegrate} algorithm}
-At this point, we knew that:
+At this point, we know that:
 \pause
 \begin{itemize}[noitemsep]
 \item[1.] \textbf{variables} can be \textbf{injected} into a quantum circuit as rotational angles;
@@ -524,8 +528,8 @@ and its derivatives.
 \begin{figure}  
     \includegraphics[width=1\textwidth]{figures/qinntegrate.pdf}
 \end{figure}
-If indipendent variables, $\frac{\text{d}G(\bm{x})}{\text{d}\bm{x}}$ 
-is obtained by summing all PSR contributes.
+If independent variables, $\frac{\text{d}G(\bm{x})}{\text{d}\bm{x}}$ 
+is obtained by summing all PSR contributions.
 \end{frame}
 
 \section{Validation examples}
@@ -536,13 +540,13 @@ is obtained by summing all PSR contributes.
 We firstly consider a simple multi-dimensional target:
 \begin{equation}
 \begin{split}
-I(\bm{\alpha}; \bm{x}) = \int g(\bm{\alpha}; \bm{x}) \, \text{d}\bm{x}
-\qquad \quad \,\,\,\, \\ = \int \cos (\bm{\alpha} \cdot \bm{x} + \alpha_0) \,\text{d}\bm{x}.
+I(\bm{\alpha}, \alpha_0; \bm{x}) = \int g(\bm{\alpha}, \alpha_0; \bm{x}) \, \text{d}\bm{x}
+\qquad \, \\ = \int \cos (\bm{\alpha} \cdot \bm{x} + \alpha_0) \,\text{d}\bm{x}.
 \label{eq:cos_int}
 \end{split}
 \end{equation}
-And we target a marginalisation 
-$\frac{\text{d}I(\bm{\alpha}; \bm{x})}{\text{d}x_i}$ for fixed $i$ but varying $\alpha$'s. 
+And we target a differential distribution 
+$\frac{\text{d}I(\bm{\alpha}, \alpha_0; \bm{x})}{\text{d}x_i}$ for fixed $i$ but varying $\alpha_0$'s. 
 \pause
 
 % \begin{tcolorbox}[colback=blue!10, title=The utility of \texttt{qinntegrate}]
@@ -671,23 +675,36 @@ Optimizer & L-BFGS \\
 
 \begin{frame}{Conclusions and outlook}
 As final comment we can say that:
+\pause
 \begin{itemize}[noitemsep]
-\item[\faThumbsOUp] the proposed model successfully approximates multi-dimensional integrals;
+\item[\faThumbsOUp] the proposed model \textbf{successfully approximates} multi-dimensional integrals;
+\pause
 \item[\faThumbsOUp] once a winning architecture is defined, this can be used to fit the integrand
-and to perform any ``marginalisation'' of the integrand;
-\item[\faThumbsOUp] using VQCs, we build particularly shallow models;
-\item[\faThumbsODown] the current method used to calculate derivatives scales bad 
+and to perform \textbf{any differential distribution} of the integral;
+\pause
+\item[\faThumbsOUp] we have used \textbf{shallow models} as VQCs;
+\pause
+\item[\faThumbsODown] computing the derivatives scales \textbf{exponentially} 
 with the problem dimensionality;
-\item[\faThumbsODown] the hardware noise complicates the derivatives calculation.
+\pause
+\item[\faThumbsODown] the hardware \textbf{noise} complicates the derivatives calculation.
 \end{itemize}
-
+\pause
 How to do better?
 \begin{itemize}[noitemsep]
-\item[\faSend] try different differentiation strategies (natural gradient, non-demolition
+\pause
+\item[\faSend] try \textbf{different differentiation strategies} (natural gradient, non-demolition
 measurements, etc);
-\item[\faSend] define even more shallow models to reduce the number of quantum gates;
-\item[\faSend] exploit variables correlation to reduce the number of required gates.
+\pause
+\item[\faSend] define models that are \textbf{even more shallow} to reduce the number of quantum gates;
+\pause
+\item[\faSend] exploit \textbf{variables correlation} to reduce the number of required gates.
 \end{itemize}
+\end{frame}
+
+\begin{frame}
+\centering
+\Large Thank you for your attention!
 \end{frame}
 
 \end{document}
