@@ -674,32 +674,33 @@ Optimizer & L-BFGS \\
 \section{Conclusions}
 
 \begin{frame}{Conclusions and outlook}
-As final comment we can say that:
 \pause
+\begin{tcolorbox}[colback=blue!10, title=Some final comments]
 \begin{itemize}[noitemsep]
-\item[\faThumbsOUp] the proposed model \textbf{successfully approximates} multi-dimensional integrals;
-\pause
-\item[\faThumbsOUp] once a winning architecture is defined, this can be used to fit the integrand
-and to perform \textbf{any differential distribution} of the integral;
-\pause
-\item[\faThumbsOUp] we have used \textbf{shallow models} as VQCs;
-\pause
-\item[\faThumbsODown] computing the derivatives scales \textbf{exponentially} 
-with the problem dimensionality;
-\pause
-\item[\faThumbsODown] the hardware \textbf{noise} complicates the derivatives calculation.
+    \item[\faThumbsOUp] the algorithm \textbf{successfully approximates} multi-dimensional integrals;
+    \item[\faThumbsOUp] once a winning architecture is defined, this can be used to fit the integrand
+    and to perform \textbf{any differential distribution} of the integral;
+    \item[\faThumbsOUp] we have used \textbf{shallow models} as VQCs;
+    \item[\faThumbsODown] computing the derivatives scales \textbf{exponentially} 
+    with the dimensionality;
+    \item[\faThumbsODown] the hardware \textbf{noise} complicates the derivatives calculation.
 \end{itemize}
+\end{tcolorbox}
+
 \pause
-How to do better?
+\begin{tcolorbox}[colback=red!10, title=How to do better?]
 \begin{itemize}[noitemsep]
-\pause
-\item[\faSend] try \textbf{different differentiation strategies} (natural gradient, non-demolition
-measurements, etc);
-\pause
-\item[\faSend] define models that are \textbf{even more shallow} to reduce the number of quantum gates;
-\pause
+\item[\faSend] change \textbf{differentiation strategies} (natural gradient, non-demolition, etc);
+\item[\faSend] define models that are \textbf{even more shallow} to reduce the number of gates;
 \item[\faSend] exploit \textbf{variables correlation} to reduce the number of required gates.
 \end{itemize}
+\end{tcolorbox}
+
+\pause
+\vspace{0.7cm}
+\faGithub\,\, Code available \href{https://github.com/qiboteam/QiNNtegrate/tree/main}{\texttt{here}}.
+\hfill
+\faBook\,\, Pre-print: \href{https://arxiv.org/abs/2308.05657}{\texttt{arXiv:2308.05657}}
 \end{frame}
 
 \begin{frame}
