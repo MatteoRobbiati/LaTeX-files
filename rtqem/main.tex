@@ -109,12 +109,12 @@ We define a Real-Time Quantum Error Mitigation (RTQEM) procedure.
 \begin{frame}{Learning the noise model \hfill \href{https://arxiv.org/abs/2112.06255}{\faBook\,\, arXiv:2112.06255}}
 We use the Importance Clifford Sampling (ICS) procedure to learn the noise map $\ell$.
 \begin{figure}
-    \includegraphics[width=0.65\textwidth]{figures/ics.pdf}
+    \includegraphics[width=0.6\textwidth]{figures/ics.pdf}
 \end{figure}
 \begin{itemize}[noitemsep]
-\item[1.] sample a training set of Clifford circuits on top of a target $\mathcal{C}^0$;
+\item[1.] sample a training set of Clifford circuits $\mathcal{S}$ on top of a target $\mathcal{C}^0$;
 \item[2.] process them so that their expectation values on Pauli strings is  $+1$ or $-1$;
-\item[3.] QEM parameters $(a,  \sigma_a)$ are computed comparing exact values with noisy ones;
+\item[3.] extract mitigation parameter $\lambda_{\rm eff}$ comparing $\langle \hat{\mathcal{O}}\rangle_{\rm noisy}$ and $\langle \hat{\mathcal{O}}\rangle$;
 \item[4.] build $\ell$ following the Phenomenological-Error-Model Inspired (PEMI) protocol:
 $$ \ell\bigl( \langle \hat{\mathcal{O}} \rangle | a, \sigma_a \bigr) = \frac{1-a}{[(1-a)^2 + 
 \sigma_a^2]} \langle \hat{\mathcal{O}} \rangle_{\rm noisy} $$
@@ -177,24 +177,40 @@ $N_{\rm dim}=8$ & $30$ & $96$ & $10^{4}$ &  $5.6 \cdot 10^{-4}$ & $4.8 \cdot 10^
 \end{frame}
 
 \begin{frame}{RTQEM on a superconducting qubit}
-% \begin{center}
-% \footnotesize
-% \begin{tabular}{ccccccccc}
-% \hline \hline 
-% \rule{0pt}{2.5ex}
-% \textbf{Parameter} & $N_{\rm train}$ & $N_{\rm params}$ & $N_{\rm shots}$ 
-% & $\text{MSE}_{\rm best}^{\rm rtqem}$ &  $\text{MSE}_{\rm best}^{\rm unmit}$ & Noise \\
-% \hline
-% \rule{0pt}{2.5ex}
-% \textbf{Value} & $30$ & $16$ & $10^{4}$ &  $1.1 \cdot 10^{-3}$ & $6.1 \cdot 10^{-3}$ & local Pauli \\
-% \hline \hline 
-% \end{tabular}
-% \end{center}
+\begin{center}
+\footnotesize
+\begin{tabular}{ccccccccc}
+\hline \hline 
+\rule{0pt}{2.5ex}
+\textbf{Parameter} & $N_{\rm train}$ & $N_{\rm params}$ & $N_{\rm shots}$ 
+& Noise \\
+\hline
+\rule{0pt}{2.5ex}
+\textbf{Value} & $15$ & $16$ & $500$  & real noise\\
+\hline \hline 
+\end{tabular}
+\end{center}
 
 \begin{figure}
-    \includegraphics[width=0.5\textwidth]{figures/qw5q.pdf}%
+    \includegraphics[width=0.5\textwidth]{figures/qw5q_short.pdf}%
     \includegraphics[width=0.5\textwidth]{figures/losses_qw5q.pdf}
 \end{figure}
 \end{frame}
+
+\begin{frame}{Can RTQEM generalise?}
+We compare two runs with the same initial conditions and $N_{\rm epochs}=100$ but 
+performed with two different devices: 
+\begin{itemize}
+    \item[\faTerminal]\texttt{iqm5q} by IQM controlled using Zurich Instruments;
+    \item[\faTerminal]\texttt{qw5q} by QuantWare controlled using Qblox.
+\end{itemize}
+We train the two devices but perform the prediction on the same chip (\texttt{qw5q}).
+
+\begin{figure}
+    \includegraphics[width=0.6\textwidth]{figures/benchs.pdf}%
+\end{figure}
+The $\bm{\theta}_{\rm best}$ get on \texttt{iqm5q} perform well on \texttt{qw5q} because RTQEM clean the noise!
+\end{frame}
+
 
 \end{document}
