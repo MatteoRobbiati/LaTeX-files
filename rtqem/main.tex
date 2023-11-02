@@ -115,9 +115,7 @@ We use the Importance Clifford Sampling (ICS) procedure to learn the noise map $
 \item[1.] sample a training set of Clifford circuits $\mathcal{S}$ on top of a target $\mathcal{C}^0$;
 \item[2.] process them so that their expectation values on Pauli strings is  $+1$ or $-1$;
 \item[3.] extract mitigation parameter $\lambda_{\rm eff}$ comparing $\langle \hat{\mathcal{O}}\rangle_{\rm noisy}$ and $\langle \hat{\mathcal{O}}\rangle$;
-\item[4.] build $\ell$ following the Phenomenological-Error-Model Inspired (PEMI) protocol:
-$$ \ell\bigl( \langle \hat{\mathcal{O}} \rangle | a, \sigma_a \bigr) = \frac{1-a}{[(1-a)^2 + 
-\sigma_a^2]} \langle \hat{\mathcal{O}} \rangle_{\rm noisy} $$
+\item[4.] build $\ell \equiv \ell(\cdot | \lambda_{\rm eff})$ following the Phenomenological-Error-Model Inspired (PEMI) protocol.
 \end{itemize}
 \end{frame}
 
