@@ -127,10 +127,10 @@ We use the Importance Clifford Sampling (ICS) procedure to learn the noise map $
 \hline \hline 
 \rule{0pt}{2.5ex}
 \textbf{Parameter} & $N_{\rm train}$ & $N_{\rm params}$ & $N_{\rm shots}$ 
-& $\text{MSE}_{\rm best}^{\rm rtqem}$ &  $\text{MSE}_{\rm best}^{\rm unmit}$ & Noise \\
+& $\text{MSE}_{\rm rtqem}$ &  $\text{MSE}_{\rm nomit}$ & Noise \\
 \hline
 \rule{0pt}{2.5ex}
-\textbf{Value} & $30$ & $16$ & $10^{4}$ &  $1.1 \cdot 10^{-3}$ & $6.1 \cdot 10^{-3}$ & local Pauli \\
+\textbf{Value} & $30$ & $16$ & $10^{4}$ &  $0.008$ & $0.018$ & local Pauli \\
 \hline \hline 
 \end{tabular}
 \end{center}
@@ -155,11 +155,11 @@ a $Z^{\otimes N_{\rm \dim}}$ after executing an $N_{\rm \dim}$ circuit.
 \hline \hline 
 \rule{0pt}{2.5ex}
 \textbf{Job ID} & $N_{\rm train}$ & $N_{\rm params}$ & $N_{\rm shots}$ 
-& $\text{MSE}_{\rm best}^{\rm rtqem}$ &  $\text{MSE}_{\rm best}^{\rm unmit}$ & Noise \\
+& $\text{MSE}_{\rm rtqem}$ &  $\text{MSE}_{\rm nomit}$ & Noise \\
 \hline
-$N_{\rm dim}=4$ & $30$ & $48$ & $10^{4}$ &  $4.4 \cdot 10^{-4}$ & $1.9 \cdot 10^{-2}$ & local Pauli \\
-$N_{\rm dim}=6$ & $30$ & $72$ & $10^{4}$ &  $4.1 \cdot 10^{-4}$ & $3.8 \cdot 10^{-2}$ & local Pauli \\
-$N_{\rm dim}=8$ & $30$ & $96$ & $10^{4}$ &  $5.6 \cdot 10^{-4}$ & $4.8 \cdot 10^{-2}$ & local Pauli \\
+$N_{\rm dim}=4$ & $30$ & $48$ & $10^{4}$ &  $0.003$ & $0.043$ & local Pauli \\
+$N_{\rm dim}=6$ & $30$ & $72$ & $10^{4}$ &  $0.002$ & $0.083$ & local Pauli \\
+$N_{\rm dim}=8$ & $30$ & $96$ & $10^{4}$ &  $0.004$ & $0.118$ & local Pauli \\
 \hline \hline 
 \end{tabular}
 \end{center}
@@ -180,7 +180,7 @@ $N_{\rm dim}=8$ & $30$ & $96$ & $10^{4}$ &  $5.6 \cdot 10^{-4}$ & $4.8 \cdot 10^
 \begin{tabular}{ccccccccc}
 \hline \hline 
 \rule{0pt}{2.5ex}
-\textbf{Parameter} & $N_{\rm train}$ & $N_{\rm params}$ & $N_{\rm shots}$ & $\text{MSE}_{\rm best}^{\rm rtqem}$ &  $\text{MSE}_{\rm best}^{\rm unmit}$ 
+\textbf{Parameter} & $N_{\rm train}$ & $N_{\rm params}$ & $N_{\rm shots}$ & $\text{MSE}_{\rm rtqem}$ &  $\text{MSE}_{\rm nomit}$ 
 & Noise \\
 \hline
 \rule{0pt}{2.5ex}
