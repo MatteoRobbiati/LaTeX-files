@@ -180,11 +180,11 @@ $N_{\rm dim}=8$ & $30$ & $96$ & $10^{4}$ &  $5.6 \cdot 10^{-4}$ & $4.8 \cdot 10^
 \begin{tabular}{ccccccccc}
 \hline \hline 
 \rule{0pt}{2.5ex}
-\textbf{Parameter} & $N_{\rm train}$ & $N_{\rm params}$ & $N_{\rm shots}$ 
+\textbf{Parameter} & $N_{\rm train}$ & $N_{\rm params}$ & $N_{\rm shots}$ & $\text{MSE}_{\rm best}^{\rm rtqem}$ &  $\text{MSE}_{\rm best}^{\rm unmit}$ 
 & Noise \\
 \hline
 \rule{0pt}{2.5ex}
-\textbf{Value} & $15$ & $16$ & $500$  & real noise\\
+\textbf{Value} & $15$ & $16$ & $500$ & $0.0042$ & $0.0055$ & real noise\\
 \hline \hline 
 \end{tabular}
 \end{center}
@@ -193,21 +193,51 @@ $N_{\rm dim}=8$ & $30$ & $96$ & $10^{4}$ &  $5.6 \cdot 10^{-4}$ & $4.8 \cdot 10^
     \includegraphics[width=0.5\textwidth]{figures/qw5q_short.pdf}%
     \includegraphics[width=0.5\textwidth]{figures/losses_qw5q.pdf}
 \end{figure}
+\centering
+RTQEM allows exceeding the natural bound imposed by noise.
 \end{frame}
 
 \begin{frame}{Can RTQEM generalise?}
-We compare two runs with the same initial conditions and $N_{\rm epochs}=100$ but 
-performed with two different devices: 
-\begin{itemize}
+We perform a longer training on two different devices (and noises!) using the same 
+initial conditions of the previous slide but $N_{\rm epochs}=100$. 
+
+\begin{itemize}[noitemsep]
     \item[\faTerminal]\texttt{iqm5q} by IQM controlled using Zurich Instruments;
     \item[\faTerminal]\texttt{qw5q} by QuantWare controlled using Qblox.
 \end{itemize}
-We train the two devices but perform the prediction on the same chip (\texttt{qw5q}).
+
+
+\begin{multicols}{2}
 
 \begin{figure}
-    \includegraphics[width=0.6\textwidth]{figures/benchs.pdf}%
+    \includegraphics[width=0.5\textwidth]{figures/benchs.pdf}%
 \end{figure}
-The $\bm{\theta}_{\rm best}$ get on \texttt{iqm5q} perform well on \texttt{qw5q} because RTQEM clean the noise!
+
+\texttt{\\}
+\begin{center}
+\footnotesize
+\begin{table}
+\begin{tabular}{ccccc}
+\hline \hline 
+\textbf{Train.} & \textbf{Epochs} & \textbf{Pred.} &  \textbf{Config.} & MSE \\
+\hline    
+\texttt{qw5q} & 50 & \texttt{qw5q} & noisy & $0.0055$  \\     
+\texttt{qw5q} & 50 & \texttt{qw5q} & RTQEM & $0.0042$ \\ 
+\hline 
+\texttt{qw5q} & 100 & \texttt{qw5q} & RTQEM & $0.0013$  \\     
+\texttt{iqm5q} & 100 & \texttt{qw5q} & RTQEM & $0.0037$ \\   
+\texttt{qw5q} & 100& \texttt{sim} & RTQEM & $0.0016$ \\   
+\hline \hline
+\end{tabular}
+\centering
+\end{table}
+\end{center}
+
+
+\end{multicols}
+
+All the hardware results are obtained deploying the $\bm{\theta}_{\rm best}$ on 
+\texttt{qw5q}.
 \end{frame}
 
 
