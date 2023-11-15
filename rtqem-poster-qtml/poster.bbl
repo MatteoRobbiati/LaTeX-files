@@ -1,0 +1,17 @@
+\begin{thebibliography}{1}
+
+\bibitem{reuploading}
+A.~P{\'{e}}rez-Salinas, A.~Cervera-Lierta, E.~Gil-Fuster, and J.~I. Latorre,
+  ``Data re-uploading for a universal quantum classifier,'' {\em Quantum},
+  vol.~4, p.~226, feb 2020.
+
+\bibitem{nibp}
+S.~Wang, E.~Fontana, M.~Cerezo, K.~Sharma, A.~Sone, L.~Cincio, and P.~J. Coles,
+  ``Noise-induced barren plateaus in variational quantum algorithms,'' {\em
+  Nature Communications}, vol.~12, nov 2021.
+
+\bibitem{ics}
+D.~Qin, Y.~Chen, and Y.~Li, ``Error statistics and scalability of quantum error
+  mitigation formulas,'' {\em npj Quantum Information}, vol.~9, apr 2023.
+
+\end{thebibliography}

@@ -107,8 +107,13 @@
 % ====================
 
 \footercontent{
-  \includegraphics[height=2cm]{figures/qti.png}
-  \includegraphics[height=2cm]{figures/qibo_logo.png}
+  \includegraphics[height=2cm]{figures/qibo_logo.png} \qquad \qquad \qquad \,\,\,
+  \includegraphics[height=2cm]{figures/unimi.jpg} \qquad \qquad \qquad \,\,\,
+  \includegraphics[height=2cm]{figures/uam.jpg} \qquad \qquad \qquad \,\,\,
+  \includegraphics[height=2cm]{figures/qti.png} \qquad \qquad \qquad \,\,\,
+  \includegraphics[height=2cm]{figures/anu-logo.png} \qquad \qquad \qquad \,\,\,
+  \includegraphics[height=2cm]{figures/tii-logo.png} \qquad \qquad \qquad \,\,\,
+  \includegraphics[height=2cm]{figures/cern.jpg} 
   \hfill
 }
 % (can be left out to remove footer)
@@ -149,7 +154,7 @@ on quantum chips with VQCs.
 
 \begin{alertblock}{Ansatz}
 We tackle multi-dimensional regression problems using a VQC as Quantum Machine Learning (QML)
-model. The data $\bm{x}$ are encoded into the circuit via Data Reuploading: 
+model. The data $\bm{x}$ are encoded into the circuit via Data Reuploading~\cite{reuploading}: 
 
 \begin{figure} 
   \begin{tikzcd}[row sep = 2]
@@ -173,12 +178,12 @@ which uploads the $j$-th component of $\bm{x}$ at the circuit layer $l$.
 \begin{block}{Noise of a quantum hardware}
 We consider a quantum system affected by local pauli noise with parameters 
 $-1 \leq q_X, q_Y, q_Z \leq +1$ and readout noise parametrized by bit-flip probability 
-$(1-q_M)/2$. This setup gives rise to Noise-Induced Barren Plateaus (NIBP), which tend 
+$(1-q_M)/2$. This setup gives rise to Noise-Induced Barren Plateaus (NIBP)~\cite{nibp}, which tend 
 to concentrate the expectation value around 0. 
     \begin{figure}
     \includegraphics[width=0.6\textwidth]{figures/ics.pdf}%
     \end{figure}
-To mitigate the effect of the noise, we use the Importance Clifford Sampling (ICS)
+To mitigate the effect of the noise, we use the Importance Clifford Sampling (ICS)~\cite{ics}
 technique, which is a learning-based method which can be used to learn a noise 
 map $\ell$ using a training set of Clifford circuits $\mathcal{S}=\{\mathcal{C}^i_{\rm cliff}\}$
 built on top of the target circuit $\mathcal{C}^0$.
@@ -186,7 +191,9 @@ built on top of the target circuit $\mathcal{C}^0$.
 
 \begin{block}{Simulation $1$-dim:  $u$-quark PDF}
 We firstly use a single-qubit circuit to fit the $u$-quark Parton Distribution 
-Function (PDF).
+Function (PDF). We set $q_M=0.005$, $q_X=0.007$, $q_Y=0.003$ and $q_Z=0.002$.
+We compare four configurations: noiseless, noisy unmitigated, noisy with mitigation on 
+the final predictions (fQEM) and noisy trained with RTQEM. 
 \begin{figure}
   \centering
     \includegraphics[width=0.5\linewidth]{figures/qpdf.pdf}%
@@ -213,6 +220,58 @@ qubits.
     \label{fig:ndim_simulation}
   \end{figure}
 \end{block}
+
+\begin{block}{Evolving noise scenario}
+To study how the RTQEM procedure behave in a realistic scenario, we let the noise 
+parameters vary following a Random Walk-like evolution.
+\begin{figure}
+  \centering
+    \includegraphics[width=0.49\linewidth]{figures/bound_variation.pdf}%
+    \includegraphics[width=0.5\linewidth]{figures/cleaned_losses.pdf}%
+    \label{fig:ndim_simulation}
+  \end{figure}
+\end{block}
+
+\begin{block}{$u$-quark PDF fit on superconducting devices}
+We finally test the RTQEM algorithm on two superconducting devices.
+\begin{figure}
+  \centering
+    \includegraphics[width=0.5\linewidth]{figures/qw5q_short.pdf}%
+    \includegraphics[width=0.5\linewidth]{figures/benchs.pdf}%
+    \label{fig:hdw}
+  \end{figure}
+\end{block}
+
+\begin{alertblock}{Simulation and hardware results}
+In the left Tab., simulation results, in the right one, hardware results.
+\begin{center}
+\small
+\begin{tabular}{ccccc}
+\hline \hline 
+\textbf{Target} & $\text{MSE}_{\rm noiseless}$ & $\text{MSE}_{\rm noisy}$ & $\text{MSE}_{\rm fqem}$ & $\text{MSE}_{\rm rtqem}$\\
+\hline
+$u$ PDF    &  $0.008$  & $0.018$  & $0.023$ & $0.008$ \\
+$\cos 4$d  &  $0.003$  & $0.043$  & $0.140$ & $0.003$ \\
+$\cos 6$d  &  $0.002$  & $0.083$  & $0.214$ & $0.002$ \\
+$\cos 8$d  &  $0.001$  & $0.118$  & $0.360$ & $0.004$ \\
+\hline \hline
+\end{tabular}
+\quad
+\begin{tabular}{ccccc}
+\hline \hline 
+\textbf{Training} & \textbf{Predictions} &  \textbf{Config.} & $N_{\rm epochs}$ & MSE \\
+\hline
+\texttt{qw5q} & \texttt{qw5q} & Noisy & $50$ & $0.0055$   \\     
+\texttt{qw5q} & \texttt{qw5q} & RTQEM & $50$ & $0.0042$   \\     
+\texttt{qw5q} & \texttt{qw5q} & RTQEM & $100$ & $0.0013$  \\     
+\texttt{iqm5q} & \texttt{qw5q} & RTQEM & $100$ & $0.0037$ \\   
+\texttt{qw5q} & \texttt{sim} & RTQEM & $100$ & $0.0016$ \\   
+\hline \hline
+\end{tabular}
+\end{center}
+\end{alertblock}
+
+
 
 \vspace{-1cm}
 \begin{block}{References}
