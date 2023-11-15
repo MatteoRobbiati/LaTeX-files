@@ -29,6 +29,10 @@
 \usepackage{braket}
 \usepackage{bm}
 
+\usepackage{xspace,slashed}
+\usepackage{algorithm2e}
+\SetKwComment{Comment}{/* }{ */}
+
 
 %% ---------- useful for the schema ---------
 
@@ -168,12 +172,47 @@ which uploads the $j$-th component of $\bm{x}$ at the circuit layer $l$.
 
 \begin{block}{Noise of a quantum hardware}
 We consider a quantum system affected by local pauli noise with parameters 
-$\bm{q}=(q_X, q_Y, q_Z)$ and readout noise parametrized by flip probability $q_M$.
+$-1 \leq q_X, q_Y, q_Z \leq +1$ and readout noise parametrized by bit-flip probability 
+$(1-q_M)/2$. This setup gives rise to Noise-Induced Barren Plateaus (NIBP), which tend 
+to concentrate the expectation value around 0. 
+    \begin{figure}
+    \includegraphics[width=0.6\textwidth]{figures/ics.pdf}%
+    \end{figure}
+To mitigate the effect of the noise, we use the Importance Clifford Sampling (ICS)
+technique, which is a learning-based method which can be used to learn a noise 
+map $\ell$ using a training set of Clifford circuits $\mathcal{S}=\{\mathcal{C}^i_{\rm cliff}\}$
+built on top of the target circuit $\mathcal{C}^0$.
+\end{block}
+
+\begin{block}{Simulation $1$-dim:  $u$-quark PDF}
+We firstly use a single-qubit circuit to fit the $u$-quark Parton Distribution 
+Function (PDF).
+\begin{figure}
+  \centering
+    \includegraphics[width=0.5\linewidth]{figures/qpdf.pdf}%
+    \includegraphics[width=0.5\linewidth]{figures/qpdf_loss.pdf}
+    \label{fig:qpdf_simulation}
+  \end{figure}
 \end{block}
 
 \end{column}
 
 \begin{column}{\colwidth}
+
+\begin{block}{Simulation $n$-dim}
+We then tackle a simple multi dimensional target to scale up with the number of 
+qubits.
+\begin{figure}
+  \centering
+    \includegraphics[width=0.33\linewidth]{figures/cos4d.pdf}%
+    \includegraphics[width=0.33\linewidth]{figures/cos6d.pdf}%
+    \includegraphics[width=0.33\linewidth]{figures/cos8d.pdf}
+    \includegraphics[width=0.33\linewidth]{figures/cos4d_loss.pdf}%
+    \includegraphics[width=0.33\linewidth]{figures/cos6d_loss.pdf}%
+    \includegraphics[width=0.33\linewidth]{figures/cos8d_loss.pdf}
+    \label{fig:ndim_simulation}
+  \end{figure}
+\end{block}
 
 \vspace{-1cm}
 \begin{block}{References}
