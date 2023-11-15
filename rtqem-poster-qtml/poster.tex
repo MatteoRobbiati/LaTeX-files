@@ -221,6 +221,22 @@ qubits.
   \end{figure}
 \end{block}
 
+\begin{alertblock}{Simulation results}
+Mean squared error between the target labels and the predicted values.
+\begin{center}
+\begin{tabular}{ccccc}
+\hline \hline 
+\textbf{Target} & $\text{MSE}_{\rm noiseless}$ & $\text{MSE}_{\rm noisy}$ & $\text{MSE}_{\rm fqem}$ & $\text{MSE}_{\rm rtqem}$\\
+\hline
+$u$ PDF    &  $0.008$  & $0.018$  & $0.023$ & $0.008$ \\
+$\cos 4$d  &  $0.003$  & $0.043$  & $0.140$ & $0.003$ \\
+$\cos 6$d  &  $0.002$  & $0.083$  & $0.214$ & $0.002$ \\
+$\cos 8$d  &  $0.001$  & $0.118$  & $0.360$ & $0.004$ \\
+\hline \hline
+\end{tabular}
+\end{center}
+\end{alertblock}
+
 \begin{block}{Evolving noise scenario}
 To study how the RTQEM procedure behave in a realistic scenario, we let the noise 
 parameters vary following a Random Walk-like evolution.
@@ -232,6 +248,8 @@ parameters vary following a Random Walk-like evolution.
   \end{figure}
 \end{block}
 
+
+
 \begin{block}{$u$-quark PDF fit on superconducting devices}
 We finally test the RTQEM algorithm on two superconducting devices.
 \begin{figure}
@@ -242,21 +260,9 @@ We finally test the RTQEM algorithm on two superconducting devices.
   \end{figure}
 \end{block}
 
-\begin{alertblock}{Simulation and hardware results}
-In the left Tab., simulation results, in the right one, hardware results.
+\begin{alertblock}{Hardware results}
+We benchmark the MSE values of various prediction configurations.
 \begin{center}
-\small
-\begin{tabular}{ccccc}
-\hline \hline 
-\textbf{Target} & $\text{MSE}_{\rm noiseless}$ & $\text{MSE}_{\rm noisy}$ & $\text{MSE}_{\rm fqem}$ & $\text{MSE}_{\rm rtqem}$\\
-\hline
-$u$ PDF    &  $0.008$  & $0.018$  & $0.023$ & $0.008$ \\
-$\cos 4$d  &  $0.003$  & $0.043$  & $0.140$ & $0.003$ \\
-$\cos 6$d  &  $0.002$  & $0.083$  & $0.214$ & $0.002$ \\
-$\cos 8$d  &  $0.001$  & $0.118$  & $0.360$ & $0.004$ \\
-\hline \hline
-\end{tabular}
-\quad
 \begin{tabular}{ccccc}
 \hline \hline 
 \textbf{Training} & \textbf{Predictions} &  \textbf{Config.} & $N_{\rm epochs}$ & MSE \\
