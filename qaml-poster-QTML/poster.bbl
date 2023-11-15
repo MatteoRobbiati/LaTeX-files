@@ -1,0 +1,20 @@
+\begin{thebibliography}{1}
+
+\bibitem{Efthymiou_2021}
+S.~Efthymiou, S.~Ramos-Calderer, C.~Bravo-Prieto, A.~P{\'{e}}rez-Salinas,
+  D.~Garc{\'{\i}}a-Mart{\'{\i}}n, A.~Garcia-Saez, J.~I. Latorre, and
+  S.~Carrazza, ``Qibo: a framework for quantum simulation with hardware
+  acceleration,'' {\em Quantum Science and Technology}, vol.~7, p.~015018, dec
+  2021.
+
+\bibitem{Schuld_2019}
+M.~Schuld, V.~Bergholm, C.~Gogolin, J.~Izaac, and N.~Killoran, ``Evaluating
+  analytic gradients on quantum hardware,'' {\em Physical Review A}, vol.~99,
+  mar 2019.
+
+\bibitem{Bravo_Prieto_2022}
+C.~Bravo-Prieto, J.~Baglio, M.~C{\`{e} }, A.~Francis, D.~M. Grabowska, and
+  S.~Carrazza, ``Style-based quantum generative adversarial networks for monte
+  carlo events,'' {\em Quantum}, vol.~6, p.~777, aug 2022.
+
+\end{thebibliography}
