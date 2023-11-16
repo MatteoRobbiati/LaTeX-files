@@ -1,6 +1,8 @@
 % Gemini theme
 % https://github.com/anishathalye/gemini
 
+% !TEX program = xelatex
+
 \documentclass[20pt, final]{beamer}
 
 % ====================
@@ -95,7 +97,7 @@
   \inst{3  } CERN, Theoretical Physics Department, CH-1211
   Geneva 23, Switzerland.
 
-  \inst{1  } Instituto de Fi'sica Teo'rica, UAM-CSIC, Universidad Aut´onoma de Madrid, Cantoblanco, Madrid, Spain.
+  \inst{1  } Instituto de F\'{\i}sica Te\'{o}rica, UAM/CSIC, Universidad Aut\'{o}noma de Madrid, Cantoblanco, Madrid, Spain
 
   \inst{4  } School of Computing, The Australian National University, Canberra, ACT, Australia.
 
@@ -109,10 +111,10 @@
 \footercontent{
   \includegraphics[height=2cm]{figures/qibo_logo.png} \qquad \qquad \qquad \,\,\,
   \includegraphics[height=2cm]{figures/unimi.jpg} \qquad \qquad \qquad \,\,\,
-  \includegraphics[height=2cm]{figures/uam.jpg} \qquad \qquad \qquad \,\,\,
+  \includegraphics[height=2cm]{figures/ift.eps} \qquad \qquad \qquad \,\,\,
   \includegraphics[height=2cm]{figures/qti.png} \qquad \qquad \qquad \,\,\,
   \includegraphics[height=2cm]{figures/anu-logo.png} \qquad \qquad \qquad \,\,\,
-  \includegraphics[height=2cm]{figures/tii-logo.png} \qquad \qquad \qquad \,\,\,
+ \includegraphics[height=2cm]{figures/tii-logo-dark.eps} \qquad \qquad \qquad \,\,\,
   \includegraphics[height=2cm]{figures/cern.jpg} 
   \hfill
 }
@@ -140,7 +142,7 @@
 \begin{column}{\colwidth}
 
 \begin{alertblock}{Aim}
-we put forward the inclusion of error mitigation routines in the process of training
+We put forward the inclusion of error mitigation routines in the process of training
 Variational Quantum Circuit (VQC) models. In detail, we define a Real Time Quantum 
 Error Mitigation (RTQEM) algorithm to coadiuvate the task of fitting functions 
 on quantum chips with VQCs.
@@ -154,7 +156,7 @@ on quantum chips with VQCs.
 
 \begin{alertblock}{Ansatz}
 We tackle multi-dimensional regression problems using a VQC as Quantum Machine Learning (QML)
-model. The data $\bm{x}$ are encoded into the circuit via Data Reuploading~\cite{reuploading}: 
+model. The data $\bm{x}$ are encoded into the circuit via Data Reuploading~\cite{reuploading},
 
 \begin{figure} 
   \begin{tikzcd}[row sep = 2]
@@ -167,7 +169,7 @@ model. The data $\bm{x}$ are encoded into the circuit via Data Reuploading~\cite
 \label{fig:qpdf}
 \end{figure}
 
-where we use the following definition of the uploading channel:
+with the following definition of the uploading channel:
 \begin{equation}
 L(x_j| \bm{\theta}_{l,j}) = R_z(\theta_3\,x_j + \theta_4) R_y(\theta_1\, \kappa(x_j) + \theta_2) \ ,
 \label{eq:uploading_layer}
