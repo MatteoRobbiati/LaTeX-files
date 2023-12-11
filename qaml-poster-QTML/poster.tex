@@ -98,8 +98,12 @@
 % ====================
 
 \footercontent{
-  \includegraphics[height=2cm]{figures/qti.png}
-  \includegraphics[height=2cm]{figures/qibo_logo.png}
+  \includegraphics[height=2cm]{figures/qibo_logo.png} \qquad \qquad \qquad \,\,\,\,\,\,\,\, \qquad \quad
+  \includegraphics[height=2cm]{figures/unimi.png} \qquad \qquad \qquad \,\,\,\,\,\,\,\, \qquad \quad
+  \includegraphics[height=2cm]{figures/infn.png} \qquad \qquad \qquad \,\,\,\,\,\,\,\, \qquad \quad
+  \includegraphics[height=2cm]{figures/tii.png} \qquad \qquad \qquad \,\,\,\,\,\,\,\, \qquad \quad 
+  \includegraphics[height=2cm]{figures/qti.png} \qquad \qquad \qquad \,\,\,\,\,\,\,\, \qquad \quad
+  \includegraphics[height=2cm]{figures/CERN.png} 
   \hfill
 }
 % (can be left out to remove footer)
@@ -127,11 +131,17 @@
 \begin{alertblock}{Aim of the project}
 We propose a novel strategy to perform density estimation: given a variable $\bm{x}$
 sampled from an unknown distribution $\rho(\bm{x})$, we aim to 
-estimate the puntual probability density value $\hat{\rho}(\bm{x})$.
+estimate the puntual Probability Density Function (PDF) value $\hat{\rho}(\bm{x})$.
 
-To know the value of the probability of a given data $\bm{x}$ is important in many 
-situations, for example while calculating integrals via Monte Carlo Integration,
-where $\rho$ is used to correctly weight the sample points in the integral approximation.
+We focus on one-dimensional distributions, and then extend the 
+study to the case of joint PDFs of indipendent variables.
+
+% \faGamepad\,\, \textbf{Possible applications:} Monte Carlo Integration (MCI), Parton Distribution 
+% determination, anomaly detection.
+
+% To know the value of the probability of a given data $\bm{x}$ is important in many 
+% situations, for example while calculating integrals via Monte Carlo Integration,
+% where $\rho$ is used to correctly weight the sample points in the integral approximation.
 
 \end{alertblock}
 \begin{block}{Schematic pipeline of the algorithm}
@@ -142,33 +152,34 @@ where $\rho$ is used to correctly weight the sample points in the integral appro
 \end{block}
 
 \begin{block}{\faChain\,\, Encoding a CDF into an adiabatic evolution}
-
-  We use \texttt{qibo}~\cite{Efthymiou_2021} to simulate an adiabatic evolution on time $\tau$:
+  
+  We use \texttt{Qibo}~\cite{Efthymiou_2021} to simulate an adiabatic evolution on time $\tau$
   \begin{equation}
-  H_{\rm ad}(\tau, \bm{\theta}) = \bigl[ 1 - s(\tau, \bm{\theta}) \bigr] H_0 + 
-  s(\tau, \bm{\theta}) H_1. 
+  H_{\rm ad}(\tau| \bm{\theta}) = \bigl[ 1 - s(\tau| \bm{\theta}) \bigr] H_0 + 
+  s(\tau| \bm{\theta}) H_1 \ ,
   \end{equation}
+Where $s(\tau | \bm{\theta})$ is a parametric scheduling function.
 
-We map $\{x, F(x)\}$ into $\{\tau, E(\tau)\}$ , where $E(\tau)$ energy of a 
+We map $\{x, F(x)\}$ into $\{\tau, -E(\tau)\}$ , where $E(\tau)$ energy of a 
 non-interacting Pauli Z over the evolved ground state of $H_{\rm ad}$ at $\tau$.
 
 \begin{figure}
-    \includegraphics[width=0.7\textwidth]{figures/evolution.pdf}
+    \includegraphics[width=0.65\textwidth]{figures/evolution.pdf}
 \end{figure}
 \end{block}
 
-  \begin{alertblock}{How we optimize the evolution}
+  \begin{alertblock}{Optimizing the adiabatic evolution}
   
   \begin{enumerate}
     \item perform the evolution with initial guess $\bm{\theta}_0$ in the scheduling;
-    \item estimating a loss function $J_{\rm mse}\bigl[F, E(\bm{\theta})\bigr]$;
-    \item updating $\bm{\theta}$ using a chosen optimizer until convergence.
+    \item estimate a loss function $J_{\rm mse}\bigl[F, -E(\bm{\theta})\bigr]$;
+    \item update $\bm{\theta}$ using a chosen optimizer until convergence.
   \end{enumerate}
 
   \end{alertblock}
   
 
-  \begin{block}{\faPencil, \faCogs\,\, Building a derivable circuit}
+  \begin{block}{\faPencil\,\, Building a derivable circuit}
   After encoding the CDF into the evolution, we translate $H_{\rm ad}$ into a circuit
 derivable via shift rules~\cite{Schuld_2019}:
   \begin{figure}
@@ -180,7 +191,7 @@ derivable via shift rules~\cite{Schuld_2019}:
 
 \begin{column}{\colwidth}
 
- \begin{block}{Validation cases}
+ \begin{block}{\faCogs\,\, Validation cases}
 
   We firstly test the QAML procedure on a Gamma distribution and on a Gaussian 
   mixture.
@@ -206,7 +217,7 @@ derivable via shift rules~\cite{Schuld_2019}:
     \end{figure}
     
 \begin{alertblock}{Results}
-Simulation with shots noise due to $N_{\rm nshots}=5\cdot 10^4$.
+Simulation with $N_{\rm nshots}=5\cdot 10^4$.
 \vspace{1cm}
   \begin{center}
   \begin{tabular}{lccccc}
@@ -227,11 +238,10 @@ Simulation with shots noise due to $N_{\rm nshots}=5\cdot 10^4$.
   \end{block}
 
   \begin{block}{Scale up with dimensionality}
-  This same framework can be used to determine a $d$-dimensional PDFs in case of
-  $d$ \textit{iid} variables. We can do this by composing a $d$-qubits circuit 
+  We can extend this framework to $d$-dim joint PDFs $\rho_j(\bm{x})$ composing a $d$-qubits circuit 
   which encodes the rotations corresponding to $d$ adiabatic evolutions.
-  The global PDF is calculated as product of the marginalised ones. In the following 
-  we estimate $\rho_g(x_1,x_2) = \rho_1(x_1)\rho_2(x_2).$
+  We then execute this circuit six times (shift rules) and we reconstruct the joint PDF.
+  In the following we estimate $\rho_j(x_1,x_2) = \Gamma_1(x_1| k=10, \lambda=0.2) \cdot \Gamma_2(x_2| k=50, \lambda=0.5).$
   \begin{figure}
     \includegraphics[width=0.415\textwidth]{figures/2pdfs.pdf}%
     \includegraphics[width=0.44\textwidth]{figures/contour.pdf}%
