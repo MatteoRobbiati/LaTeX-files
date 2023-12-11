@@ -422,24 +422,25 @@ but we had two problems:
 \faArrowCircleRight\,\,following a scheduling $s$, depending on the evolution time $\tau\in[0,1]$
 and on some variational parameters $\bm{\theta}$.
 \pause
+
 \begin{tcolorbox}[breakable, enhanced]
 \begin{lstlisting}[language=Python]
-# with qibo we can implement an Adiabatic Evolution via trotter formula
-from qibo import models, hamiltonians, callbacks
+  # with qibo we can implement an Adiabatic Evolution via trotter formula
+  from qibo import models, hamiltonians, callbacks
 
-# problem's parameters
-nqubits = 1
-h0 = hamiltonians.X(nqubits)
-h1 = hamiltonians.Z(nqubits)
-target_observable = h1
+  # problem's parameters
+  nqubits = 1
+  h0 = hamiltonians.X(nqubits)
+  h1 = hamiltonians.Z(nqubits)
+  target_observable = h1
 
-# we track the energy of h1 on the evolved ground state
-energies = callbacks.Energy(target_observable)
-evolution = models.AdiabaticEvolution(
-    h0=h0, h1=h1, s = lambda t : t, dt=0.1, callbacks = [energies])
+  # we track the energy of h1 on the evolved ground state
+  energies = callbacks.Energy(target_observable)
+  evolution = models.AdiabaticEvolution(
+      h0=h0, h1=h1, s = lambda t : t, dt=0.1, callbacks = [energies])
 
-# calculate the evolved final state at time t=final_time
-evolved_state = evolution(final_time = final_time)
+  # calculate the evolved final state at time t=final_time
+  evolved_state = evolution(final_time = final_time)
 \end{lstlisting}
 \end{tcolorbox}
 
@@ -837,7 +838,7 @@ TeV for LHC configuration was generated\footnote{$s$ and $t$ Mandelstam variable
 \begin{itemize}
   \item[\faExternalLink] improve QAML validation: \textcolor{amethyst}{\textit{
   try more general scheduling functions (e.g. ANNs), benchmarking with other 
-  density estimation techniques;}} 
+  density estimation techniques;} } 
   \pause
   \item[\faExternalLink] hardware deployment: \textcolor{amethyst}{\textit{can a NISQ device be used for this?
   what is the speed-up advantage when running the QAML on annealers?}}
