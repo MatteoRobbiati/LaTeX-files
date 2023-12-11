@@ -12,8 +12,8 @@
 \usepackage[size=a1, scale=1.0, orientation=portrait]{beamerposter}
 \usetheme{gemini}
 \usecolortheme{gemini}
-\setbeamerfont{block body}{family=\Lato,size={\fontsize{18}{20}}}
-\setbeamerfont{enumerate item}{size={\fontsize{18}{20}}}
+\setbeamerfont{block body}{family=\Lato,size={\fontsize{17.5}{20}}}
+\setbeamerfont{enumerate item}{size={\fontsize{17.5}{20}}}
 
 \usepackage{graphicx}
 \usepackage{booktabs}
@@ -89,17 +89,17 @@
 
 
 \institute[shortinst]{
-  \inst{2  } TIF Lab, Dipartimento di Fisica, Universit\`a degli Studi
-  di Milano, Milan, Italy. 
-
-  \inst{3  } CERN, Theoretical Physics Department, CH-1211
-  Geneva 23, Switzerland.
-
   \inst{1  } Instituto de F\'{\i}sica Te\'{o}rica, UAM/CSIC, Universidad Aut\'{o}noma de Madrid, Cantoblanco, Madrid, Spain
 
-  \inst{4  } School of Computing, The Australian National University, Canberra, ACT, Australia.
+  \inst{2  } TIF Lab, Dipartimento di Fisica, Universit\`a degli Studi
+  di Milano, Milan, Italy
 
-  \inst{5  } Quantum Research Center, Technology Innovation Institute, Abu Dhabi, UAE.
+  \inst{3  } CERN, Theoretical Physics Department, CH-1211
+  Geneva 23, Switzerland
+
+  \inst{4  } School of Computing, The Australian National University, Canberra, ACT, Australia
+
+  \inst{5  } Quantum Research Center, Technology Innovation Institute, Abu Dhabi, UAE
   }
 
 % ====================
@@ -107,13 +107,13 @@
 % ====================
 
 \footercontent{
-  \includegraphics[height=2cm]{figures/qibo_logo.png} \qquad \qquad \qquad \,\,\,
-  \includegraphics[height=2cm]{figures/unimi.jpg} \qquad \qquad \qquad \,\,\,
-  \includegraphics[height=2cm]{figures/ift.eps} \qquad \qquad \qquad \,\,\,
-  \includegraphics[height=2cm]{figures/qti.png} \qquad \qquad \qquad \,\,\,
-  \includegraphics[height=2cm]{figures/anu-logo.png} \qquad \qquad \qquad \,\,\,
- \includegraphics[height=2cm]{figures/tii-logo-dark.eps} \qquad \qquad \qquad \,\,\,
-  \includegraphics[height=2cm]{figures/cern.jpg} 
+  \includegraphics[height=2cm]{figures/qibo_logo.png} \qquad \qquad \qquad \,\,\,\,\,\,\,
+  \includegraphics[height=2cm]{figures/unimi.png} \qquad \qquad \qquad \,\,\,\,\,\,\,
+  \includegraphics[height=2cm]{figures/IFT.png} \qquad \qquad \qquad \,\,\,\,\,\,\,
+  \includegraphics[height=2cm]{figures/qti.png} \qquad \qquad \qquad \,\,\,\,\,\,\,
+  \includegraphics[height=2cm]{figures/anu-logo.png} \qquad \qquad \qquad \,\,\,\,\,\,\,
+ \includegraphics[height=2cm]{figures/tii.png} \qquad \qquad \qquad \,\,\,\,\,\,\,
+  \includegraphics[height=2cm]{figures/CERN.png} 
   \hfill
 }
 % (can be left out to remove footer)
@@ -166,13 +166,13 @@ model. The data $\bm{x}$ are encoded into the circuit via Data Reuploading~\cite
   \end{tikzcd}
 \label{fig:qpdf}
 \end{figure}
-
-with the following definition of the uploading channel:
+where the $j$-th component of $\bm{x}$ is uploaded at layer $l$ through the channel
 \begin{equation}
 L(x_j| \bm{\theta}_{l,j}) = R_z(\theta_3\,x_j + \theta_4) R_y(\theta_1\, \kappa(x_j) + \theta_2) \ ,
 \label{eq:uploading_layer}
 \end{equation}
-which uploads the $j$-th component of $\bm{x}$ at the circuit layer $l$.
+and the predictions are computed as expectation value of $Z^{\otimes n}$ over
+the final state.
 \end{alertblock}
 
 \begin{block}{Noise of a quantum hardware}
@@ -181,13 +181,20 @@ $-1 \leq q_X, q_Y, q_Z \leq +1$ and readout noise parametrized by bit-flip proba
 $(1-q_M)/2$. This setup gives rise to Noise-Induced Barren Plateaus (NIBP)~\cite{nibp}, which tend 
 to concentrate the expectation value around 0. 
     \begin{figure}
-    \includegraphics[width=0.65\textwidth]{figures/ics.pdf}%
+    \includegraphics[width=0.5\textwidth]{figures/ics.pdf}%
     \end{figure}
 To mitigate the effect of the noise, we use the Importance Clifford Sampling (ICS)~\cite{ics}
 technique, which is a learning-based method which can be used to learn a noise 
 map $\ell$ using a training set of Clifford circuits $\mathcal{S}=\{\mathcal{C}^i_{\rm cliff}\}$
 built on top of the target circuit $\mathcal{C}^0$.
 \end{block}
+
+\begin{alertblock}{Update $\ell$ when it loses reliability}
+We define a metric $D\bigl(z, \ell(z)\bigr)$, which quantifies the distance
+between a noiseless expected value $z$ and the mitigated value $\ell(z)$. 
+We check at each optimization iteration and, if a threshold $\varepsilon_{\ell}$ 
+is exceeded, the map is re-learned from scratch.
+\end{alertblock}
 
 \begin{block}{Simulation $1$-dim:  $u$-quark PDF}
 We firstly use a single-qubit circuit to fit the $u$-quark Parton Distribution 
@@ -196,8 +203,8 @@ We compare four configurations: noiseless, noisy unmitigated, noisy with mitigat
 the final predictions (fQEM) and noisy trained with RTQEM. 
 \begin{figure}
   \centering
-    \includegraphics[width=0.5\linewidth]{figures/qpdf.pdf}%
-    \includegraphics[width=0.5\linewidth]{figures/qpdf_loss.pdf}
+    \includegraphics[width=0.48\linewidth]{figures/qpdf.pdf}%
+    \includegraphics[width=0.48\linewidth]{figures/qpdf_loss.pdf}
     \label{fig:qpdf_simulation}
   \end{figure}
 \end{block}
