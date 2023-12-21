@@ -1,0 +1,55 @@
+\documentclass[11pt]{article}
+\usepackage{blindtext}
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=15mm,
+ top=20mm,
+ }
+\usepackage{cmbright}
+\usepackage{bm}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{fontawesome}
+
+\usepackage{tikz}
+\usetikzlibrary{quantikz}
+
+\usepackage{amsmath,amssymb}
+\DeclareRobustCommand{\bbone}{\text{\usefont{U}{bbold}{m}{n}1}}
+\DeclareMathOperator{\EX}{\mathbb{E}} % expected value
+
+\usepackage{xcolor}
+\definecolor{light-gray}{gray}{0.95}
+\definecolor{elle}{rgb}{0.3, 0.5, 0.9}
+\definecolor{gio}{rgb}{0.0, 0.4, 0.65}
+\definecolor{def}{rgb}{1, 0.08, 0.58}
+\definecolor{purpleheart}{rgb}{0.41, 0.21, 0.61}
+\usepackage[citecolor = green, linkcolor = gio, bookmarks=true, urlcolor=gio,
+colorlinks=true, pagebackref=true]{hyperref}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+
+
+\newcommand{\cmd}[1]{\colorbox{light-gray}{\textcolor{gio}{\texttt{#1}}}}
+
+\title{PhD notes}
+\author{Matteo Robbiati}
+\date{}
+
+\begin{document}
+
+\begin{itemize}
+\item Repeat Edoardo's plot but restarting the VQE training after applying the (hyperoptimized)
+        DBI.
+\item Fix the problem to one we know it can converge (e.g. $N_{qubits}=6$) and:
+\begin{itemize}
+\item fix the number of iterations $s_{\rm vqe}$ and make the $s_{\rm dbi}$ varying;
+\item fix the number of DBI steps $s_{\rm dbi}$ and make the $s_{\rm vqe}$ varying;
+\end{itemize}
+\end{itemize}
+We can make a count of the computational cost of the algorithm for example by counting 
+the number of T gates required to execute each training.
+
+\end{document}
