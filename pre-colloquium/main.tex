@@ -182,21 +182,25 @@ because it doesn't look so easy.}
 Let's suppose we want to represent a system of \textbf{qubits} ($\uparrow, \downarrow$).
 \pause
 \begin{itemize}[noitemsep]
-\item[1.] Each \texttt{float 64} number requires 8 bytes of memory to be stored;
+\item[1.] Each \texttt{float 64} requires 8 bytes of memory to be stored;
 \pause
-\item[2.] each \texttt{complex 128} number requires 16 bytes of memory to be stored;
+\item[2.] each \texttt{complex 128} requires 16 bytes of memory;
 \pause
-\item[3.] my PC has 32Gb of RAM, so it can store up to $2$ billions of \texttt{complex 128}.
+\item[3.] let's take a nice 32Gb of RAM: it can store up to $2$ billions of \texttt{complex 128}.
 \pause
 \item[4.] a $30$ qubits state requires $\sim 1$ billion of complex numbers;
 \pause
 \item[5.] a $31$ qubits state cannot be represented by my PC;
 \pause
-\item[6.] a $50$ qubits state cannot even be represented by Fugaku supercomputer!
-\begin{figure}
-   \includegraphics[width=0.7\textwidth, height=0.4\textheight]{figures/fugaku.jpg}%
-\end{figure}
+\item[6.] no problem. Let's get serious: \texttt{Fugaku}!
 \end{itemize}
+
+\begin{figure}
+   \includegraphics[width=0.48\textwidth, height=0.4\textheight]{figures/fugaku.jpeg}%
+   $\,\,$
+   \pause
+   \includegraphics[width=0.48\textwidth, height=0.4\textheight]{figures/sad_fugaku.jpg}
+\end{figure}
 \end{frame}
 
 \begin{frame}{Some smart strategies}
@@ -631,10 +635,10 @@ $$ R_k(\theta) = \text{exp}\bigl[-i \theta \sigma_k\bigr], \qquad \text{with} \q
 \begin{frame}{But can this work?}
 \pause
 \begin{itemize}[noitemsep]
-\item[1.] depend on the problem\pause, but what better of playing in the Hilbert space 
+\item[1.] Depend on the problem\pause, but what better of playing in the Hilbert space 
 when tackling a many body system?
 \pause
-\item[2.] we can take some more rational proof of utility.
+\item[2.] We can take some more rational proof of utility.
 \end{itemize}
 \pause
 Using Variational Quantum Circuits we define a Variational Quantum Computer!
@@ -654,9 +658,40 @@ $c<4$.
 \end{multicols}
 \end{frame}
 
-\section{A final example}
+\section{A practical example}
 
-\begin{frame}{Approximating the ground state of a target Hamiltonian}
+\begin{frame}{Approximating ground states - Adiabatic Computing}
+\pause
+What is a quantum annealer?
+\pause
+\begin{itemize}[noitemsep]
+\item[\faLeaf] A QC with many spins arranged on a lattice connected to nearest neighbors;
+\pause
+\item[\faCrosshairs] typically Ising models can be encoded into a quantum annealer!
+\pause
+\end{itemize}
+The game is to slowly (\textit{adiabatically}) move an $H_0$ to a target Hamiltonian $H_1$, in which we encode the problem:
+\pause
+ $$   H_{ad} = H_0 \bigl[1 - s(\tau)\bigr] + s(\tau) H_1. $$
+ \vspace{0.3cm}
+\pause
+If adiabatic enough, you'll remain in the ground state.
+\pause
+\begin{multicols}{2}
+\begin{figure}
+    {\includegraphics[width=0.47\textwidth, height=0.3\textheight]{figures/tunneling.png}
+    \caption*{\href{https://arxiv.org/abs/2207.01827}{\faBook\,\,arXiv:2207.01827}}}%
+    $\,\,$
+    \pause
+    {\includegraphics[width=0.4\textwidth, height=0.3\textheight]{figures/dwave.png}
+    \caption*{\href{https://www.dwavesys.com/}{\faBook\,\,https://www.dwavesys.com/}}}%    
+\end{figure}
+\end{multicols}
+
+\end{frame}
+
+\begin{frame}{Approximating ground states - VQE \hfill \href{https://arxiv.org/abs/1304.3061}{\faBook\,\,arXiv:1304.3061}}
+\pause
 This method is known as Variational Quantum Eigensolver (VQE).
 \pause
 \begin{itemize}[noitemsep]
