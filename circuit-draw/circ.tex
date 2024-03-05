@@ -1,0 +1,19 @@
+\documentclass[border=10pt]{standalone}
+\usepackage{bm}
+\usepackage{tikz}
+\usetikzlibrary{quantikz}
+\usepackage{xcolor}
+
+\begin{document}
+
+
+\begin{quantikz}[row sep=0.1cm]
+  \lstick{$|0\rangle$} & \gate{U(x_1; \bm{\theta}_1^1)} & \qw  & \ctrl{1} &  \qw      & \qw      & \targ{}    & \qw & \cdots & & \gate{U(x_1; \bm{\theta}_1^L)} & \qw  & \ctrl{1} &  \qw      & \qw      & \targ{}    & \qw & \meter{}  \\
+  \lstick{$|0\rangle$} & \gate{U(x_2; \bm{\theta}_2^1)} & \qw  & \targ{}  & \ctrl{1}  & \qw      & \qw        & \qw & \cdots & & \gate{U(x_2; \bm{\theta}_2^L)} & \qw  & \targ{}  & \ctrl{1}  & \qw      & \qw        & \qw & \meter{}  \\
+  \lstick{$|0\rangle$} & \gate{U(x_3; \bm{\theta}_3^1)} & \qw  & \qw      & \targ{}   & \ctrl{1} & \qw        & \qw & \cdots & & \gate{U(x_3; \bm{\theta}_3^L)} & \qw  & \qw      & \targ{}   & \ctrl{1} & \qw        & \qw & \meter{}  \\
+  \lstick{$|0\rangle$} & \gate{U(x_4; \bm{\theta}_4^1)} & \qw  & \qw      & \qw       & \targ{}  & \ctrl{-3}  & \qw & \cdots & & \gate{U(x_4; \bm{\theta}_4^L)} & \qw  & \qw      & \qw       & \targ{}  & \ctrl{-3}  & \qw & \meter{}  \\
+\end{quantikz}
+
+
+
+\end{document}
