@@ -1,4 +1,4 @@
-\documentclass[8pt, xcolor={svgnames}, hyperref={linkcolor=black}]{beamer}
+\documentclass[8pt, xcolor={svgnames}, hyperref={linkcolor=black}, aspectratio=169]{beamer}
 \usepackage[labelfont={color=amethyst,bf}]{caption}
 \setbeamercolor{background canvas}{bg=white}
 \usetheme[progressbar=frametitle]{metropolis}
@@ -85,10 +85,10 @@
 \begin{tikzpicture}[overlay, remember picture]
 
 \node[at=(current page.south east), anchor=south east] {%
-\includegraphics[width=.18\textwidth]{figures/qibo.png} 
-\includegraphics[width=.18\textwidth]{figures/unimi.png} 
-\includegraphics[width=.18\textwidth]{figures/cern.png}  
-\includegraphics[width=.18\textwidth]{figures/qti.png}  
+\includegraphics[width=.15\textwidth]{figures/qibo.png} 
+\includegraphics[width=.15\textwidth]{figures/unimi.png} 
+\includegraphics[width=.15\textwidth]{figures/cern.png}  
+\includegraphics[width=.15\textwidth]{figures/qti.png}  
 };
 \end{tikzpicture}
 }
@@ -103,131 +103,60 @@
 \begin{frame}{Two starting points}
 \pause
 \begin{multicols}{2}
+\textbf{1. The \texttt{Qibo} project}
+\vspace{-0.6cm}
 \begin{figure}
-\includegraphics[width=0.45\textwidth, height=0.8\textheight]{figures/tii_lab.png}
-\caption*{\href{https://github.com/qiboteam}{\faGithub\,\,https://github.com/qiboteam}}
+\includegraphics[width=0.5\textwidth, height=0.62\textheight]{figures/compact_ecosystem.pdf}
 \end{figure}
 \pause
-\begin{figure}
-\includegraphics[width=0.45\textwidth, height=0.8\textheight]{figures/NIBP_cropped.pdf}
-\caption*{Credits to \href{https://arxiv.org/abs/2109.01051}{\faBook\,arXiv:2109.01051}}
-\end{figure}
-\end{multicols}
-\end{frame}
-
-\begin{frame}{Two starting points}
-\begin{multicols}{2}
-\begin{figure}
-\includegraphics[width=0.45\textwidth, height=0.8\textheight]{figures/tii_lab.png}
-\caption*{\href{https://github.com/qiboteam}{\faGithub\,\,https://github.com/qiboteam}}
-\end{figure}
-\begin{figure}
-\includegraphics[width=0.45\textwidth, height=0.8\textheight]{figures/NIBP_1.png}
-\caption*{Credits to \href{https://arxiv.org/abs/2109.01051}{\faBook\,arXiv:2109.01051}}
-\end{figure}
-\end{multicols}
-\end{frame}
-
-\begin{frame}{Two starting points}
-\begin{multicols}{2}
-\begin{figure}
-\includegraphics[width=0.45\textwidth, height=0.8\textheight]{figures/tii_lab.png}
-\caption*{\href{https://github.com/qiboteam}{\faGithub\,\,https://github.com/qiboteam}}
-\end{figure}
-\begin{figure}
-\includegraphics[width=0.45\textwidth, height=0.8\textheight]{figures/NIBP_2.png}
-\caption*{Credits to \href{https://arxiv.org/abs/2109.01051}{\faBook\,arXiv:2109.01051}}
-\end{figure}
-\end{multicols}
-\end{frame}
-
-\begin{frame}{Two starting points}
-\begin{multicols}{2}
-\begin{figure}
-\includegraphics[width=0.45\textwidth, height=0.8\textheight]{figures/tii_lab.png}
-\caption*{\href{https://github.com/qiboteam}{\faGithub\,\,https://github.com/qiboteam}}
-\end{figure}
-\begin{figure}
-\includegraphics[width=0.45\textwidth, height=0.8\textheight]{figures/NIBP_3.png}
-\caption*{Credits to \href{https://arxiv.org/abs/2109.01051}{\faBook\,arXiv:2109.01051}}
-\end{figure}
-\end{multicols}
-\end{frame}
-
-
-\begin{frame}{Step 1: about noise}
-\begin{figure}
-\includegraphics[width=1\textwidth]{figures/norm.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Step 1: about noise}
-\begin{figure}
-\includegraphics[width=1\textwidth]{figures/conc.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Step 1: about noise}
-\begin{figure}
-\includegraphics[width=1\textwidth]{figures/corr.pdf}
-\end{figure}
-\end{frame}
-
-\section{A case study}
-
-\begin{frame}{Step 2: a proper target}
-\pause
-\begin{tcolorbox}[colback=red!20, title=\faCrosshairs\,\, $N$-dim fit: $y \equals g(\bm{x})$]
-We build an $N$ qubits circuit $\mathcal{U}(\bm{x}; \bm{\theta})$:
-\begin{figure}
-\includegraphics[width=1\textwidth]{figures/circ.pdf}
-\end{figure}
 \vspace{-0.3cm}
-with $x_j$ uploaded twice at layer $\ell$ through the uploading channel $U(x_j; \bm{\theta}_j^{\ell})$.
+\begin{tcolorbox}[colback=red!15, title= Full-stack framework]
+\begin{itemize}[noitemsep]
+\item[\faCode] API language with Qibo;
+\item[\faCog] quantum control with Qibolab;
+\item[\faCrosshairs] calibration with Qibocal.
+\end{itemize}
 \end{tcolorbox}
 \pause
-\begin{tcolorbox}[colback=blue!20, title=\faPaypal\,\, Cost function]
-We want a cost function $C$ which suffers of \textbf{cost corruption} and \textbf{concentration}:
-$$ C_{\rm mse}(\bm{x}|\bm{\theta}) = \frac{1}{N_{\rm data}}\sum_i^{N_{\rm data}} 
-  \bigl[ f(\bm{x}^i,\bm{\theta})_{\mathcal{O}} - g(\bm{x}^i) \bigr]^2 \, $$
-$$ \text{with} \qquad 
-  f(\bm{x}^i,\bm{\theta})_{\mathcal{O}} = \braket{\psi_0 |\, \mathcal{U}^{\dagger}(\bm{x}^i; \bm{\theta}) \,
-  \mathcal{O} \, \mathcal{U}(\bm{x}^i; \bm{\theta})| \psi_0} \qquad \text{and} \qquad 
-  \mathcal{O}=\sigma_z^{\otimes N}.$$
-\end{tcolorbox}
+\textbf{2. Noise and QEM studies}
+\begin{figure}
+\includegraphics[width=0.33\textwidth, height=0.72\textheight]{figures/NIBP_cropped.pdf}
+\caption*{Credits to \href{https://arxiv.org/abs/2109.01051}{\faBook\,arXiv:2109.01051}}
+\end{figure}
+\end{multicols}
 \end{frame}
 
-\begin{frame}{Step 3: noise model \hfill \href{https://arxiv.org/abs/2007.14384}{\faBook\,\,arXiv:2007.14384}}
-We consider local pauli noise and bit-flip readout noise channels.
-\pause
+
+\begin{frame}{About noise}
 \begin{figure}
-\includegraphics[width=1\textwidth]{figures/noisy.pdf}
+\includegraphics[width=0.7\textwidth]{figures/norm.pdf}
 \end{figure}
-\pause
-In particular:
-\begin{itemize}[noitemsep]
-\item[\faVolumeUp] $PN$ channel with probs. $-1 < q_x, q_y, q_z < 1$
-on each qubit after each layer;
-\item[\faRandom] symmetric readout noise $\mathcal{M}$ of single-qubit bit-flip $(BF)$ 
-with prob. $(1-q_M)/2$.
-\end{itemize}
-\pause
-The effect of such a noise on our predictor is a cost concentration of the expectation
-values around zero:
-\pause
-$$ |f_{\rm noisy}| < 2 q_M^N q^{2l + 2} \biggl(1-\frac{1}{2^N}\biggr) $$
+\end{frame}
+
+\begin{frame}{About noise}
+\begin{figure}
+\includegraphics[width=0.7\textwidth]{figures/conc.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}{About noise}
+\begin{figure}
+\includegraphics[width=0.7\textwidth]{figures/corr.pdf}
+\end{figure}
 \end{frame}
 
 \begin{frame}{Can quantum error mitigation help?\hfill \href{https://arxiv.org/abs/2109.01051}{\faBook\,\,arXiv:2109.01051}}
 \begin{multicols}{2}
 \begin{figure}
-    \includegraphics[width=0.45\textwidth]{figures/NIBP_cropped.pdf}
+    \includegraphics[width=0.35\textwidth, height=0.8\textheight]{figures/NIBP_cropped.pdf}
 \end{figure}
 \pause
-\begin{itemize}[noitemsep]
-\item[1.] Let's consider $\bm{\theta_1}$ and $\bm{\theta_2}$;
+\textbf{Discussion on QEM}
 \pause
-\item[2.] thus two cost $C(\bm{\theta_1})$, $C(\bm{\theta_2})$;
+\begin{itemize}[noitemsep]
+\item[1.] Let's consider two parameters vectors $\bm{\theta_1}$ and $\bm{\theta_2}$;
+\pause
+\item[2.] thus two cost function values $C(\bm{\theta_1})$, $C(\bm{\theta_2})$;
 \pause
 \item[3.] noise and QEM affects resolvability;
 \pause
@@ -236,34 +165,89 @@ $$ |f_{\rm noisy}| < 2 q_M^N q^{2l + 2} \biggl(1-\frac{1}{2^N}\biggr) $$
 $$ \chi(\bm{\theta_1}, \bm{\theta_2}) = \frac{N_{\rm shots}^{\rm noisy}}{N_{\rm shots}^{\rm mit}}$$
 \pause
 \vspace{-0.5cm}
-\item[5.] we like it if $\chi \geq 1$!
+\item[5.] we are happy if $\chi \geq 1$!
 \pause
-\item[6.] for Clifford Data Regression $\chi=1$ under Global depolarizing noise given any $\bm{\theta_1}$ and $\bm{\theta_2}$.
+\item[6.] for Clifford Data Regression $\chi=1$ under Global depolarizing noise given 
+any $\bm{\theta_1}$ and $\bm{\theta_2}$ and scaling with qubits.
 \end{itemize}
 \pause
-\small
 \begin{tcolorbox}[colback=blue!20, title=Good news!]
-It can help with cost corruption while remaining neutral to cost concentration!
+It can help with cost corruption while remaining neutral to cost concentration.
 \end{tcolorbox}
 \end{multicols}
 \end{frame}
 
-\section{can we use it efficiently in VQAs?}
+
+\section{A case study}
+
+\begin{frame}{A proper target}
+\pause
+\begin{tcolorbox}[colback=red!20, title=\faCrosshairs\,\, $N$-dimensional fit: $y \equals g(\bm{x})$]
+We build an $N$-qubit parametric circuit $\mathcal{U}_{\bm{\theta}}(\bm{x})$
+\begin{figure}
+\includegraphics[width=0.8\textwidth]{figures/circ.pdf}
+\end{figure}
+\vspace{-0.3cm}
+with $x_j$ uploaded twice at layer $\ell$ through the uploading channel $U(x_j; \bm{\theta}_j^{\ell})$.
+\end{tcolorbox}
+\pause
+\begin{tcolorbox}[colback=blue!20, title=\faPaypal\,\, Cost function]
+\pause
+1. Considering as output predictor $f_{\bm{\theta}}(\bm{x}) = \braket{0|\mathcal{U}_{\bm{\theta}}^{\dagger}(\bm{x})\,
+\sigma_z^{\otimes N} \,\mathcal{U}_{\bm{\theta}}(\bm{x})|0}$, 
+
+\pause
+2. we set as cost function:
+$$ C_{\rm mse} = \frac{1}{N_{\rm data}}\sum_i^{N_{\rm data}} 
+  \bigl[ f_{\bm{\theta}}(\bm{x}^i) - g(\bm{x}^i) \bigr]^2. $$
+\end{tcolorbox}
+\end{frame}
+
+\section{Noise model}
+
+\begin{frame}{Noise model based on \hfill \href{https://arxiv.org/abs/2007.14384}{\faBook\,\,arXiv:2007.14384}}
+\pause
+We consider \textbf{local pauli noise} and bit-flip \textbf{readout noise} channels.
+\pause
+\begin{figure}
+\includegraphics[width=1\textwidth]{figures/noisy.pdf}
+\end{figure}
+\pause
+In particular:
+\pause
+\begin{itemize}[noitemsep]
+\item[\faVolumeUp] $PN$ channel with probs. $-1 < q_x, q_y, q_z < 1$
+on each qubit after each layer;
+\pause
+\item[\faRandom] symmetric readout noise $\mathcal{M}$ of single-qubit bit-flip $(BF)$ 
+with prob. $(1-q_M)/2$ when measuring.
+\end{itemize}
+\pause
+\begin{tcolorbox}[colback=red!15, title=Noise effect]
+\pause
+The effect of such a noise on our predictor is a cost concentration of the expectation
+values around zero:
+\pause
+$$ |f_{\rm noisy}| < 2 q_M^N q^{2l + 2} \biggl(1-\frac{1}{2^N}\biggr). $$
+\end{tcolorbox}
+\end{frame}
+
+\section{Real-time QEM}
 
 \begin{frame}{The chosen error mitigation technique \hfill \href{https://arxiv.org/abs/2112.06255}{\faBook\,\, arXiv:2112.06255}}
 \pause
 We use the Importance Clifford Sampling (ICS) procedure to learn the noise map $\ell$.
 \pause
 \begin{figure}
-    \includegraphics[width=0.7\textwidth]{figures/ics.png}
+    \includegraphics[width=0.55\textwidth]{figures/ics.png}
 \end{figure}
 \pause
 \begin{itemize}[noitemsep]
-\item[1.] sample a training set of Clifford circuits $\mathcal{S}$ on top of a target $\mathcal{C}^0$;
+\item[1.] Sample a training set of Clifford circuits $\mathcal{S}$ on top of a target $\mathcal{C}^0$;
 \pause
 \item[2.] process them so that their expectation values on Pauli strings is  $+1$ or $-1$;
 \pause
-\item[3.] extract mitigation parameter $\lambda_{\rm eff}$ comparing $\langle \hat{\mathcal{O}}\rangle_{\rm noisy}$ and $\langle \hat{\mathcal{O}}\rangle$;
+\item[3.] extract mitigation parameter $\lambda_{\rm eff}$ comparing $\langle \mathcal{O}\rangle_{\rm noisy}$ and $\langle \mathcal{O}\rangle$;
 \pause
 \item[4.] build a phenomenological noise map:
 $$ \ell(\langle O \rangle | \lambda_{\rm eff}) = \frac{(1 - \langle \lambda_{\mathcal{C}}
@@ -276,7 +260,7 @@ $$ \ell(\langle O \rangle | \lambda_{\rm eff}) = \frac{(1 - \langle \lambda_{\ma
 We define a Real-Time Quantum Error Mitigation (RTQEM) procedure.
 \pause
 \begin{figure}
-    \includegraphics[width=1\textwidth]{figures/rtqem.pdf}
+    \includegraphics[width=0.9\textwidth]{figures/rtqem.pdf}
 \end{figure}
 \pause
 \begin{itemize}[noitemsep]
@@ -293,12 +277,12 @@ We define a Real-Time Quantum Error Mitigation (RTQEM) procedure.
 \vspace{0.16cm}
 We define a Real-Time Quantum Error Mitigation (RTQEM) procedure.
 \begin{figure}
-    \includegraphics[width=1\textwidth]{figures/rtqem_epsilon.png}
+    \includegraphics[width=0.9\textwidth]{figures/rtqem_epsilon.png}
 \end{figure}
 \pause
-\faEdit\,\, we defined a metric $ D\bigl(\langle z \rangle, \ell(\langle z \rangle)\bigr) 
+\faEdit\,\, we define a metric $ D\bigl(\langle z \rangle, \ell(\langle z \rangle)\bigr) 
 = |\langle z \rangle  - \ell(\langle z \rangle)|$
-to quantify the distance between a well known $\langle z \rangle$ and its mitigated value.
+to quantify the distance between a well known expectation value $\langle z \rangle$ and its mitigated value.
 \pause
 
 \faAmbulance\,\, if $D$ exceeds some arbitrary threshold $\varepsilon$, then the
@@ -324,8 +308,8 @@ map $\ell$ is recomputed.
 \end{center}
 
 \begin{figure}
-    \includegraphics[width=0.5\textwidth]{figures/qpdf.pdf}%
-    \includegraphics[width=0.5\textwidth]{figures/qpdf_loss.pdf}
+    \includegraphics[width=0.45\textwidth]{figures/qpdf.pdf}%
+    \includegraphics[width=0.46\textwidth]{figures/qpdf_loss.pdf}
 \end{figure}
 \begin{itemize}[noitemsep]
 \item[1.] thanks to the RTQEM procedure, we reach a good minimum of the cost function;
@@ -352,12 +336,12 @@ $N_{\rm dim}=8$ & $30$ & $96$ & $10^{4}$ &  $0.004$ & $0.118$ & local Pauli \\
 \end{center}
 
 \begin{figure}
-    \includegraphics[width=0.31\textwidth]{figures/cos4d.pdf}%
-    \includegraphics[width=0.31\textwidth]{figures/cos6d.pdf}%
-    \includegraphics[width=0.31\textwidth]{figures/cos8d.pdf}
-    \includegraphics[width=0.31\textwidth]{figures/cos4d_loss.pdf}%
-    \includegraphics[width=0.31\textwidth]{figures/cos6d_loss.pdf}%
-    \includegraphics[width=0.31\textwidth]{figures/cos8d_loss.pdf}
+    \includegraphics[width=0.23\textwidth]{figures/cos4d.pdf}%
+    \includegraphics[width=0.23\textwidth]{figures/cos6d.pdf}%
+    \includegraphics[width=0.23\textwidth]{figures/cos8d.pdf}
+    \includegraphics[width=0.23\textwidth]{figures/cos4d_loss.pdf}%
+    \includegraphics[width=0.23\textwidth]{figures/cos6d_loss.pdf}%
+    \includegraphics[width=0.23\textwidth]{figures/cos8d_loss.pdf}
 \end{figure}
 \end{frame}
 
@@ -371,9 +355,9 @@ where $r\sim\{-1,+1\}$ and the step is sampled from a normal distribution
 $\delta\sim\mathcal{N}(0,\sigma_{\delta})$.
 \pause
 \begin{figure}
-    \includegraphics[width=0.5\textwidth]{figures/bound_variation.pdf}%
+    \includegraphics[width=0.44\textwidth]{figures/bound_variation.pdf}%
     \pause
-    \includegraphics[width=0.5\textwidth]{figures/cleaned_losses.pdf}
+    \includegraphics[width=0.45\textwidth]{figures/cleaned_losses.pdf}
 \end{figure}
 \pause
 \centering
@@ -389,7 +373,7 @@ conditions of the simulation case.
 \begin{multicols}{2}
 
 \begin{figure}
-    \includegraphics[width=0.5\textwidth]{figures/100.pdf}%
+    \includegraphics[width=0.45\textwidth]{figures/100.pdf}%
 \end{figure}
 \pause
 \begin{center}
@@ -398,7 +382,7 @@ conditions of the simulation case.
   \item[\faCog] \textbf{\texttt{iqm5q}} from IQM and controlled using Zurich Instruments.
 \end{itemize}
 \pause
-\footnotesize
+\small
 \begin{table}
 \begin{tabular}{ccccc}
 \hline \hline 
@@ -417,22 +401,41 @@ conditions of the simulation case.
 \end{center}
 \end{multicols}
 \pause
+\begin{center}
 All the hardware results are obtained deploying the $\bm{\theta}_{\rm best}$ on 
 \texttt{qw5q}.
+\end{center}
 \end{frame}
 
-\begin{frame}{Outlook}
+\begin{frame}{Summary and outlook}
+\begin{multicols}{2}
+\textbf{Takeway messages}
+\pause
 \begin{itemize}[noitemsep]
-\item[\faSend] Can improve RTQEM robustness? Is ICS enough to face any scenario?
-\item[\faSend] how about combining more techniques?
-\item[\faSend] how about adding some memory (inertia) to the noise model? Can this be 
+\item[\faSend] RTQEM is lightweight, especially considering QML tasks!
+\pause
+\item[\faSend] if the noise doesn't vary too much over time, a few updates of 
+the noise map are required.
+\end{itemize}
+\pause
+\textbf{What now?}
+\pause
+\begin{itemize}[noitemsep]
+\item[\faGamepad] Can improve RTQEM robustness? Is ICS enough to face any scenario?
+\pause
+\item[\faGamepad] how about combining more techniques?
+\pause
+\item[\faGamepad] how about adding some memory (inertia) to the noise model? Can this be 
 robust against sudden (and temporary) system's fluctuations?
-\item[\faSend] how about moving the mitigation routine on chip to boost the process?
+\pause
+\item[\faGamepad] how about moving the mitigation routine on chip to boost the process?
+\pause
 \end{itemize}
 \begin{figure}
-    \includegraphics[width=0.8\textwidth]{figures/me.png}%
-    \caption*{DALLE, please, draw a PhD student trying hard to fit Parton Distribution Functions on a quantum computer at CERN}
+    \includegraphics[width=0.45\textwidth]{figures/me.png}%
+    \caption*{\textit{DALLE, please, draw a PhD student trying hard to fit Parton Distribution Functions on a quantum computer at CERN!}}
 \end{figure}
+\end{multicols}
 \end{frame}
 
 
