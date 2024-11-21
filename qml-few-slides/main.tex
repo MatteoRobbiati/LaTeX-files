@@ -221,13 +221,13 @@ the former returns the output of the quantum system, the latter mitigate the noi
 \begin{frame}{RTQEM in action}
 We perform a gradient descent on two different quantum devices (and noises!)
 \begin{center}
-\begin{tabular}{cccccc}
+\begin{tabular}{ccccccc}
 \hline \hline 
 \rule{0pt}{2.5ex}
-\textbf{Parameter} & $N_{\rm train}$ & $N_{\rm params}$ & $N_{\rm shots}$ & Epochs \\
+\textbf{Parameter} & $N_{\rm train}$ & $N_{\rm params}$ & $N_{\rm shots}$ & Epochs & Optimizer & Learning rate \\
 \hline
 \rule{0pt}{2.5ex}
-\textbf{Value} & $15$ & $16$ & $500$ & $100$ \\
+\textbf{Value} & $15$ & $16$ & $500$ & $100$ & Adam & $0.1$ \\
 \hline \hline 
 \end{tabular}
 \end{center}
