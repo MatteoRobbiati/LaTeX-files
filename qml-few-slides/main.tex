@@ -108,16 +108,16 @@
 \end{frame}
 
 \begin{frame}{Quantum Machine Learning challenges}
-We aim to involve quantum process units into Machine Learning pipelines.
+We aim to involve quantum process units (QPU) into machine learning (ML) pipelines.
 \begin{figure}
-   \includegraphics[width=0.7\textwidth]{figures/hybrid.pdf}
+   \includegraphics[width=0.8\textwidth]{figures/hybrid_qml.pdf}
 \end{figure}
 Classical and quantum components have to be executable on CPUs, GPUs and QPUs to
-fullfill the whole potential of an hybrid quantum-classical cluster.
+fullfill the whole potential of an \textbf{hybrid quantum-classical cluster}.
 \end{frame}
 
 \begin{frame}{Qibo as a modular playground}
-To do so, \texttt{Qibo} stands as an intriguing playgrond thanks to its modularity.
+To do so, \texttt{Qibo} stands as an intriguing playgrond thanks to its \textbf{modularity}.
 
 Once a favourite ML framework is chosen, a quantum circuit can be built with Qibo
 and included into the pipeline. 
@@ -127,26 +127,19 @@ and included into the pipeline.
 The circuit can then be executed onto the desired Qibo backend (quantum or classical).
 \end{frame}
 
-\begin{frame}{A practical example of an hybrid quantum-classical pipeline with \texttt{Qibo}}
-We want to learn the Parton Distribution Function of the $up$ quark in the proton with a superconducting qubit.
-
-In doing so, we want to mitigate the noise of the quantum device using a learning-based error mitigation technique.
-
-\begin{multicols}{2}
-The method requires:
-\begin{itemize}[noitemsep]
-\item[1.] efficient classical simulation tools;
-\item[2.] easy access to the quantum hardware;
-\item[3.] ability to easily make quantum and classical outputs interact;
-\item[4.] access to GPUs clusters if the process is part of a ML pipeline (optionally). 
-\end{itemize}
+\begin{frame}{A QML pipeline}
 \begin{figure}
-   \includegraphics[width=0.5\textwidth]{figures/ics.pdf}
+   \includegraphics[width=0.8\textwidth]{figures/qml_simplified_1.pdf}
 \end{figure}
-\end{multicols}
 \end{frame}
 
-\begin{frame}{PDF fit on chip \hfill \faBook\,\, \href{https://arxiv.org/abs/2308.06313}{arXiv:2308.06313}}
+\begin{frame}{A QML pipeline}
+\begin{figure}
+   \includegraphics[width=0.8\textwidth]{figures/qml_simplified_2.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Training a real superconducting device \hfill \faBook\,\, \href{https://arxiv.org/abs/2308.06313}{arXiv:2308.06313}}
 
 \begin{multicols}{2}
 % column 1
@@ -204,18 +197,39 @@ Training time & $\sim 2$h \\
 \end{picture}
 \end{frame}
 
-\begin{frame}{Real-time quantum error mitigation}
-We define a Real-Time Quantum Error Mitigation (RTQEM) procedure.
+
+
+\begin{frame}{Exploit the hybrid environment: real-time quantum error mitigation}
+We want to mitigate the noise of the QPU using \textbf{error mitigation} techniques.
 \begin{figure}
     \includegraphics[width=0.8\textwidth]{figures/rtqem.pdf}
 \end{figure}
 \begin{itemize}[noitemsep]
-\item[1.] consider a Variational Quantum Algorithm trained with gradient descent;
+\item[1.] consider a parametric quantum circuit trained with gradient descent;
 \item[2.] learn the noise map $\ell$ every time is needed over the procedure;
 \item[3.] use $\ell$ to clean up both predictions and gradients.
 \end{itemize}
-This procedure requires real-time interaction between quantum and classical devices:
+This procedure requires \textbf{real-time interaction} between quantum and classical devices:
 the former returns the output of the quantum system, the latter mitigate the noise.
+\end{frame}
+
+\begin{frame}{Mitigation requires quantum and classical resources}
+We use a ``learning-based" technique, which exploits \textbf{efficient classical simulators} 
+to reconstruct surrogates of the target circuit and learn its noise.
+
+\begin{multicols}{2}
+In particular:
+\begin{itemize}[noitemsep]
+\item[1.] define a set of circuits $\mathcal{S}$ similar to the target\footnote{We construct them as
+Clifford so that we can simulate high number of qubits with good performances.};
+\item[2.] collect noisy predictions from the QPU $\forall s \in \mathcal{S}$;
+\item[3.] simulate exact predictions on C(G)PU $\forall s \in \mathcal{S}$;
+\item[4.] learn the noise map applying classical regression to noisy-exact data. 
+\end{itemize}
+\begin{figure}
+   \includegraphics[width=0.5\textwidth]{figures/ics.pdf}
+\end{figure}
+\end{multicols}
 \end{frame}
 
 \begin{frame}{RTQEM in action}
