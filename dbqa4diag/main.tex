@@ -8,7 +8,7 @@
 \hypersetup{
     colorlinks=true,    % Attiva i colori per i link
     linkcolor=black, % Colore dei link interni
-    urlcolor=mediumpersianblue        % Colore dei link esterni (url)
+    urlcolor=persianred        % Colore dei link esterni (url)
 }
 \usepackage{appendixnumberbeamer}
 \usepackage{url}
@@ -115,10 +115,11 @@ And this because:
 \end{multicols}
 \end{frame}
 
-\begin{frame}{Double-bracket iterations}
+\begin{frame}{Double-bracket iterations \hfill \href{https://arxiv.org/abs/2206.11772}{\textcolor{white}{\faBook\,\,arXiv:2206.11772}}}
 \begin{columns}[T,onlytextwidth]
     % First column: 40%
     \begin{column}{0.45\textwidth}
+    \textbf{Ingredients}
         \begin{itemize}[noitemsep]
             \item[1.] Input Hamiltonian $\textcolor{mediumpersianblue}{\hat H_0}$ (here 1D XXZ);
             \item[2.] an anti-hermitian ($(i\hat{W})^{\dagger} = -i\hat{W}$) rotation generator $\textcolor{persianred}{\hat{W}_0} = [\hat{D}_0, \hat H_0]$;
@@ -145,35 +146,69 @@ $$ \partial_s \hat{H}_0(s) = [ \hat{H}_0(s), [ \hat{H}_0(0), \hat{D}_0 ] ]. $$
 \end{tcolorbox}
 \end{frame}
 
-\begin{frame}{Some properties and important notes}
-\begin{multicols}{2}
+\begin{frame}{Some properties and important notes \hfill \href{https://arxiv.org/abs/2206.11772}{\textcolor{white}{\faBook\,\,arXiv:2206.11772}}}
 \begin{itemize}[noitemsep]
-\item[1.] We care of diagonal\footnote{This \
-   setup is useful for diagonalization purposes. Non-diagonal $\hat{D}_k$ can be useful elsewhere.} $\hat{D}_k$ in $\hat{W}_k = [\hat{D}_k, \hat{H}_k]$;
+\item[1.] We care of diagonal 
+   $\hat{D}_k$ in $\hat{W}_k = [\hat{D}_k, \hat{H}_k]$. A natural choice is the canonical
+   generator:
+   $$ 
+   \hat{W}_k^{\rm can} = [\hat{H}_k, \hat{\Delta}(\hat{H}_k)], \qquad \text{with} \qquad  
+   \begin{cases}
+   \hat{\Delta}(\hat{H}_k) = \text{diag}(\hat{H}_k), \\
+   \hat{H}_k = \hat{\Delta}(\hat{H}_k) + \hat{\sigma}(\hat{H}_k),
+   \end{cases}
+   $$
+   but - as we will see - many choices can be made token here.
 \item[2.] \textbf{Lemma}\footnote{Definition and proof of Lemma 2 in \href{https://arxiv.org/abs/2206.11772}{Double-bracket 
-   quantum algorithms for diagonalization, M. Gluza, 2024}}: given $\sigma(\hat{H}_0(s))$ off-diagonal restriction of $\hat{H}_0(s)$ And
+   quantum algorithms for diagonalization, M. Gluza, 2024}}: given $\sigma(\hat{H}_0(s))$ off-diagonal restriction of $\hat{H}_0(s)$ and
    $s$ small enough:
-   $$ \partial_s \| \sigma(\hat{H}_0(s)) \|^2_{\rm HS} = - 2 \braket{ \hat{W}_0, [\hat{H}_0, \sigma(\hat{H}_0(s))] }_{\rm HS}. $$ 
-% \item[4.] both the timestep $s_k$ and the diagonal operator $\hat{D}_k$ can be optimized
-% at each DBI iteration $k$.
-\end{itemize}
-\begin{tcolorbox}[colback=red!15, title=The key point]
-If $\hat{D}_0$ diagonal, $\hat{H}_1$ more diagonal than $\hat{H}_0$.
-\end{tcolorbox}
-\begin{itemize}
+   $$ \partial_s \| \sigma(\hat{H}_0(s)) \|^2_{\rm HS} = - 2 \braket{ \hat{W}_0, 
+   [\hat{H}_0, \sigma(\hat{H}_0(s))] }_{\rm HS}. $$ 
 \item[3.] If $\hat{D}_0 = ... = \hat{D}^*$, as long as $s_0 = ... = s^*$
-   are sufficiently small, then the recursion converges to a fixed point $\hat{H}_{\infty}$
+   are sufficiently small and $\hat{D}^*$ non degenerate, the recursion converges to a fixed point $\hat{H}_{\infty}$
    with $[\hat{H}_{\infty}, \hat{D}^*]$\footnote{\textbf{If you are really brave:} 
    \href{https://link.springer.com/book/10.1007/978-1-4471-3467-1}{Optimization and Dynamical Systems [Ch. 2.3], Uwe Helmke , John B. Moore, 1994.}}; 
 \end{itemize}
-\begin{figure}
-   \includegraphics[width=0.52\textwidth]{figures/opt_strategies.png}
-   \caption{There are various strategies to optimize the DBI. We will see the TFIM parametrization.}
-\end{figure}
-\end{multicols}
+\begin{tcolorbox}[colback=red!15]
+\begin{itemize}[noitemsep]
+\item[$2. \to$] If $\hat{D}_0$ is diagonal, then $\hat{H}_1$ will be more diagonal than $\hat{H}_0$,
+\item[$3. \to$] the discrete DBI can converge arbitrary well,
+\item[$3. \to$] \textit{analytically motivated} methods work in some setups but they can be slow.
+\end{itemize}
+\end{tcolorbox}
+\begin{picture}(0,0)
+    \put(325,30){
+        \includegraphics[width=0.12\textwidth]{figures/take_away.png}
+    }
+\end{picture}
 \end{frame}
 
-\begin{frame}{Double-bracket rotations can be optimized}
+\begin{frame}{Cost functions and parametrization strategies \hfill \href{https://arxiv.org/abs/2408.07431}{\textcolor{white}{\faBook\,\,arXiv:2408.07431}}}
+\begin{figure}
+   \includegraphics[width=0.6\textwidth]{figures/opt_strategies.png}
+\end{figure}
+\vspace{-0.2cm}
+\begin{figure}
+   \includegraphics[width=0.7\textwidth]{figures/cost_functions.png}
+\end{figure}
+\begin{picture}(0,0)
+    \put(335,150){
+        \includegraphics[width=0.12\textwidth]{figures/variational_icon.png}
+    }
+\end{picture}
+\begin{picture}(0,0)
+    \put(10,150){
+        \includegraphics[width=0.12\textwidth]{figures/analytical_icon.png}
+    }
+\end{picture}
+\begin{picture}(0,0)
+    \put(-10,40){
+        \includegraphics[width=0.12\textwidth]{figures/cost_icon.png}
+    }
+\end{picture}
+\end{frame}
+
+\begin{frame}{Double-bracket rotations can be optimized \hfill \href{https://arxiv.org/abs/2408.07431}{\textcolor{white}{\faBook\,\,arXiv:2408.07431}}}
 \begin{center}
 \begin{figure}
    \includegraphics[width=1\textwidth]{figures/dbi_scheme_ink.pdf}
@@ -181,7 +216,7 @@ If $\hat{D}_0$ diagonal, $\hat{H}_1$ more diagonal than $\hat{H}_0$.
 \end{center}
 \end{frame}
 
-\begin{frame}{But how this can be a quantum algorithm?}
+\begin{frame}{But how this can be a quantum algorithm? \hfill \href{https://arxiv.org/abs/2206.11772}{\textcolor{white}{\faBook\,\,arXiv:2206.11772}}}
 The heart of the compilation of DBQAs is one of the \textbf{group commutator formulas} introduced
 by Dawson and Nielsen in their \href{https://arxiv.org/abs/quant-ph/0505030}{Solovay-Kitaev algorithm}:
 $$ \hat{V}^{\rm GC}(\hat{A}, \hat{B}) = e^{i\hat{A}} e^{i\hat{B}} e^{-i\hat{A}} e^{-i\hat{B}}, \qquad \qquad \hat{A}, \hat{B} \,\,\text{hermitian},$$
@@ -192,12 +227,19 @@ $$  \hat{E}^{\rm GC} \leq \| [ \hat{A}, [\hat{A}, \hat{B}]] \| + \| [ \hat{B}, [
 in any unitarily invariant norm (e.g. Hilbert-Schmidt norm).
 
 \begin{tcolorbox}[colback=red!15, title=How about DBI?]
-$$ \hat{R}_0  = e^{- s [\hat{D}_0, \hat{H}_0]} \approx \hat{V}^{\rm GC}_0 = e^{i \sqrt{s_0}\hat{H}_0} 
-e^{-i \sqrt{s_0}\hat{D}_0} e^{-i \sqrt{s_0}\hat{H}_0} e^{i \sqrt{s_0}\hat{D}_0} = \hat{R}_0 + O(s_0^{3/2}).$$
+$$ e^{- s [\hat{D}_0, \hat{H}_0]} = e^{i \sqrt{s_0}\hat{H}_0} 
+e^{-i \sqrt{s_0}\hat{D}_0} e^{-i \sqrt{s_0}\hat{H}_0} e^{i \sqrt{s_0}\hat{D}_0} + O(s_0^{3/2}).$$
 This is compilable into a sequence of local Hamiltonian evolutions.
 \end{tcolorbox}
 \faExclamationCircle\,\,Higher-order formulas can be implemented to reduce the approximation error.
 \end{frame}
+
+\begin{frame}{Sum up}
+\begin{figure}
+   \includegraphics[width=1\textwidth]{figures/3_phases_dbqa.pdf}
+\end{figure}
+\end{frame}
+
 \end{document}
 
 
