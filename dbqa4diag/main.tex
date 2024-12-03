@@ -31,6 +31,138 @@
 \usetikzlibrary{positioning,arrows,calc,math,angles,quotes}
 \usepackage{blochsphere}
 
+\newcommand{\quotes}[1]{``#1''}
+
+\DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
+
+\renewcommand\L{\hat L}
+\newcommand{\qu}{\hat Q}
+\newcommand{\X}{\hat X}
+\newcommand{\Y}{\hat Y}
+\newcommand{\Z}{\hat Z}
+\newcommand{\XXZ}{\operatorname{XXZ}}
+\renewcommand\d[1]{\Delta(#1)}
+\renewcommand\o[1]{\sigma(#1)}
+\newcommand\etak[1]{\eta^{\mtiny{(#1)}}}
+\def\w{\hat W}
+\def\h{\hat H}
+\def\D{\hat D}
+\def\v{\hat V}
+\def\bfzero{\boldsymbol{0}}
+\def\bftheta{\boldsymbol{\theta}}
+\def\vqe{\u_{\bftheta}}
+\def\vqes{\u_{\bftheta^*}}
+
+\newcommand{\sandwich}[3]
+  {\left\langle  #1 \right| #2 \left| #3 \right\rangle}
+
+
+\def\U{\hat{ \mathcal U}}
+\def\H{{\hat{ \mathcal H}}}
+\def\W{\hat{ \mathcal W}}
+\def\dell{{\delta\ell}}
+\def\dell{{\mathpzc {S}}}
+\def\dell{{s}}
+\def\S{\mathbf{s}}
+\def\delll{{\delta w}}
+\def\dells{{u}}
+\def\delll{{\mathpzc R}}
+\def\delll{{w}}
+\def\p{\Z}
+\def\hell{{\h_\ell}}
+\def\Hell{{{\H}_\ell}}
+\def\well{{\w_\ell}}
+\def\Well{{\W_\ell}}
+\def\ohell{\o{\h_\ell}}
+\def\oHell{\o{\H_\ell}}
+\def\dhell{\d{\h_\ell}}
+\def\dHell{\d{\H_\ell}}
+\def\Ell{\overline{\ell}}
+\def\Uell{{\U_\ell}}
+\def\u{{\hat U}}
+\def\uell{{\u_\ell}}
+\def\Q{\hat Q}
+\def\D{\hat D}
+\def\Dbf{\mathbf{\hat D}}
+\def\Upsi{U^{(\psi)}}
+\newcommand{\Upsik}[1]{U^{(\psi_{#1})}}
+\newcommand{\Vpsik}[1]{V^{(\psi_{#1})}}
+
+\def\vDBI{\hat R}
+\def\VDBI{\mathcal T}
+\def\UDBI{\mathcal V}
+\def\RDBI{\hat R}
+\def\PDBI{\mathcal P}
+
+\def\I{\mathcal I}
+\def\delln{{\dell^{\mtiny{(N)}}}}
+\def\elln{\ell^{\mtiny{(N)}}}
+\def\wn{\w^{\mtiny{(N)}}}
+\def\wnm{\w^{\mtiny{(N-1)}}}
+\def\un{\u^{\mtiny{(N)}}}
+\def\unm{\u^{\mtiny{(N-1)}}}
+\def\hn{{\h^{\mtiny{(N)}}}}
+\def\hnm{{\h^{\mtiny{(N-1)}}}}
+\def\wtn{\w^{\mtiny{\rceil N\rfloor}}}
+\def\utn{\w^{\mtiny{\rceil N\rfloor}}}
+\def\htn{\w^{\mtiny{\rceil N\rfloor}}}
+\def\dellnm{\dell^{\mtiny{(N-1)}}}
+\def\D{\mathcal D}
+\def\Z{\hat Z}
+\def\Pr{\mathrm{Pr}}
+\newcommand\sntc[2]{\Delta^{#1}(#2)}
+\def\snt{\sntc n\ell}
+\def\snr{\sntc n r}
+\def\snst{}
+\def\dtn {\mathrm{d}^ns}
+\def\dr {\mathrm{d} r}
+\newcommand\dtnc[2]{\mathrm{d}^{#1}#2}
+\def\dd {\mathrm{d}}
+\def\bc{\{0,1\}^{\times L}}
+\def\zm{\Z_\mu}
+\newcommand\zmc[1]{\Z_{\etak {#1}}}
+\def\xn{\X_\nu}
+\def\zmp{\Z_{\mu^{\prime}}}
+\def\xnp{\X_{\nu^{\prime}}}
+\def\mnbc{{\mu,\nu \in \bc}}
+\def\mbc{{\mu \in \bc}}
+\def\hmn{\overline {H}_{\mu,\nu}}
+\def\RBS{\operatorname{RBS}}
+
+\def\A{\hat A}
+\def\B{\hat J}
+\def\drr{r^{\prime}}
+\def\linops{{\mathcal L(\CC^{\times D})}}
+\def\A{\hat A}
+\def\B{\hat B}
+\def\C{\hat C}
+\def\D{\hat D}
+\def\NC{\mathcal N}
+\def\n{K}
+\def\elk{\ell_k}
+\def\elkm{{{\ell_{k-1}}}}
+\def\rxi{\mathcal R_k(s)}
+\def\phk{\partial \h_{k-1}}
+\def\G{\mathcal{N}_W(K)}
+\def\vgc{\v^{\mtiny{\mathrm{(GC)}}}}
+\def\vmp{\v^{\mtiny{\mathrm{(\mu_1,\ldots,\mu_R)}}}}
+\def\vd{\v^{\mtiny{(\Delta)}}}
+\def\elk{\ell_k}
+\def\elkm{\ell_{k-1}}
+\def\wz{{\w^{\mtiny{(Z)}}}}
+\def\wmu{{\w^{\mtiny{(\mu)}}}}
+\def\dzz{\Delta^{\mtiny{(Z)}}}
+\def\dmu{\overline{\Delta^{\mtiny{(\eta)}}}}
+\def\vk{\v_k}
+\def\vkm{\v_{k-1}}
+\def\b{B}
+\def\bk{\b_k}
+\def\J{\hat A}
+\def\Jk{\J_k}
+\def\Jkm{\J_{k-1}}
+\def\sgd{$\sigma$-decreasing }
+\def\pch{\hat Q}
+
 \usetikzlibrary{arrows,automata}
 \usetikzlibrary{positioning}
 \usetikzlibrary{arrows.meta,
@@ -150,7 +282,8 @@ $$ \partial_s \hat{H}_0(s) = [ \hat{H}_0(s), [ \hat{H}_0(0), \hat{D}_0 ] ]. $$
 \begin{itemize}[noitemsep]
 \item[1.] We care of diagonal 
    $\hat{D}_k$ in $\hat{W}_k = [\hat{D}_k, \hat{H}_k]$. A natural choice is the canonical
-   generator:
+   generator\footnote{See \href{https://journals.aps.org/prd/abstract/10.1103/PhysRevD.48.5863}{Renormalization of Hamiltonians, Glazek and Wilson, 1993} and 
+   \href{https://onlinelibrary.wiley.com/doi/abs/10.1002/andp.19945060203}{Flow-equations for Hamiltonians, Wegner, 1994} for extras.}:
    $$ 
    \hat{W}_k^{\rm can} = [\hat{H}_k, \hat{\Delta}(\hat{H}_k)], \qquad \text{with} \qquad  
    \begin{cases}
@@ -234,11 +367,110 @@ This is compilable into a sequence of local Hamiltonian evolutions.
 \faExclamationCircle\,\,Higher-order formulas can be implemented to reduce the approximation error.
 \end{frame}
 
-\begin{frame}{Sum up}
+\begin{frame}{Warming start the new talk}
 \begin{figure}
    \includegraphics[width=1\textwidth]{figures/3_phases_dbqa.pdf}
 \end{figure}
 \end{frame}
+
+\subtitle{\texttt{PART 2:} Interfacing DBQAs with other techniques}
+\date{4 December 2024}
+
+\begin{frame}{}
+\maketitle
+\end{frame}
+
+\begin{frame}{How to make this work in practice?}
+We left the last session with an approximation:
+$$ e^{- s [\hat{D}, \hat{H}]} \approx e^{i \sqrt{s_k}\hat{H}_k} 
+e^{i \sqrt{s_k}\hat{D}_k} e^{-i \sqrt{s_k}\hat{H}_k} e^{-i \sqrt{s_k}\hat{D}_k}.$$
+
+Today, we will see how this is costly in practice, and propose the synergistic usage of 
+more methods together.
+\begin{figure}
+   \includegraphics[width=0.6\textwidth]{figures/diagram.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Interfacing a warm start approximation with DBIs}
+Let me apply a little modification to our input Hamiltonian:
+$$ \hat{A}_0 = \hat{U}_{\theta}^{\dagger} \hat{H}_0 \hat{U}_{\theta}, $$
+where $\hat{U}_{\theta}$ is a variational unitary operator introduced to approximate 
+the ground state preparation (VQE here).
+\begin{multicols}{2}
+\vspace{1cm}
+\texttt{  }
+
+\textbf{VQE in a nutshell}
+\begin{itemize}[noitemsep]
+\item[1.] Define a good parametric circuit ansatz $\hat{U}_{\theta}$ (Hamming-weight preserving here);
+\item[2.] we want the circuit to approximate the ground state of a target $\hat{H}_0$;
+\item[3.] the cost function is the expval of $\hat{H}_0$ over the 
+final state given by the circuit:
+$$ C = \braket{0 | \hat{U}_{\theta}^{\dagger} \hat{H}_0  \hat{U}_{\theta} | 0}.$$
+\end{itemize}
+\begin{figure}
+   \includegraphics[width=0.45\textwidth]{figures/vqe_hw.pdf}
+\end{figure}
+\end{multicols}
+\end{frame}
+
+\begin{frame}{Interfacing a warm start approximation with DBIs}
+Let me apply a little modification to our input Hamiltonian:
+$$ \hat{A}_0 = \hat{U}_{\theta}^{\dagger} \hat{H}_0 \hat{U}_{\theta}. $$
+One step of this group commutator iteration (GCI):
+$$ \hat{A}_1 = \hat{V}_1^{\dagger} \hat{U}_{\theta}^{\dagger} \hat{H}_0 \hat{U}_{\theta} \hat{V}_1
+\qquad \text{with} \qquad \hat{V}_1 =  e^{- i \sqrt{s_0}\hat{D}_0} \hat{U}_{\theta}^{\dagger} 
+e^{- i \sqrt{s_0} \hat{H}_0}   \hat{U}_{\theta}  e^{i \sqrt{s_0}\hat{D}_0}. 
+$$
+Let me write here a (simplified in notation) full expression for the expval of $\hat{H}_0$:
+
+$$ C = \braket{0| \textcolor{persianred}{e^{-D_0}} \textcolor{mediumpersianblue}{U^{\dagger}} 
+e^{H_0} \textcolor{mediumpersianblue}{U}  \textcolor{persianred}{e^{D_0}} \textcolor{mediumpersianblue}{U^{\dagger}} 
+H_0 \textcolor{mediumpersianblue}{U}  \textcolor{persianred}{e^{-D_0}} \textcolor{mediumpersianblue}{U^{\dagger}} e^{-H_0}  
+\textcolor{mediumpersianblue}{U}  \textcolor{persianred}{e^{D_0}} |0} $$
+
+\begin{tcolorbox}[colback=red!15, title=Reduced group commutator formula]
+$$ \hat{V}^{(\rm RGC)}_k = e^{- i \sqrt{s_k}\hat{D}_k} e^{-i \sqrt{s_k}\hat{A}_k} e^{i \sqrt{s_k}\hat{D}_k} \qquad 
+\text{since} \qquad \hat{A}_k =  e^{- i \sqrt{s_k}\hat{A}_k } \hat{A}_k e^{i \sqrt{s_k}\hat{A}_k }  $$ 
+Cost reduction without any impact on the result calculation.
+\end{tcolorbox}
+\end{frame}
+
+\begin{frame}{Two steps}
+In terms of state preparation (we want to compile it) one VQExDBQA step appears as:
+$$ \textcolor{mediumpersianblue}{U}  \textcolor{persianred}{e^{-D_0}} \textcolor{mediumpersianblue}{U^{\dagger}} e^{-H_0}  
+\textcolor{mediumpersianblue}{U}  \textcolor{persianred}{e^{D_0}} \ket{0}. $$
+Adding one more step means applying $\hat{V}_2$ to the system:
+\begin{align*}
+   \hat V_2 
+   =& e^{-ir_1 \D_1} \v_1^\dagger e^{-ir_1 \J_0} \v_1 e^{ir_1 \D_1}  \\
+   =& 
+   e^{-i(r_0 \D_0+r_1 \D_1)} \vqes^\dagger e^{ir_0 \h_0} \vqes e^{ir_0 \D_0} \vqes^\dagger e^{-ir_1 \h_0}\vqes
+   e^{-ir_0 \D_0} \vqes^\dagger e^{-ir_0 \h_0} \vqes e^{i(r_0 \D_0+r_1 \D_1)}.
+\end{align*}
+This unfolding requires a number of queries which increases exponentially
+with the number of DBI recursions.
+
+\begin{tcolorbox}[colback=red!15, title=Compiling the hamiltonian evolutions]
+The XXZ is decomposed into contributions involving two qubits per time $\hat{H}_0 = \sum_{a=1}^L \hat{H}^{(a)}$ such that
+$\hat{H}^{(a)} = \hat{X}_a \hat{X}_{a+1} + \hat{Y}_a \hat{Y}_{a+1} + \hat{Z}_a \hat{Z}_{a+1}$ and then a Trotter-Suzuki decomposition
+is implemented:
+\begin{align*}
+	e^{-it \h_0} = \left( \prod_{a=1}^L e^{-i\frac{t}{M}\h^{(a)}}\right)^M+O(M^{-1}).
+\end{align*}
+Eventually, higher-order formulas can be used.
+\end{tcolorbox}
+\end{frame}
+
+
+% \begin{tcolorbox}[colback=red!15, title=Compiling]
+% 1. Hamiltonian evolutions can be transpiled into gates via Trotter Suzuki decompositions.
+
+% 2. All the components of GCI are then compiled into gates via Euler, KAK and (eventually)
+% Shannon decompositions\footnote{\href{https://arxiv.org/abs/quant-ph/0308006v3}{Optimal Quantum Circuits for General Two-Qubit Gates
+% , Vatan and Williams, 2003.}}.
+% \end{tcolorbox}
 
 \end{document}
 
