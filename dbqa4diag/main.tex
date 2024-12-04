@@ -51,7 +51,7 @@
 \def\bfzero{\boldsymbol{0}}
 \def\bftheta{\boldsymbol{\theta}}
 \def\vqe{\u_{\bftheta}}
-\def\vqes{\u_{\bftheta^*}}
+\def\vqes{\u_{\bftheta}}
 
 \newcommand{\sandwich}[3]
   {\left\langle  #1 \right| #2 \left| #3 \right\rangle}
@@ -380,6 +380,27 @@ This is compilable into a sequence of local Hamiltonian evolutions.
 \maketitle
 \end{frame}
 
+\begin{frame}{A couple of references}
+\begin{multicols}{2}
+\begin{figure}
+   \includegraphics[width=0.5\textwidth]{figures/dbqa_paper.png}
+\end{figure}
+Check out this because:
+\begin{itemize}[noitemsep]
+\item[1.] Marek is a very nice and smart guy;
+\item[2.] it contains math foundations of this talk; 
+\end{itemize}
+\begin{figure}
+   \includegraphics[width=0.5\textwidth]{figures/boostvqe_paper.png}
+\end{figure}
+And this because:
+\begin{itemize}[noitemsep]
+\item[1.] we will follow this paper for the numerical results;
+\item[2.] there are some nice figures :) 
+\end{itemize}
+\end{multicols}
+\end{frame}
+
 \begin{frame}{How to make this work in practice?}
 We left the last session with an approximation:
 $$ e^{- s [\hat{D}, \hat{H}]} \approx e^{i \sqrt{s_k}\hat{H}_k} 
@@ -435,6 +456,11 @@ $$ \hat{V}^{(\rm RGC)}_k = e^{- i \sqrt{s_k}\hat{D}_k} e^{-i \sqrt{s_k}\hat{A}_k
 \text{since} \qquad \hat{A}_k =  e^{- i \sqrt{s_k}\hat{A}_k } \hat{A}_k e^{i \sqrt{s_k}\hat{A}_k }  $$ 
 Cost reduction without any impact on the result calculation.
 \end{tcolorbox}
+\begin{picture}(0,0)
+    \put(330,85){
+        \includegraphics[width=0.1\textwidth]{figures/feather_icon.png}
+    }
+\end{picture}
 \end{frame}
 
 \begin{frame}{Two steps}
@@ -449,8 +475,6 @@ Adding one more step means applying $\hat{V}_2$ to the system:
    e^{-i(r_0 \D_0+r_1 \D_1)} \vqes^\dagger e^{ir_0 \h_0} \vqes e^{ir_0 \D_0} \vqes^\dagger e^{-ir_1 \h_0}\vqes
    e^{-ir_0 \D_0} \vqes^\dagger e^{-ir_0 \h_0} \vqes e^{i(r_0 \D_0+r_1 \D_1)}.
 \end{align*}
-This unfolding requires a number of queries which increases exponentially
-with the number of DBI recursions.
 
 \begin{tcolorbox}[colback=red!15, title=Compiling the hamiltonian evolutions]
 The XXZ is decomposed into contributions involving two qubits per time $\hat{H}_0 = \sum_{a=1}^L \hat{H}^{(a)}$ such that
@@ -459,18 +483,69 @@ is implemented:
 \begin{align*}
 	e^{-it \h_0} = \left( \prod_{a=1}^L e^{-i\frac{t}{M}\h^{(a)}}\right)^M+O(M^{-1}).
 \end{align*}
-Eventually, higher-order formulas can be used.
+\end{tcolorbox}
+\begin{picture}(0,0)
+    \put(340,125){
+        \includegraphics[width=0.15\textwidth]{figures/explosion_icon.png}
+    }
+\end{picture}
+\end{frame}
+
+\begin{frame}{Compiling}
+\begin{multicols}{2}
+\textbf{Any unitary can be compiled into proper set of gates}
+\begin{itemize}[noitemsep]
+\item[1.] Euler decomposition for 1-qubit gates;
+\item[2.] KAK decomposition for 2-qubit gates;
+\item[3.] Shannon decomposition for n-qubit gates.
+\end{itemize}
+\begin{figure}
+   \includegraphics[width=0.5\textwidth]{figures/2q_compilation.png}
+\end{figure}
+\end{multicols}
+Trotter-Suzuki approximation, combined with compilation, means a quite intense 
+number of required gates.
+\begin{tcolorbox}[colback=red!15, title=\faLightbulbO\,\,\,Interface with a warm start a a couple of DBI steps]
+If we are able to setup a short-depth first approximation, then we can boost the preparation with DBI.
+\end{tcolorbox}
+\begin{picture}(0,0)
+    \put(30,75){
+        \includegraphics[width=0.1\textwidth]{figures/save_coin.png}
+    }
+\end{picture}
+\end{frame}
+
+\begin{frame}{Boosting 1D XXZ ground state preparation}
+\begin{figure}
+   \includegraphics[width=1\textwidth]{figures/results_hw.png}
+\end{figure}
+\begin{tcolorbox}[colback=red!15, title=\faLightbulbO\,\,\,Two qubit gates count]
+Number of CZ executed considering \textit{i)} VQE training, 
+\textit{ii)} hyper-optimization of the unfolded GCI's parameters.
 \end{tcolorbox}
 \end{frame}
 
+\begin{frame}{Optimization reminder \hfill \href{https://arxiv.org/abs/2408.07431}{\textcolor{white}{\faBook\,\,arXiv:2408.07431}}}
+\begin{center}
+\begin{figure}
+   \includegraphics[width=1\textwidth]{figures/dbi_scheme_ink.pdf}
+\end{figure}
+\end{center}
+\begin{picture}(0,0)
+    \put(100,175){
+        \includegraphics[width=0.1\textwidth]{figures/cma_icon.png}
+    }
+\end{picture}
+\end{frame}
 
-% \begin{tcolorbox}[colback=red!15, title=Compiling]
-% 1. Hamiltonian evolutions can be transpiled into gates via Trotter Suzuki decompositions.
-
-% 2. All the components of GCI are then compiled into gates via Euler, KAK and (eventually)
-% Shannon decompositions\footnote{\href{https://arxiv.org/abs/quant-ph/0308006v3}{Optimal Quantum Circuits for General Two-Qubit Gates
-% , Vatan and Williams, 2003.}}.
-% \end{tcolorbox}
+\begin{frame}{Boosting 1D XXZ ground state preparation}
+\begin{figure}
+   \includegraphics[width=0.9\textwidth]{figures/table_hw.png}
+\end{figure}
+\begin{figure}
+   \includegraphics[width=0.6\textwidth]{figures/fidelity_hw.png}
+\end{figure}
+\end{frame}
 
 \end{document}
 
