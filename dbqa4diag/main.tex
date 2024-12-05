@@ -401,6 +401,37 @@ And this because:
 \end{multicols}
 \end{frame}
 
+\begin{frame}{Let's remember what a DBI is}
+\begin{columns}[T,onlytextwidth]
+    % First column: 40%
+    \begin{column}{0.45\textwidth}
+    \textbf{Ingredients}
+        \begin{itemize}[noitemsep]
+            \item[1.] Input Hamiltonian $\textcolor{mediumpersianblue}{\hat H_0}$ (here 1D XXZ);
+            \item[2.] an anti-hermitian ($(i\hat{W})^{\dagger} = -i\hat{W}$) rotation generator $\textcolor{persianred}{\hat{W}_0} = [\hat{D}_0, \hat H_0]$;
+            \item[3.] point 2. is used to build a unitary operation:
+              $$ \hat{R}_0 \equiv e^{s \textcolor{persianred}{\hat{W}_0}}, $$
+              with $s$ stepsize or flow duration;
+            \item[4.] $\hat{R}_0$ applied to $\hat{H}_0$ as \textit{double-bracket rotation}:
+               $$ \hat H_1 =  e^{s\textcolor{persianred}{\hat{W}_0}} \textcolor{mediumpersianblue}{\hat H_0} e^{- s \textcolor{persianred}{\hat{W}_0}}.$$
+        \end{itemize}
+
+    \end{column}
+
+    % Second column: 60%
+    \begin{column}{0.55\textwidth}
+        \begin{figure}
+           \includegraphics[width=0.95\textwidth]{figures/dbqa_10steps.pdf}
+        \caption{Ten DBQA rotations to a 5 qubit 1D XXZ.}
+        \end{figure}
+    \end{column}
+\end{columns}
+\begin{tcolorbox}[colback=red!15, title=Nomenclature reason]
+The presented framework satisfies a Heisenberg equation involving two, not one, brackets:
+$$ \partial_s \hat{H}_0(s) = [ \hat{H}_0(s), [ \hat{H}_0(0), \hat{D}_0 ] ]. $$
+\end{tcolorbox}
+\end{frame}
+
 \begin{frame}{How to make this work in practice?}
 We left the last session with an approximation:
 $$ e^{- s [\hat{D}, \hat{H}]} \approx e^{i \sqrt{s_k}\hat{H}_k} 
@@ -540,11 +571,16 @@ Number of CZ executed considering \textit{i)} VQE training,
 
 \begin{frame}{Boosting 1D XXZ ground state preparation}
 \begin{figure}
-   \includegraphics[width=0.9\textwidth]{figures/table_hw.png}
+   \includegraphics[width=0.8\textwidth]{figures/table_hw.png}
 \end{figure}
-\begin{figure}
-   \includegraphics[width=0.6\textwidth]{figures/fidelity_hw.png}
-\end{figure}
+\begin{flushleft}
+   \includegraphics[width=0.5\textwidth]{figures/fidelity_hw.png}
+\end{flushleft}
+\begin{picture}(0,0)
+    \put(220,-15){
+        \includegraphics[width=0.37\textwidth]{figures/investigated_also.pdf}
+    }
+\end{picture}
 \end{frame}
 
 \end{document}
